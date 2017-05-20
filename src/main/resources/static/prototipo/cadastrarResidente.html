@@ -116,17 +116,133 @@
         <div class="right_col" role="main">
           
 
-          <div class="row">
-            <div class="col-md-4 col-sm-4 col-xs-4">
-            	<div class="dashboard_graph">
-            		<div class="row x_title">
-            			<h3>Residentes</h3>
+         <div class="x_content dashboard_graph">
+         			<div class="row x_title">
+            			<h3>Cadastrar Residente</h3>
             		</div>
-            		<h4>Cadastrados: 32</h4>
-            		<h4>Vagas Disponíveis: 8</h4>
-            	</div>
-            </div>
-          </div>
+                    <form class="form-horizontal form-label-left col-md-10 col-sm-10 col-xs-10">
+
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Nome:</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" required>
+                        </div>
+                      </div>
+                       <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-3">Data de Nacimento:</label>
+                        <div class="col-md-9 col-sm-9 col-xs-9">
+                          <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999'" required>
+                        </div>
+                      </div>
+                       <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Naturalidade:</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" required>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Profissão:</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control">
+                        </div>
+                      </div>
+                       <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Estado civil:</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" required>
+                        </div>
+                      </div>
+                       <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Rua:</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" required>
+                        </div>
+                      </div>
+                       <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">N°:</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" required>
+                        </div>
+                      </div>
+                       <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Bairro:</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" required>
+                        </div>
+                      </div>
+                       <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Cidade:</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" required>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-sm-3 control-label">Responsável</label>
+                        <div class="col-sm-9">
+                          <div class="input-group">
+                            <input type="text" class="form-control" required>
+                            <span class="input-group-btn">
+                                              <button type="button" class="btn btn-primary">Pesquisar</button>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-sm-3 control-label">Observações</label>
+                        <div class="col-sm-9">
+                          	<textarea id="message" required="required" class="form-control" name="message" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.."
+                            data-parsley-validation-threshold="10"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Dependências (selecione todas)</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" value=""> Álcool
+                            </label>
+                          </div>
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" value=""> Crack
+                            </label>
+                          </div>
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" value=""> Cocaína
+                            </label>
+                          </div>
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" value=""> Maconha
+                            </label>
+                          </div>
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" value=""> Merla
+                            </label>
+                          </div>
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" value=""> Heroína
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                          <button type="button" class="btn btn-primary">Cancelar</button>
+                          <button type="reset" class="btn btn-primary">Limpar</button>
+                          <button type="submit" class="btn btn-success">Salvar</button>
+                        </div>
+                      </div>
+
+                    </form>
+                  </div>
+ 
 
 
          </div>
@@ -185,6 +301,8 @@
 
     <!-- Custom Theme Scripts -->
     <script src="/prototipo/build/js/custom.js"></script>
+        <!-- jquery.inputmask -->
+    <script src="/prototipo/vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
 	
   </body>
 </html>
