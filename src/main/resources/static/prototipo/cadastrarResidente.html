@@ -130,14 +130,16 @@
                       </div>
                        <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-3">Data de Nacimento:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-9">
-                          <input type="text" class="form-control" data-inputmask="'mask': '99/99/9999'" required>
+                        <div class="col-md-3 col-sm-3 col-xs-3">
+                        	<div class="input-group">
+                          		<input type="text" class="form-control" data-inputmask="'mask': '99/99/9999'" required>
+                          	</div>
                         </div>
-                      </div>
-                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Naturalidade:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" required>
+                        <div class="col-md-3 col-sm-3 col-xs-3">
+                        	<div class="input-group">
+                          		<input type="text" class="form-control" required>
+                          	</div>
                         </div>
                       </div>
                       <div class="form-group">
@@ -153,44 +155,41 @@
                         </div>
                       </div>
                        <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Rua:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-3">Rua:</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" class="form-control" required>
+                        </div>
+                        <label class="control-label col-md-1 col-sm-1 col-xs-1">N°:</label>
+                        <div class="col-md-1 col-sm-1 col-xs-1">
                           <input type="text" class="form-control" required>
                         </div>
                       </div>
                        <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">N°:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" required>
-                        </div>
+                        
                       </div>
                        <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Bairro:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                          <input type="text" class="form-control" required>
+                        </div>
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12">Cidade:</label>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
                           <input type="text" class="form-control" required>
                         </div>
                       </div>
                        <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Cidade:</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" required>
-                        </div>
+                        
                       </div>
                       <div class="form-group">
                         <label class="col-sm-3 control-label">Responsável</label>
-                        <div class="col-sm-9">
-                          <div class="input-group">
+                        <div class="col-sm-9 col-md-9 col-xs-12">
                             <input type="text" class="form-control" required>
-                            <span class="input-group-btn">
-                                              <button type="button" class="btn btn-primary">Pesquisar</button>
-                            </span>
-                          </div>
                         </div>
                       </div>
                       <div class="form-group">
                         <label class="col-sm-3 control-label">Observações</label>
                         <div class="col-sm-9">
-                          	<textarea id="message" required="required" class="form-control" name="message" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.."
+                          	<textarea id="message" class="form-control" name="message" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.."
                             data-parsley-validation-threshold="10"></textarea>
                         </div>
                       </div>
