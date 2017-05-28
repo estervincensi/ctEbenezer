@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	lang="en" layout:decorator="/layouts/main">
+
+
+<body>
+	 <div layout:fragment="content">
+	 <div class="right_col" role="main">
+
+
+          <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-4">
+            	<div class="dashboard_graph">
+            		<div class="row x_title">
+            			<h3 th:text="#{index.residentes}"></h3>
+            		</div>
+            		<h4 th:text="#{index.cadastrados}"></h4>
+            		<h4 th:text="#{index.vagasDisponiveis}"></h4>
+            	</div>
+            </div>
+          </div>
+
+
+         </div>
+	</div>
+
+</body>
+</html>

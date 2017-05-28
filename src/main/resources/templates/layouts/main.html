@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+  
+  <head th:include="/layouts/fragments/scripts :: head" />
+
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        <!-- menu -->
+        <div class="col-md-3 left_col" th:include="/layouts/fragments/menu :: items"></div>
+        <!-- /menu -->
+        <!-- top navigation -->
+        <div class="top_nav"  th:include="/layouts/fragments/top-navigation :: items"></div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div layout:fragment="content"></div>
+       
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer	th:include="/layouts/fragments/footer :: main"> </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
+
+   <div th:include="/layouts/fragments/scripts :: javascripts" />
+	
+  </body>
+</html>
