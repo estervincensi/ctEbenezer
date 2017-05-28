@@ -4,7 +4,7 @@ spring:
     prefix: classpath:/templates
   jackson:
     serialization.write-dates-as-timestamps: false
-  jpa.properties.hibernate.default_schema: ctEbenezer
+  jpa.properties.hibernate.default_schema: CTEBENEZER
   mvc:
     favicon:
       enabled: true

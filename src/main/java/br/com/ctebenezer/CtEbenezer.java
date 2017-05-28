@@ -1,4 +1,4 @@
-package br.com.ctebenezer.controller;
+package br.com.ctebenezer;
 
 
 import org.springframework.boot.SpringApplication;
