@@ -1,5 +1,4 @@
 spring:
-  profiles.active: development
   thymeleaf:
     prefix: classpath:/templates
   jackson:
@@ -15,7 +14,6 @@ spring:
 server.error.whitelabel.enabled: false
 ---
 spring:
-  profiles: development
   thymeleaf:
     cache: false
   h2.console:
@@ -28,22 +26,6 @@ spring:
   datasource:
     url: jdbc:h2:~/dev;DB_CLOSE_ON_EXIT=FALSE;INIT=CREATE SCHEMA IF NOT EXISTS CTEBENEZER 
     platform: h2
----
-spring:
-  profiles: production
-  thymeleaf:
-    cache: true
-  jpa:
-    database: postgresql
-    show-sql: true
-    generate-ddl: false
-    hibernate:
-      ddl-auto: none
-  datasource:
-    url: postgres
-    username: postgres
-    password: postgres
-    platform: POSTGRESQL
 logging:
   file: ./ebenezer-console.log
   level.org:
