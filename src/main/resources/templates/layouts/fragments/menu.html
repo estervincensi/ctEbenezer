@@ -32,7 +32,7 @@
                 <ul class="nav side-menu">
                   <li><a id="residente"><i class="fa fa-home"></i> <span th:text="#{menu.residentes}"></span> <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a id="cadastrar" href="/prototipo/cadastrarResidente.html" th:text="#{menu.cadastrar}"></a></li>
+                      <li><a id="cadastrar" th:href="@{/residente/cadastrar}" th:text="#{menu.cadastrar}"></a></li>
                       <li><a id="pesquisar" href="/prototipo/listarResidentes.html" th:text="#{menu.pesquisar}"></a></li>
 
                     </ul>
