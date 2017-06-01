@@ -81,38 +81,15 @@
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Observações</label>
 						<div class="col-sm-9">
-							<textarea id="message" class="form-control" name="message"></textarea>
+							<textarea id="message" class="form-control" name="message" th:field="*{observacoes}"></textarea>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12">Dependências
-							(selecione todas)</label>
+							</label>
 						<div class="col-md-9 col-sm-9 col-xs-12">
-							<div class="checkbox">
-								<label> <input type="checkbox" value="" id="alcool"/>
-									Álcool
-								</label>
-							</div>
-							<div class="checkbox">
-								<label> <input type="checkbox" value="" id="crack"/>
-									Crack
-								</label>
-							</div>
-							<div class="checkbox">
-								<label> <input type="checkbox" value=""/> Cocaína
-								</label>
-							</div>
-							<div class="checkbox">
-								<label> <input type="checkbox" value=""/> Maconha
-								</label>
-							</div>
-							<div class="checkbox">
-								<label> <input type="checkbox" value=""/> Merla
-								</label>
-							</div>
-							<div class="checkbox">
-								<label> <input type="checkbox" value=""/> Heroína
-								</label>
+							<div class="checkbox" th:each="dependencia : ${dependencias}">
+								  <input type="checkbox" th:text="${dependencia.name()}" th:value="${dependencia}"/>
 							</div>
 						</div>
 					</div>

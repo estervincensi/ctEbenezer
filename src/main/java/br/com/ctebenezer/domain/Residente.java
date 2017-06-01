@@ -17,7 +17,7 @@ public class Residente {
 	@GeneratedValue
 	private Long id;
 	
-	private String nome, naturalidade, profissao, observações, responsavel;
+	private String nome, naturalidade, profissao, observacoes, responsavel;
 	private Date dataNascimento;
 	
 	@Enumerated(EnumType.STRING)
@@ -45,11 +45,11 @@ public class Residente {
 	public void setProfissao(String profissao) {
 		this.profissao = profissao;
 	}
-	public String getObservações() {
-		return observações;
+	public String getObservacoes() {
+		return observacoes;
 	}
-	public void setObservações(String observações) {
-		this.observações = observações;
+	public void setObservacoes(String observacoes) {
+		this.observacoes = observacoes;
 	}
 	public String getResponsavel() {
 		return responsavel;
@@ -81,13 +81,13 @@ public class Residente {
 	public void setDependencias(List<Dependencias> dependencias) {
 		this.dependencias = dependencias;
 	}
-	public Residente(String nome, String naturalidade, String profissao, String observações, String responsavel,
+	public Residente(String nome, String naturalidade, String profissao, String observacoes, String responsavel,
 			Date dataNascimento, EstadoCivil estadoCivil, Endereco endereco,
 			List<Dependencias> dependencias) {
 		this.nome = nome;
 		this.naturalidade = naturalidade;
 		this.profissao = profissao;
-		this.observações = observações;
+		this.observacoes = observacoes;
 		this.responsavel = responsavel;
 		this.dataNascimento = dataNascimento;
 		this.estadoCivil = estadoCivil;
