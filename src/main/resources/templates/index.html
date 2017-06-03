@@ -16,8 +16,8 @@
             		<div class="row x_title">
             			<h3 th:text="#{index.residentes}"></h3>
             		</div>
-            		<h4 th:text="#{index.cadastrados}"></h4>
-            		<h4 th:text="#{index.vagasDisponiveis}"></h4>
+            		<h4 th:text="#{index.cadastrados}+${vagas[0]}"></h4>
+            		<h4 th:text="#{index.vagasDisponiveis}+${vagas[1]}"></h4>
             	</div>
             </div>
           </div>

@@ -1,40 +1,37 @@
 package br.com.ctebenezer.controller;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.ctebenezer.domain.Residente;
-import br.com.ctebenezer.domain.enumerables.Dependencias;
+import br.com.ctebenezer.service.ResidenteService;
 
 @Controller
 @RequestMapping("/residente")
 public class ResidenteController {
-	
+	private final ResidenteService residenteService;
+
+	public ResidenteController(ResidenteService residenteService){
+		this.residenteService = residenteService;
+	}
 	@GetMapping("/cadastrar")
 	public String cadastrarResidente(Model model){
 		model.addAttribute("residente", new Residente());
-		List<Dependencias> dependencias = new ArrayList<>();
-		dependencias.add(Dependencias.ALCOOL);
-		dependencias.add(Dependencias.COCAINA);
-		dependencias.add(Dependencias.CRACK);
-		dependencias.add(Dependencias.HEROINA);
-		dependencias.add(Dependencias.MACONHA);
-		dependencias.add(Dependencias.MERLA);
-		dependencias.add(Dependencias.OUTRO);
-		model.addAttribute("dependencias", dependencias);
+		model.addAttribute("dependencias1", residenteService.buscarTodasDependencias());
+		model.addAttribute("estadosCivis", residenteService.buscarTodosEstadosCivis());
 		return "/residentes/cadastrar";
 	}
-	
+
 	@PostMapping("/salvarNovo")
-	public String salvarNovo(@Valid Residente residente){
-		return "/index";
+	public String salvarNovo(@Valid Residente residente,BindingResult bindingResult, Model model){
+		residenteService.salvar(residente);
+		return "redirect:/home";
 	}
 }

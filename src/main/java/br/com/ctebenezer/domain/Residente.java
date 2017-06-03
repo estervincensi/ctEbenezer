@@ -3,6 +3,9 @@ package br.com.ctebenezer.domain;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
@@ -12,19 +15,23 @@ import javax.persistence.ManyToOne;
 import br.com.ctebenezer.domain.enumerables.Dependencias;
 import br.com.ctebenezer.domain.enumerables.EstadoCivil;
 
+@Entity
 public class Residente {
 	@Id
 	@GeneratedValue
 	private Long id;
-	
+
 	private String nome, naturalidade, profissao, observacoes, responsavel;
+
 	private Date dataNascimento;
-	
+
 	@Enumerated(EnumType.STRING)
 	private EstadoCivil estadoCivil;
-	@ManyToOne
+
+	@ManyToOne(cascade=CascadeType.ALL)
 	private Endereco endereco;
-	
+
+	@ElementCollection
 	@Enumerated(EnumType.STRING)
 	private List<Dependencias> dependencias;
 	public String getNome() {
@@ -96,7 +103,7 @@ public class Residente {
 	}
 	public Residente() {
 	}
-	
-	
-	
+
+
+
 }

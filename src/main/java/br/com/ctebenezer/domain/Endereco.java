@@ -1,13 +1,15 @@
 package br.com.ctebenezer.domain;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+@Entity
 public class Endereco {
 	@Id
 	@GeneratedValue
 	private Long id;
-	
+
 	private String rua, bairro, cidade;
 	private int numero;
 	public String getRua() {
@@ -42,7 +44,7 @@ public class Endereco {
 	}
 	public Endereco() {
 	}
-	
-	
+
+
 
 }
