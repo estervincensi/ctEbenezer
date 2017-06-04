@@ -66,5 +66,8 @@ public class ResidenteService {
 		residente.setDataEntrada(DateTime.now().toDate());
 		residenteRepository.save(residente);
 	}
+	public Residente buscar(Long id){
+		return residenteRepository.findOne(id);
+	}
 
 }

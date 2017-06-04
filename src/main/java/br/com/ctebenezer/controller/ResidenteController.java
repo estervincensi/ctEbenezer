@@ -45,4 +45,18 @@ public class ResidenteController {
 		residenteService.reingressar(id);
 		return "redirect:/residente/listar";
 	}
+
+	@GetMapping("/editar/{id}")
+	public String editar(@PathVariable Long id, Model model){
+		model.addAttribute("residente",residenteService.buscar(id));
+		model.addAttribute("dependencias1", residenteService.buscarTodasDependencias());
+		model.addAttribute("estadosCivis", residenteService.buscarTodosEstadosCivis());
+		return "/residentes/editar";
+	}
+
+	@PostMapping("/salvar")
+	public String salvar(@Valid Residente residente, BindingResult bindingResult){
+		residenteService.salvar(residente);
+		return "redirect:/residente/listar";
+	}
 }

@@ -27,8 +27,7 @@
 							<td th:text="${residente.nome}">Antonio Nunes</td>
 							<td id="reingresso1" th:text="${residente.dataEntrada}">05/07/2016</td>
 							<td id="reingresso2" th:text="${residente.dataSaida}">09/12/2016</td>
-							<td><a href="/prototipo/editarResidente.html"
-								class="btn btn-primary">Editar</a></td>
+							<td><a th:href="@{/residente/editar/}+${residente.id}" class="btn btn-primary">Editar</a></td>
 							<td><!-- a th:if="${residente.dataSaida}!=null" id="reingressarBtn" class="btn btn-success"
 								data-toggle="modal" data-id="${residente.id}" data-target=".bs-example-modal-sm">Reingressar</a-->
 								<a th:if="${residente.dataSaida}!=null" th:href="@{/residente/reingressar/}+${residente.id}"  class="btn btn-success">Reingressar</a>
