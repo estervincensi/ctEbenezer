@@ -12,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.joda.time.DateTime;
+
 import br.com.ctebenezer.domain.enumerables.Dependencias;
 import br.com.ctebenezer.domain.enumerables.EstadoCivil;
 
@@ -23,7 +25,7 @@ public class Residente {
 
 	private String nome, naturalidade, profissao, observacoes, responsavel;
 
-	private Date dataNascimento;
+	private Date dataNascimento, dataEntrada, dataSaida;
 
 	@Enumerated(EnumType.STRING)
 	private EstadoCivil estadoCivil;
@@ -34,6 +36,27 @@ public class Residente {
 	@ElementCollection
 	@Enumerated(EnumType.STRING)
 	private List<Dependencias> dependencias;
+
+
+
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public Date getDataEntrada() {
+		return dataEntrada;
+	}
+	public void setDataEntrada(Date dataEntrada) {
+		this.dataEntrada = dataEntrada;
+	}
+	public Date getDataSaida() {
+		return dataSaida;
+	}
+	public void setDataSaida(Date dataSaida) {
+		this.dataSaida = dataSaida;
+	}
 	public String getNome() {
 		return nome;
 	}
@@ -91,6 +114,7 @@ public class Residente {
 	public Residente(String nome, String naturalidade, String profissao, String observacoes, String responsavel,
 			Date dataNascimento, EstadoCivil estadoCivil, Endereco endereco,
 			List<Dependencias> dependencias) {
+		this();
 		this.nome = nome;
 		this.naturalidade = naturalidade;
 		this.profissao = profissao;
@@ -102,6 +126,7 @@ public class Residente {
 		this.dependencias = dependencias;
 	}
 	public Residente() {
+		dataEntrada = DateTime.now().toDate();
 	}
 
 
