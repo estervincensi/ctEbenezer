@@ -30,6 +30,8 @@
 
 	    <!-- Custom Theme Style -->
 	    <link rel="stylesheet" type="text/css" th:href="@{/css/custom.min.css}"/>
+
+	    <th:block layout:fragment="css-view"></th:block>
 	</head>
 	<body>
 		<div th:fragment="javascripts">
@@ -75,6 +77,8 @@
 
 		    <!-- Custom Theme Scripts -->
 		    <script th:src="@{/js/custom.js}"></script>
+
+		    <th:block layout:fragment="js-view"></th:block>
 		</div>
 	</body>
 </html>

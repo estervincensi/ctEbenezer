@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	lang="en" layout:decorator="/layouts/main">
+
+
+<body>
+	<div layout:fragment="content">
+		<div class="right_col" role="main">
+			<div class="x_content dashboard_graph">
+				<div class="row x_title">
+					<h3>Residentes</h3>
+				</div>
+				<table id="datatable" class="table table-striped table-bordered">
+					<thead>
+						<tr>
+							<th class="col-md-5">Nome</th>
+							<th class="col-md-2">Data de entrada</th>
+							<th class="col-md-2">Data de saída</th>
+							<th class="col-md-1">Editar</th>
+							<th class="col-md-2">Desligar/Reingressar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="residente : ${residentes}">
+							<td th:text="${residente.nome}">Antonio Nunes</td>
+							<td id="reingresso1" th:text="${residente.dataEntrada}">05/07/2016</td>
+							<td id="reingresso2" th:text="${residente.dataSaida}">09/12/2016</td>
+							<td><a href="/prototipo/editarResidente.html"
+								class="btn btn-primary">Editar</a></td>
+							<td><!-- a th:if="${residente.dataSaida}!=null" id="reingressarBtn" class="btn btn-success"
+								data-toggle="modal" data-id="${residente.id}" data-target=".bs-example-modal-sm">Reingressar</a-->
+								<a th:if="${residente.dataSaida}!=null" th:href="@{/residente/reingressar/}+${residente.id}"  class="btn btn-success">Reingressar</a>
+								<a th:if="${residente.dataSaida}==null" id="btnDesligar" class="btn btn-danger"
+								data-toggle="modal" data-target=".bs-example-modal-lg">Desligar</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<!-- modal desligar -->
+				<div class="modal fade bs-example-modal-lg" tabindex="-1"
+					role="dialog" aria-hidden="true">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">
+									<span aria-hidden="true">×</span>
+								</button>
+								<h4 class="modal-title" id="myModalLabel">Desligar
+									Residente</h4>
+							</div>
+							<div class="modal-body">
+								<h4>Escolha a forma que você quer desligar o residente:</h4>
+
+							</div>
+							<div class="modal-footer">
+								<a class="btn btn-default" data-dismiss="modal">Close</a> <a
+									class="btn btn-primary" onclick="altera();">Desligar por
+									desistência</a> <a id="alta" class="btn btn-primary"
+									href="/prototipo/atestadoAlta.html" target="_blank"
+									onclick="altera();">Desligar por alta</a>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<!-- modal reingresso -->
+				<div class="modal fade bs-example-modal-sm" tabindex="-1"
+					role="dialog" aria-hidden="true">
+					<div class="modal-dialog modal-sm">
+						<div class="modal-content">
+
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">×</span>
+								</button>
+								<h4 class="modal-title" id="myModalLabel2">Reingressar</h4>
+							</div>
+							<div class="modal-body">
+								<h4>Deseja reingressar o residente?</h4>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-danger"
+									data-dismiss="modal">Não</button>
+								<a th:href="@{/residente/reingressar/}" id="sim" class="btn btn-success">Sim</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	 <th:block layout:fragment="css-view">
+		<link type="text/css" rel="stylesheet" href="/webjars/datatables/1.10.13/media/css/dataTables.bootstrap.css" />
+		<link href="/webjars/datatables.net-bs/1.10.13/css/dataTables.bootstrap.css" rel="stylesheet"/>
+   		<link href="/webjars/datatables.net-buttons-bs/1.2.4/css/buttons.bootstrap.css" rel="stylesheet"/>
+    	<link href="/webjars/datatables.net-fixedheader-bs/3.1.2/css/fixedHeader.bootstrap.min.css" rel="stylesheet"/>
+    	<link href="/webjars/datatables.net-responsive-bs/2.1.0/css/responsive.bootstrap.css" rel="stylesheet"/>
+    	<link href="/webjars/datatables.net-scroller-bs/1.4.2/css/scroller.bootstrap.min.css" rel="stylesheet"/>
+	</th:block>
+	<th:block layout:fragment="js-view">
+		<script src="/webjars/datatables.net/1.10.13/js/jquery.dataTables.js"></script>
+		<script src="/datatables.net-bs/1.10.13/js/dataTables.bootstrap.js"></script>
+		<script src="/webjars/datatables.net-buttons-bs/1.2.4/js/buttons.bootstrap.js"></script>
+		<script src="/webjars/datatables.net-bs/1.10.13/js/dataTables.bootstrap.js"></script>
+		<script src="/webjars/datatables.net-buttons/1.3.1/js/dataTables.buttons.min.js"></script>
+		<script src="/webjars/datatables.net-buttons/1.3.1/js/buttons.flash.min.js"></script>
+		<script src="/webjars/datatables.net-buttons/1.3.1/js/buttons.html5.min.js"></script>
+		<script src="/webjars/datatables.net-buttons/1.3.1/js/buttons.print.min.js"></script>
+		<script src="/webjars/datatables.net-fixedheader/3.1.2/js/dataTables.fixedHeader.min.js"></script>
+		<script src="/webjars/datatables.net-keytable/2.2.0/js/dataTables.keyTable.min.js"></script>
+		<script src="/webjars/datatables.net-responsive/2.1.0/js/dataTables.responsive.js"></script>
+		<script src="/webjars/datatables.net-responsive-bs/2.1.0/js/responsive.bootstrap.js"></script>
+		<script src="/webjars/datatables.net-scroller/1.4.2/js/dataTables.scroller.min.js"></script>
+		<script>
+		$('#datatable').DataTable({
+    		"language": {
+                "lengthMenu": "Mostrando _MENU_ registros",
+                "zeroRecords": "Nenhum residente encontrado com o termo pesquisado",
+                "info": "Mostrando página _PAGE_ de _PAGES_",
+                "infoEmpty": "Nenhum registro disponível",
+                "infoFiltered": "(filtrado de _MAX_ registros)",
+                "paginate": {
+                    "first":      "Primeira",
+                    "last":       "Última",
+                    "next":       "Próxima",
+                    "previous":   "Anterior"
+                },
+                "search":"Buscar:"
+            }
+    	});
+
+		</script>
+	</th:block>
+
+</body>
+</html>

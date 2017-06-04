@@ -3,6 +3,7 @@ package br.com.ctebenezer.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.joda.time.DateTime;
 import org.springframework.stereotype.Service;
 
 import br.com.ctebenezer.domain.Residente;
@@ -53,6 +54,17 @@ public class ResidenteService {
 		vagas[0] = totalCadastrados;
 		vagas[1] = totalVagas;
 		return vagas;
+	}
+
+	public List<Residente> listarTodos(){
+		return residenteRepository.findAll();
+	}
+	public void reingressar(Long id){
+		Residente residente = residenteRepository.findOne(id);
+		residente.setObservacoes(residente.getObservacoes()+"\n Data de entrada:"+residente.getDataEntrada()+" | Data de saída:"+residente.getDataSaida());
+		residente.setDataSaida(null);
+		residente.setDataEntrada(DateTime.now().toDate());
+		residenteRepository.save(residente);
 	}
 
 }

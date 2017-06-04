@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -33,5 +34,15 @@ public class ResidenteController {
 	public String salvarNovo(@Valid Residente residente,BindingResult bindingResult, Model model){
 		residenteService.salvar(residente);
 		return "redirect:/home";
+	}
+	@GetMapping("/listar")
+	public String listarResidentes(Model model){
+		model.addAttribute("residentes", residenteService.listarTodos());
+		return "/residentes/listar";
+	}
+	@GetMapping("/reingressar/{id}")
+	public String reingressar(@PathVariable Long id){
+		residenteService.reingressar(id);
+		return "redirect:/residente/listar";
 	}
 }
