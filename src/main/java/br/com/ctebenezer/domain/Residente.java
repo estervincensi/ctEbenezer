@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import org.joda.time.DateTime;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import br.com.ctebenezer.domain.enumerables.Dependencias;
 import br.com.ctebenezer.domain.enumerables.EstadoCivil;
@@ -24,7 +25,7 @@ public class Residente {
 	private Long id;
 
 	private String nome, naturalidade, profissao, observacoes, responsavel;
-
+	
 	private Date dataNascimento, dataEntrada, dataSaida;
 
 	@Enumerated(EnumType.STRING)
@@ -87,6 +88,7 @@ public class Residente {
 	public void setResponsavel(String responsavel) {
 		this.responsavel = responsavel;
 	}
+	
 	public Date getDataNascimento() {
 		return dataNascimento;
 	}
