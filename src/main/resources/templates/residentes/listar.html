@@ -10,28 +10,28 @@
 		<div class="right_col" role="main">
 			<div class="x_content dashboard_graph">
 				<div class="row x_title">
-					<h3>Residentes</h3>
+					<h3 th:text="#{lista.residente}">Residentes</h3>
 				</div>
 				<table id="datatable" class="table table-striped table-bordered">
 					<thead>
 						<tr>
-							<th class="col-md-5">Nome</th>
-							<th class="col-md-2">Data de entrada</th>
-							<th class="col-md-2">Data de saída</th>
-							<th class="col-md-1">Editar</th>
-							<th class="col-md-2">Desligar/Reingressar</th>
+							<th class="col-md-5" th:text="#{lista.nome}"></th>
+							<th class="col-md-2" th:text="#{lista.dataEntrada}"></th>
+							<th class="col-md-2" th:text="#{lista.dataSaida}"></th>
+							<th class="col-md-1" th:text="#{lista.editar}"></th>
+							<th class="col-md-2" th:text="#{lista.desligarReingressar}"></th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="residente : ${residentes}">
-							<td th:text="${residente.nome}">Antonio Nunes</td>
-							<td id="reingresso1" th:text="${residente.dataEntrada}">05/07/2016</td>
-							<td id="reingresso2" th:text="${residente.dataSaida}">09/12/2016</td>
-							<td><a th:href="@{/residente/editar/}+${residente.id}" class="btn btn-primary">Editar</a></td>
+							<td th:text="${residente.nome}"></td>
+							<td id="reingresso1" th:text="${residente.dataEntrada}"></td>
+							<td id="reingresso2" th:text="${residente.dataSaida}"></td>
+							<td><a th:href="@{/residente/editar/}+${residente.id}" class="btn btn-primary" th:text="#{lista.editar}"></a></td>
 							<td>
-								<a th:if="${residente.dataSaida}!=null" th:href="@{/residente/reingressar/}+${residente.id}"  class="btn btn-success">Reingressar</a>
-								<a th:if="${residente.dataSaida}==null" th:href="@{/residente/desistir/}+${residente.id}" class="btn btn-danger">Desistir</a>
-								<a th:if="${residente.dataSaida}==null" th:href="@{/residente/desligar/}+${residente.id}" class="btn btn-danger" target="_blank">Desligar</a>
+								<a th:if="${residente.dataSaida}!=null" th:href="@{/residente/reingressar/}+${residente.id}"  class="btn btn-success" th:text="#{lista.reingressar}"></a>
+								<a th:if="${residente.dataSaida}==null" th:href="@{/residente/desistir/}+${residente.id}" class="btn btn-danger" th:text="#{lista.desistir}"></a>
+								<a th:if="${residente.dataSaida}==null" th:href="@{/residente/desligar/}+${residente.id}" class="btn btn-danger" target="_blank" th:text="#{lista.desligar}"></a>
 							</td>
 						</tr>
 					</tbody>
