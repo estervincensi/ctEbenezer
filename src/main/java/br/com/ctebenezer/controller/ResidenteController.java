@@ -59,4 +59,16 @@ public class ResidenteController {
 		residenteService.salvar(residente);
 		return "redirect:/residente/listar";
 	}
+
+	@GetMapping("/desistir/{id}")
+	public String desistir(@PathVariable Long id){
+		residenteService.desligar(id);
+		return "redirect:/residente/listar";
+	}
+
+	@GetMapping("/desligar/{id}")
+	public String desligar(@PathVariable Long id, Model model){
+		model.addAttribute ("residente",residenteService.desligar(id));
+		return "/residentes/atestadoAlta";
+	}
 }

@@ -1,0 +1,40 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+	<head>
+	<style>
+		body{
+			width:75%;
+			margin:auto;
+		}
+		.text-center{
+			text-align:center;
+		}
+		.text-justify{
+			text-align:justify;
+		}
+		.text-right{
+			text-align:right;
+		}
+	</style>
+	</head>
+	<body>
+		<br/>
+		<br/>
+		<h1 class="text-center">Comunidade Terapêutica Ebenézer</h1>
+		<br/>
+		<br/>
+		<p class="text-right">Gravataí,<th:block th:text="${#dates.format(#dates.createNow(),'dd')}"></th:block> de <th:block th:text="${#dates.format(#dates.createNow(),'MMMM')}"></th:block> de <th:block th:text="${#dates.format(#dates.createNow(),'YYYY')}"></th:block>.</p>
+		<br/>
+		<p class="text-justify">Declaro para os devidos fins que <th:block th:text="${residente.nome}">nome</th:block> deu entrada na Comunidade Terapêutica Ebenézer no dia
+		<th:block th:text="${#dates.format(residente.dataEntrada,'dd/MM/YYYY')}">dataEntrada</th:block> e permaneceu internado por 3 meses, tendo recebido alta no dia <th:block th:text="${#dates.format(residente.dataSaida,'dd/MM/YYYY')}">dataSaida</th:block>.
+		<br/>
+		<br/>
+		Atenciosamente,
+		<br/>
+		<br/>_______________________<br/>
+		Elias Bilha de Carvalho<br/>
+				Presidente
+		</p>
+	</body>
+</html>

@@ -10,3 +10,14 @@ insert into ctebenezer.role(id, role) values
 insert into ctebenezer.account_roles (accounts_id, roles_id) values
 (1, 1),
 (1, 2);
+
+--ENDERECO
+INSERT INTO CTEBENEZER.ENDERECO(ID,BAIRRO,CIDADE,NUMERO,RUA) VALUES (1,'TESTE',	'TESTE',123,'TESTE');
+
+--RESIDENTES
+insert into ctebenezer.residente (id, data_entrada, data_nascimento, data_saida, estado_civil, naturalidade, nome, observacoes, profissao, responsavel, endereco_id) values (1,TIMESTAMP '2017-06-17 00:00:00.0', TIMESTAMP '1995-04-02 00:00:00.0', TIMESTAMP '2017-06-17 00:00:00.0','CASADO','teste','teste','teste','teste','teste',1);
+insert into ctebenezer.residente (id, data_entrada, data_nascimento, data_saida, estado_civil, naturalidade, nome, observacoes, profissao, responsavel, endereco_id) values (2,TIMESTAMP '2017-06-17 00:00:00.0', TIMESTAMP '1995-04-02 00:00:00.0', null ,'CASADO','teste','teste','teste','teste','teste',1);
+
+--DEPENDENCIAS
+INSERT INTO CTEBENEZER.RESIDENTE_DEPENDENCIAS (RESIDENTE_ID,DEPENDENCIAS) VALUES (1,'CRACK');
+INSERT INTO CTEBENEZER.RESIDENTE_DEPENDENCIAS (RESIDENTE_ID,DEPENDENCIAS) VALUES (2,'CRACK');

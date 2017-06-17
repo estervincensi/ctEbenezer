@@ -69,5 +69,10 @@ public class ResidenteService {
 	public Residente buscar(Long id){
 		return residenteRepository.findOne(id);
 	}
+	public Residente desligar(Long id){
+		Residente residente = residenteRepository.findOne(id);
+		residente.setDataSaida(DateTime.now().toDate());
+		return residenteRepository.save(residente);
+	}
 
 }

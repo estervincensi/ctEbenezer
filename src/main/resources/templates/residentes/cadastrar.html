@@ -25,7 +25,7 @@
 							de Nascimento:</label>
 						<div class="col-md-3 col-sm-3 col-xs-3">
 							<div class="input-group">
-								<input type="text" class="form-control"	required="required" th:field="*{dataNascimento}"/>
+								<input placeholder="dd/mm/yyyy" onkeyup="var v = this.value;if (v.match(/^\d{2}$/) !== null) {this.value = v + '/';} else if (v.match(/^\d{2}\/\d{2}$/) !== null) {this.value = v + '/';}" maxlength="10" type="text" class="form-control"	required="required" th:field="*{dataNascimento}"/>
 							</div>
 						</div>
 						<label class="control-label col-md-3 col-sm-3 col-xs-12">Naturalidade:</label>
@@ -112,6 +112,7 @@
 
 		</div>
 	</div>
+
 
 </body>
 </html>

@@ -28,68 +28,14 @@
 							<td id="reingresso1" th:text="${residente.dataEntrada}">05/07/2016</td>
 							<td id="reingresso2" th:text="${residente.dataSaida}">09/12/2016</td>
 							<td><a th:href="@{/residente/editar/}+${residente.id}" class="btn btn-primary">Editar</a></td>
-							<td><!-- a th:if="${residente.dataSaida}!=null" id="reingressarBtn" class="btn btn-success"
-								data-toggle="modal" data-id="${residente.id}" data-target=".bs-example-modal-sm">Reingressar</a-->
+							<td>
 								<a th:if="${residente.dataSaida}!=null" th:href="@{/residente/reingressar/}+${residente.id}"  class="btn btn-success">Reingressar</a>
-								<a th:if="${residente.dataSaida}==null" id="btnDesligar" class="btn btn-danger"
-								data-toggle="modal" data-target=".bs-example-modal-lg">Desligar</a>
+								<a th:if="${residente.dataSaida}==null" th:href="@{/residente/desistir/}+${residente.id}" class="btn btn-danger">Desistir</a>
+								<a th:if="${residente.dataSaida}==null" th:href="@{/residente/desligar/}+${residente.id}" class="btn btn-danger" target="_new">Desligar</a>
 							</td>
 						</tr>
 					</tbody>
 				</table>
-
-				<!-- modal desligar -->
-				<div class="modal fade bs-example-modal-lg" tabindex="-1"
-					role="dialog" aria-hidden="true">
-					<div class="modal-dialog modal-lg">
-						<div class="modal-content">
-
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal">
-									<span aria-hidden="true">×</span>
-								</button>
-								<h4 class="modal-title" id="myModalLabel">Desligar
-									Residente</h4>
-							</div>
-							<div class="modal-body">
-								<h4>Escolha a forma que você quer desligar o residente:</h4>
-
-							</div>
-							<div class="modal-footer">
-								<a class="btn btn-default" data-dismiss="modal">Close</a> <a
-									class="btn btn-primary" onclick="altera();">Desligar por
-									desistência</a> <a id="alta" class="btn btn-primary"
-									href="/prototipo/atestadoAlta.html" target="_blank"
-									onclick="altera();">Desligar por alta</a>
-							</div>
-
-						</div>
-					</div>
-				</div>
-				<!-- modal reingresso -->
-				<div class="modal fade bs-example-modal-sm" tabindex="-1"
-					role="dialog" aria-hidden="true">
-					<div class="modal-dialog modal-sm">
-						<div class="modal-content">
-
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal"
-									aria-label="Close">
-									<span aria-hidden="true">×</span>
-								</button>
-								<h4 class="modal-title" id="myModalLabel2">Reingressar</h4>
-							</div>
-							<div class="modal-body">
-								<h4>Deseja reingressar o residente?</h4>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-danger"
-									data-dismiss="modal">Não</button>
-								<a th:href="@{/residente/reingressar/}" id="sim" class="btn btn-success">Sim</a>
-							</div>
-						</div>
-					</div>
-				</div>
 			</div>
 		</div>
 	</div>
