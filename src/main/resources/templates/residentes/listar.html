@@ -31,7 +31,7 @@
 							<td>
 								<a th:if="${residente.dataSaida}!=null" th:href="@{/residente/reingressar/}+${residente.id}"  class="btn btn-success">Reingressar</a>
 								<a th:if="${residente.dataSaida}==null" th:href="@{/residente/desistir/}+${residente.id}" class="btn btn-danger">Desistir</a>
-								<a th:if="${residente.dataSaida}==null" th:href="@{/residente/desligar/}+${residente.id}" class="btn btn-danger" target="_new">Desligar</a>
+								<a th:if="${residente.dataSaida}==null" th:href="@{/residente/desligar/}+${residente.id}" class="btn btn-danger" target="_blank">Desligar</a>
 							</td>
 						</tr>
 					</tbody>

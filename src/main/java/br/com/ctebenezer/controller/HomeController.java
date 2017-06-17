@@ -1,5 +1,9 @@
 package br.com.ctebenezer.controller;
 
+import java.security.Principal;
+import java.util.Collections;
+import java.util.Map;
+
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +23,7 @@ public class HomeController {
 	@GetMapping("/")
 	public String home(@AuthenticationPrincipal UserImpl activeUser, Model model) {
 		model.addAttribute("vagas",residenteService.calculaVagas());
+		model.addAttribute("usuario",activeUser);
 		return "/index";
 	}
 

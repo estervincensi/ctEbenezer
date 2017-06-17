@@ -16,7 +16,8 @@ public class Account {
 	private boolean active;
 	@ManyToMany(fetch = FetchType.EAGER)
 	private Set<Role> roles;
-
+	@OneToOne(fetch = FetchType.EAGER)
+	private Pessoa pessoa;
 
 	public Account() {
 	}
@@ -59,6 +60,14 @@ public class Account {
 
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
+	}
+
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
 	}
 
 }

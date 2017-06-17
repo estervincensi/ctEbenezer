@@ -31,7 +31,8 @@ public class AccountUserDetailsService implements UserDetailsService {
 						account.isActive(), account.isActive(), account.isActive(),
 						// AuthorityUtils.createAuthorityList("ROLE_ADMIN", "ROLE_USER")
 						account.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.getRole()))
-								.collect(Collectors.toList())))
+								.collect(Collectors.toList()),
+						account.getPessoa()))
 				.orElseThrow(() -> new UsernameNotFoundException("couldn't find " + username + "!"));
 	}
 }

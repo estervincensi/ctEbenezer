@@ -69,6 +69,7 @@ public class ResidenteController {
 	@GetMapping("/desligar/{id}")
 	public String desligar(@PathVariable Long id, Model model){
 		model.addAttribute ("residente",residenteService.desligar(id));
+		model.addAttribute("tempo",residenteService.calculaTempoNaCasa(id));
 		return "/residentes/atestadoAlta";
 	}
 }

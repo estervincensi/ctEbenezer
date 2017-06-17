@@ -18,23 +18,26 @@
 		}
 	</style>
 	</head>
-	<body>
+	<body onload="window.print();">
 		<br/>
 		<br/>
-		<h1 class="text-center">Comunidade Terapêutica Ebenézer</h1>
+		<h1 class="text-center" th:text="#{atestado.ct}">Comunidade Terapêutica Ebenézer</h1>
 		<br/>
 		<br/>
-		<p class="text-right">Gravataí,<th:block th:text="${#dates.format(#dates.createNow(),'dd')}"></th:block> de <th:block th:text="${#dates.format(#dates.createNow(),'MMMM')}"></th:block> de <th:block th:text="${#dates.format(#dates.createNow(),'YYYY')}"></th:block>.</p>
+		<p class="text-right"><span th:text="#{atestado.cidade}"></span><th:block th:text="${#dates.format(#dates.createNow(),'dd')}"></th:block> de <th:block th:text="${#dates.format(#dates.createNow(),'MMMM')}"></th:block> de <th:block th:text="${#dates.format(#dates.createNow(),'YYYY')}"></th:block>.</p>
 		<br/>
-		<p class="text-justify">Declaro para os devidos fins que <th:block th:text="${residente.nome}">nome</th:block> deu entrada na Comunidade Terapêutica Ebenézer no dia
-		<th:block th:text="${#dates.format(residente.dataEntrada,'dd/MM/YYYY')}">dataEntrada</th:block> e permaneceu internado por 3 meses, tendo recebido alta no dia <th:block th:text="${#dates.format(residente.dataSaida,'dd/MM/YYYY')}">dataSaida</th:block>.
+		<p class="text-justify">
+			<span th:text="#{atestado.texto1}"></span> <th:block th:text="${residente.nome}"></th:block>
+			<span th:text="#{atestado.texto2}"></span>	<th:block th:text="${#dates.format(residente.dataEntrada,'dd/MM/YYYY')}"></th:block>
+			<span th:text="#{atestado.texto3}"></span> <th:block th:text="${tempo}"></th:block>
+			<span th:text="#{atestado.texto4}"></span> <th:block th:text="${#dates.format(residente.dataSaida,'dd/MM/YYYY')}">dataSaida</th:block>.
 		<br/>
 		<br/>
-		Atenciosamente,
+		<span th:text="#{atestado.atenciosamente}"> </span>
 		<br/>
 		<br/>_______________________<br/>
-		Elias Bilha de Carvalho<br/>
-				Presidente
+		<span th:text="#{atestado.nome}"></span><br/>
+				<span th:text="#{atestado.presidente}"></span>
 		</p>
 	</body>
 </html>

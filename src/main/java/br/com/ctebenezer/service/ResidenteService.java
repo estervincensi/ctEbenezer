@@ -2,6 +2,7 @@ package br.com.ctebenezer.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.joda.time.DateTime;
 import org.springframework.stereotype.Service;
@@ -73,6 +74,20 @@ public class ResidenteService {
 		Residente residente = residenteRepository.findOne(id);
 		residente.setDataSaida(DateTime.now().toDate());
 		return residenteRepository.save(residente);
+	}
+	public String calculaTempoNaCasa(Long id){
+		Residente residente = residenteRepository.findOne(id);
+		long diferenca = residente.getDataSaida().getTime() - residente.getDataEntrada().getTime();
+		long dias = TimeUnit.DAYS.convert(diferenca,TimeUnit.MILLISECONDS);
+	    if(dias < 30){
+	    	return dias+" dias";
+	    }else{
+	    	int meses = (int)dias/30;
+	    	if(meses==1){
+	    		return meses+"mes";
+	    	}
+	    	return meses+" meses";
+	    }
 	}
 
 }
