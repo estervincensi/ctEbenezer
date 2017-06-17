@@ -10,25 +10,24 @@
 		<div class="right_col" role="main">
 			<div class="x_content dashboard_graph">
 				<div class="row x_title">
-					<h3>Cadastrar Residente</h3>
+					<h3 th:text="#{ficha.cadastrar}"></h3>
 				</div>
 				<form class="form-horizontal form-label-left col-md-10 col-sm-10 col-xs-10"  th:object="${residente}" method="post" th:action="@{/residente/salvarNovo}">
 
 					<div class="form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12">Nome:</label>
+						<label class="control-label col-md-3 col-sm-3 col-xs-12" th:text="#{ficha.nome}"></label>
 						<div class="col-md-9 col-sm-9 col-xs-12">
 							<input type="text" id="nome"  class="form-control" required="required" th:field="*{nome}"/>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-3">Data
-							de Nascimento:</label>
+						<label class="control-label col-md-3 col-sm-3 col-xs-3" th:text="#{ficha.dataNascimento}"></label>
 						<div class="col-md-3 col-sm-3 col-xs-3">
 							<div class="input-group">
 								<input placeholder="dd/mm/yyyy" onkeyup="var v = this.value;if (v.match(/^\d{2}$/) !== null) {this.value = v + '/';} else if (v.match(/^\d{2}\/\d{2}$/) !== null) {this.value = v + '/';}" maxlength="10" type="text" class="form-control"	required="required" th:field="*{dataNascimento}"/>
 							</div>
 						</div>
-						<label class="control-label col-md-3 col-sm-3 col-xs-12">Naturalidade:</label>
+						<label class="control-label col-md-3 col-sm-3 col-xs-12" th:text="#{ficha.naturalidade}"></label>
 						<div class="col-md-3 col-sm-3 col-xs-3">
 							<div class="input-group">
 								<input type="text" class="form-control" required="required"
@@ -37,59 +36,58 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12">Profissão:</label>
+						<label class="control-label col-md-3 col-sm-3 col-xs-12" th:text="#{ficha.profissao}"></label>
 						<div class="col-md-9 col-sm-9 col-xs-12">
 							<input type="text" class="form-control" id="profissao" th:field="*{profissao}"/>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12">Estado
-							civil:</label>
+						<label class="control-label col-md-3 col-sm-3 col-xs-12" th:text="#{ficha.estadoCivil}"></label>
 						<div class="col-md-9 col-sm-9 col-xs-12" style="padding-top:8px;">
 							<select th:field="*{estadoCivil}">
 								<option th:each="estado : ${estadosCivis}" th:text="${estado}" th:value="${estado}"></option>
 							</select>
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-3">Rua:</label>
-						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input type="text" class="form-control" required="required" id="rua" th:field="*{endereco.rua}"/>
-						</div>
-						<label class="control-label col-md-1 col-sm-1 col-xs-1">N°:</label>
-						<div class="col-md-1 col-sm-1 col-xs-1">
-							<input type="text" class="form-control" required="required" id="numero" th:field="*{endereco.numero}"/>
-						</div>
-					</div>
 					<div class="form-group"></div>
 					<div class="form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12">Bairro:</label>
-						<div class="col-md-4 col-sm-4 col-xs-4">
-							<input type="text" class="form-control" required="required" id="bairro" th:field="*{endereco.bairro}"/>
-						</div>
-						<label class="control-label col-md-2 col-sm-2 col-xs-12">Cidade:</label>
-						<div class="col-md-3 col-sm-3 col-xs-12">
-							<input type="text" class="form-control" required="required" id="cidade" th:field="*{endereco.cidade}"/>
-						</div>
-					</div>
-					<div class="form-group"></div>
-					<div class="form-group">
-						<label class="col-sm-3 control-label">Responsável</label>
+						<label class="col-sm-3 control-label" th:text="#{ficha.responsavel}"></label>
 						<div class="col-sm-9 col-md-9 col-xs-12">
 							<input type="text" class="form-control" required="required" id="responsavel" th:field="*{responsavel}"/>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-3 control-label">Observações</label>
+						<label class="control-label col-md-3 col-sm-3 col-xs-12 text-left" th:text="#{ficha.rua}"></label>
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<input type="text" class="form-control" required="required" id="rua" th:field="*{endereco.rua}"/>
+						</div>
+						<label class="control-label col-md-1 col-sm-1 col-xs-1" th:text="#{ficha.numero}"></label>
+						<div class="col-md-2 col-sm-2 col-xs-2">
+							<input type="text" class="form-control" required="required" id="numero" th:field="*{endereco.numero}"/>
+						</div>
+					</div>
+					<div class="form-group"></div>
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12" th:text="#{ficha.bairro}"></label>
+						<div class="col-md-4 col-sm-4 col-xs-4">
+							<input type="text" class="form-control" required="required" id="bairro" th:field="*{endereco.bairro}"/>
+						</div>
+						<label class="control-label col-md-2 col-sm-2 col-xs-12" th:text="#{ficha.cidade}"></label>
+						<div class="col-md-3 col-sm-3 col-xs-12">
+							<input type="text" class="form-control" required="required" id="cidade" th:field="*{endereco.cidade}"/>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="col-sm-3 control-label" th:text="#{ficha.observacoes}"></label>
 						<div class="col-sm-9">
 							<textarea id="message" class="form-control" name="message" th:field="*{observacoes}"></textarea>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12">Dependências
-							</label>
-						<div class="col-md-9 col-sm-9 col-xs-12" style="position:relative; left:30px;">
-							<div class="checkbox" th:each="dependencia : ${dependencias1}">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12" th:text="#{ficha.dependencias}"></label>
+						<div class="col-md-9 col-sm-9 col-xs-12">
+							<div class="checkbox" th:each="dependencia : ${dependencias1}" style="position:relative; left:20px;">
 								  <input type="checkbox" th:text="${dependencia.name()}" th:field="*{dependencias}" th:value="${dependencia}"/>
 							</div>
 						</div>
@@ -99,9 +97,9 @@
 					<div class="ln_solid"></div>
 					<div class="form-group">
 						<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-							<a class="btn btn-primary" th:href="@{/}">Cancelar</a>
-							<button type="reset" class="btn btn-primary">Limpar</button>
-							<button id="salvar" type="submit" class="btn btn-success">Salvar</button>
+							<a class="btn btn-primary" th:href="@{/}" th:text="#{ficha.btnCancelar}"></a>
+							<button type="reset" class="btn btn-primary" th:text="#{ficha.btnLimpar}"></button>
+							<button id="salvar" type="submit" class="btn btn-success" th:text="#{ficha.btnSalvar}"></button>
 						</div>
 					</div>
 
