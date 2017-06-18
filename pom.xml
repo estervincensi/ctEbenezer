@@ -39,11 +39,11 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 		<dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-test</artifactId>
-            <version>4.0.3.RELEASE</version>
-            <scope>test</scope>
-        </dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<version>4.0.3.RELEASE</version>
+			<scope>test</scope>
+		</dependency>
 		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
@@ -99,9 +99,9 @@
 		</dependency>
 		<!-- fim copiadas sed -->
 		<dependency>
-			<groupId>org.webjars.npm</groupId>
+			<groupId>org.webjars.bower</groupId>
 			<artifactId>datatables.net-bs</artifactId>
-			<version>1.10.13</version>
+			<version>1.10.15</version>
 		</dependency>
 		<dependency>
 			<groupId>org.webjars.npm</groupId>
