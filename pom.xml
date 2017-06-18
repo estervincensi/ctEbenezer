@@ -110,6 +110,11 @@
 		</dependency>
 		<dependency>
 			<groupId>org.webjars.bower</groupId>
+			<artifactId>datatables.net</artifactId>
+			<version>1.10.15</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
 			<artifactId>datatables.net-fixedheader-bs</artifactId>
 			<version>3.1.2</version>
 		</dependency>
