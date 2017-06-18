@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.apache.logging.log4j.core.config.plugins.validation.constraints.Required;
 import org.joda.time.DateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -23,14 +24,21 @@ public class Residente {
 	@Id
 	@GeneratedValue
 	private Long id;
+	@Required
+	private String nome, naturalidade,responsavel;
 
-	private String nome, naturalidade, profissao, observacoes, responsavel;
-	
-	private Date dataNascimento, dataEntrada, dataSaida;
+	private String profissao, observacoes;
 
+	@Required
+	private Date dataNascimento;
+
+	private Date dataEntrada, dataSaida;
+
+	@Required
 	@Enumerated(EnumType.STRING)
 	private EstadoCivil estadoCivil;
 
+	@Required
 	@ManyToOne(cascade=CascadeType.ALL)
 	private Endereco endereco;
 
@@ -88,7 +96,7 @@ public class Residente {
 	public void setResponsavel(String responsavel) {
 		this.responsavel = responsavel;
 	}
-	
+
 	public Date getDataNascimento() {
 		return dataNascimento;
 	}
