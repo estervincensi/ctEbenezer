@@ -1,4 +1,4 @@
-package com.example;
+package br.com.ctebenezer.testeEstatico;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.fluentlenium.assertj.FluentLeniumAssertions.assertThat;
 import static org.fluentlenium.core.filter.FilterConstructor.with;

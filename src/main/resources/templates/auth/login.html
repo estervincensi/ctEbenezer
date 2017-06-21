@@ -12,48 +12,58 @@ div {
 }
 </style>
 
-  <body class="login">
-    <div>
-      <a class="hiddenanchor" id="signup"></a>
-      <a class="hiddenanchor" id="signin"></a>
+<body class="login">
+	<div>
+		<a class="hiddenanchor" id="signup"></a> <a class="hiddenanchor"
+			id="signin"></a>
+		<div>
+			<a href="?lang=PT"><img src ="/imagens/BR.png" style="width:30px;"/></a>
+			<a href="?lang=EN"><img src ="/imagens/USA.png" style="width:30px;"/></a>
+		</div>
 
-      <div class="login_wrapper">
-        <div class="animate form login_form">
-          <section class="login_content">
-            <form name="f" th:action="@{/login}" method="post">
-              <h1 th:text="#{login.info}">Login Form</h1>
-              <div th:if="${param.error}" class="alert alert-danger"
-					th:text="#{login.erro}"></div>
+		<div class="login_wrapper">
+			<div class="animate form login_form">
+				<section class="login_content">
+					<form name="f" th:action="@{/login}" method="post">
+						<h1 th:text="#{login.info}">Login Form</h1>
+						<div th:if="${param.error}" class="alert alert-danger"
+							th:text="#{login.erro}"></div>
 
-				<div th:if="${param.logout}" class="alert alert-success"
-					th:text="#{login.desconectar}"></div>
+						<div th:if="${param.logout}" class="alert alert-success"
+							th:text="#{login.desconectar}"></div>
 
-              <div>
-                <input type="text" id="username" name="username" class="form-control" th:placeholder="#{login.usuario}" required="" />
-              </div>
-              <div>
-                <input type="password" id="password" name="password" class="form-control" th:placeholder="#{login.senha}" required="" />
-              </div>
-              <div>
-                <button type="submit" class="btn btn-default submit" th:text="#{login.entre}">Log in</button>
-              </div>
+						<div>
+							<input type="text" id="username" name="username"
+								class="form-control" th:placeholder="#{login.usuario}"
+								required="" />
+						</div>
+						<div>
+							<input type="password" id="password" name="password"
+								class="form-control" th:placeholder="#{login.senha}" required="" />
+						</div>
+						<div>
+							<button type="submit" class="btn btn-default submit"
+								th:text="#{login.entre}">Log in</button>
+						</div>
 
-              <div class="clearfix"></div>
+						<div class="clearfix"></div>
 
-              <div class="separator">
-                <div class="clearfix"></div>
-                <br />
+						<div class="separator">
+							<div class="clearfix"></div>
+							<br />
 
-                <div>
-                  <h1><i class="fa fa-home"></i><span th:text="#{login.titulo1}"></span></h1>
-                  <p th:text="#{footer.ct}"></p>
-                </div>
-              </div>
-            </form>
-          </section>
-        </div>
-      </div>
-    </div>
-  </body>
+							<div>
+								<h1>
+									<i class="fa fa-home"></i><span th:text="#{login.titulo1}"></span>
+								</h1>
+								<p th:text="#{footer.ct}"></p>
+							</div>
+						</div>
+					</form>
+				</section>
+			</div>
+		</div>
+	</div>
+</body>
 
 </html>

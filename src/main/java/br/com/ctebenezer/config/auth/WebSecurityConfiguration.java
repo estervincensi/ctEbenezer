@@ -24,13 +24,13 @@ class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/webjars/**", "/photos/**","/img/**", "/resources/**", "/public/**", "/dist/**", "/db/**",
+		web.ignoring().antMatchers("/webjars/**", "/photos/**","/imagens/**", "/resources/**", "/public/**", "/dist/**", "/db/**",
 				"/test/**");
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/login**", "/dist/**", "/webjars**", "/db/**")
+		http.authorizeRequests().antMatchers("/login**", "/dist/**", "/webjars**", "/db/**","/prototipo/**")
 				.permitAll().anyRequest().authenticated().and().logout().logoutSuccessUrl("/login").permitAll().and().csrf()
 				.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).and().formLogin()
 				.loginPage("/login").permitAll().and().logout().deleteCookies("remember-me")

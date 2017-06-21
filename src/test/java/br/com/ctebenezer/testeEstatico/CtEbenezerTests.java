@@ -1,4 +1,4 @@
-package com.example;
+package br.com.ctebenezer.testeEstatico;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
