@@ -25,7 +25,6 @@ public class ResidenteController {
 	@GetMapping("/cadastrar")
 	public String cadastrarResidente(Model model){
 		model.addAttribute("residente", new Residente());
-		model.addAttribute("dependencias1", residenteService.buscarTodasDependencias());
 		model.addAttribute("estadosCivis", residenteService.buscarTodosEstadosCivis());
 		return "/residentes/cadastrar";
 	}
@@ -33,7 +32,7 @@ public class ResidenteController {
 	@PostMapping("/salvarNovo")
 	public String salvarNovo(@Valid Residente residente,BindingResult bindingResult, Model model){
 		residenteService.salvar(residente);
-		return "redirect:/home";
+		return "redirect:/pia/confirma/"+residente.getId();
 	}
 	@GetMapping("/listar")
 	public String listarResidentes(Model model){
@@ -43,13 +42,12 @@ public class ResidenteController {
 	@GetMapping("/reingressar/{id}")
 	public String reingressar(@PathVariable Long id){
 		residenteService.reingressar(id);
-		return "redirect:/residente/listar";
+		return "redirect:/pia/cadastrar/"+id;
 	}
 
 	@GetMapping("/editar/{id}")
 	public String editar(@PathVariable Long id, Model model){
 		model.addAttribute("residente",residenteService.buscar(id));
-		model.addAttribute("dependencias1", residenteService.buscarTodasDependencias());
 		model.addAttribute("estadosCivis", residenteService.buscarTodosEstadosCivis());
 		return "/residentes/editar";
 	}
@@ -69,7 +67,7 @@ public class ResidenteController {
 	@GetMapping("/desligar/{id}")
 	public String desligar(@PathVariable Long id, Model model){
 		model.addAttribute ("residente",residenteService.desligar(id));
-		model.addAttribute("tempo",residenteService.calculaTempoNaCasa(id));
+		//model.addAttribute("tempo",residenteService.calculaTempoNaCasa(id));
 		return "/residentes/atestadoAlta";
 	}
 }

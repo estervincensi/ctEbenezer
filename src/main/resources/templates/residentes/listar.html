@@ -25,13 +25,11 @@
 					<tbody>
 						<tr th:each="residente : ${residentes}">
 							<td th:text="${residente.nome}"></td>
-							<td id="reingresso1" th:text="${residente.dataEntrada}"></td>
-							<td id="reingresso2" th:text="${residente.dataSaida}"></td>
 							<td><a th:href="@{/residente/editar/}+${residente.id}" class="btn btn-primary" th:text="#{lista.editar}"></a></td>
 							<td>
-								<a th:if="${residente.dataSaida}!=null" th:href="@{/residente/reingressar/}+${residente.id}"  class="btn btn-success" th:text="#{lista.reingressar}"></a>
-								<a th:if="${residente.dataSaida}==null" th:href="@{/residente/desistir/}+${residente.id}" class="btn btn-danger" th:text="#{lista.desistir}"></a>
-								<a th:if="${residente.dataSaida}==null" th:href="@{/residente/desligar/}+${residente.id}" class="btn btn-danger" target="_blank" th:text="#{lista.desligar}"></a>
+								<a th:if="${residente.ativo}==false" th:href="@{/residente/reingressar/}+${residente.id}"  class="btn btn-success" th:text="#{lista.reingressar}"></a>
+								<a th:if="${residente.ativo}==true" th:href="@{/residente/desistir/}+${residente.id}" class="btn btn-danger" th:text="#{lista.desistir}"></a>
+								<a th:if="${residente.ativo}==true" th:href="@{/residente/desligar/}+${residente.id}" class="btn btn-danger" target="_blank" th:text="#{lista.desligar}"></a>
 							</td>
 						</tr>
 					</tbody>

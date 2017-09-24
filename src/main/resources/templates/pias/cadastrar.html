@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	lang="en" layout:decorator="/layouts/main">
+<body>
+	<div layout:fragment="content">
+		<div class="right_col" role="main">
+			<div class="x_content dashboard_graph">
+				<div class="row x_title">
+					<h3>Plano Individual de Atendimento</h3>
+				</div>
+				<form class="form-horizontal form-label-left col-md-10 col-sm-10 col-xs-10"	th:object="${pia}" method="post" th:action="@{/pia/salvarNovo}">
+					<div class="form-group">
+						<div class="col-md-3"></div>
+						<div class="col-md-6">
+							<label>Avaliação Inicial:</label>
+							<textarea id="message" class="form-control" name="message" th:field="*{avaliacaoInicial}"></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-md-3"></div>
+						<div class="col-md-6">
+							<label>Tempo previsto (em meses)</label>
+							<input type="text" th:field="*{tempoPrevisto}"/>
+						</div>
+					</div>
+					
+					<div class="form-group">
+							<div class="col-md-3"></div>
+							<div class="col-md-6">
+								<label >Trajetória de vida nas ruas?</label>
+								<input type="radio" required="required" th:value="true" name="viveuNaRua" th:field="${pia.viveuNaRua}"/>Sim
+								<input type="radio" required="required" th:value="false" name="viveuNaRua" th:field="${pia.viveuNaRua}"/>Não
+							</div>
+					</div>
+					<div class="form-group">
+							<div class="col-md-3"></div>
+							<div class="col-md-6">
+								<label >Proteção Judicial?</label>
+								<input type="radio" required="required" th:value="true" name="protecaoJudicial" th:field="${pia.protecaoJudicial}"/>Sim
+								<input type="radio" required="required" th:value="false" name="protecaoJudicial" th:field="${pia.protecaoJudicial}"/>Não
+							</div>
+					</div>
+					<div class="form-group">
+						<div class="col-md-3"></div>
+						<div class="col-md-6">
+							<label th:text="#{ficha.dependencias}"></label><br/>
+							<th:block th:each="dependencia : ${dependencias1}">
+								<input type="checkbox" th:text="${dependencia.name()}"
+									th:field="*{dependencias}" th:value="${dependencia}" /><br/>
+							</th:block>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-md-3"></div>
+						<div class="col-md-8">
+						<label>Aptidões:</label><br/>
+						<input type="checkbox" th:field="*{aptidoes}" th:value="músico-cantor"/> Músico - cantor <br/>
+						<input type="checkbox" th:field="*{aptidoes}" th:value="músico-instrumentista"/> Músico - instrumentista<br/>
+						<input type="checkbox" th:field="*{aptidoes}" value="artesanato"/> Artesanato<br/>
+						<input type="checkbox" th:field="*{aptidoes}" value="jardinagem"/> Jardinagem<br/>
+						<input type="checkbox" th:field="*{aptidoes}" value="teatro"/> Teatro<br/>
+						<input type="checkbox" th:field="*{aptidoes}" value="leitura"/> Leitura<br/>
+						<label>outros:</label><input type="text" th:field="*{dependencias}"/><br/>
+						</div>
+					</div>
+					<div class="form-group">
+					<div class="col-md-3"></div>
+						<div class="col-md-8">
+						<table class="table">
+							<tr>
+								<th>Atividade</th>
+								<th>Dia</th>
+								<th>Hora</th>
+							</tr>
+							<tr>
+								<td>Adicionar aqui botão para adicionar atividade</td>
+								<td></td>
+								<td></td>
+							</tr>
+						</table>
+						</div>
+					</div>
+
+					<div class="ln_solid"></div>
+					<div class="form-group">
+						<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+							<a class="btn btn-primary" th:href="@{/}"
+								th:text="#{ficha.btnCancelar}"></a>
+							<button type="reset" class="btn btn-primary"
+								th:text="#{ficha.btnLimpar}"></button>
+							<button id="salvar" type="submit" class="btn btn-success"
+								th:text="#{ficha.btnSalvar}"></button>
+						</div>
+					</div>
+					
+				</form>
+			</div>
+
+
+
+		</div>
+	</div>
+
+
+</body>
+</html>

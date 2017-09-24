@@ -25,14 +25,13 @@ public class Residente {
 	@GeneratedValue
 	private Long id;
 	@Required
-	private String nome, naturalidade,responsavel;
+	private String nome, naturalidade,responsavel, telefone;
 
 	private String profissao, observacoes;
+	private boolean ativo, piaAtivo;
 
 	@Required
 	private Date dataNascimento;
-
-	private Date dataEntrada, dataSaida;
 
 	@Required
 	@Enumerated(EnumType.STRING)
@@ -41,30 +40,31 @@ public class Residente {
 	@Required
 	@ManyToOne(cascade=CascadeType.ALL)
 	private Endereco endereco;
-
-	@ElementCollection
-	@Enumerated(EnumType.STRING)
-	private List<Dependencias> dependencias;
-
-
-
+	
+	
+	public boolean isPiaAtivo() {
+		return piaAtivo;
+	}
+	public void setPiaAtivo(boolean temPia) {
+		this.piaAtivo = temPia;
+	}
+	public String getTelefone() {
+		return telefone;
+	}
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+	public boolean isAtivo() {
+		return ativo;
+	}
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
+	}
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
-	}
-	public Date getDataEntrada() {
-		return dataEntrada;
-	}
-	public void setDataEntrada(Date dataEntrada) {
-		this.dataEntrada = dataEntrada;
-	}
-	public Date getDataSaida() {
-		return dataSaida;
-	}
-	public void setDataSaida(Date dataSaida) {
-		this.dataSaida = dataSaida;
 	}
 	public String getNome() {
 		return nome;
@@ -115,16 +115,8 @@ public class Residente {
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
-	public List<Dependencias> getDependencias() {
-		return dependencias;
-	}
-	public void setDependencias(List<Dependencias> dependencias) {
-		this.dependencias = dependencias;
-	}
 	public Residente(String nome, String naturalidade, String profissao, String observacoes, String responsavel,
-			Date dataNascimento, EstadoCivil estadoCivil, Endereco endereco,
-			List<Dependencias> dependencias) {
-		this();
+			Date dataNascimento, EstadoCivil estadoCivil, Endereco endereco) {
 		this.nome = nome;
 		this.naturalidade = naturalidade;
 		this.profissao = profissao;
@@ -133,11 +125,10 @@ public class Residente {
 		this.dataNascimento = dataNascimento;
 		this.estadoCivil = estadoCivil;
 		this.endereco = endereco;
-		this.dependencias = dependencias;
 	}
 	public Residente() {
-		dataEntrada = DateTime.now().toDate();
 	}
+	
 
 
 

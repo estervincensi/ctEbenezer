@@ -7,30 +7,21 @@ import java.util.concurrent.TimeUnit;
 import org.joda.time.DateTime;
 import org.springframework.stereotype.Service;
 
+import br.com.ctebenezer.domain.Pia;
 import br.com.ctebenezer.domain.Residente;
 import br.com.ctebenezer.domain.enumerables.Dependencias;
 import br.com.ctebenezer.domain.enumerables.EstadoCivil;
+import br.com.ctebenezer.repository.PiaRepository;
 import br.com.ctebenezer.repository.ResidenteRepository;
 
 @Service
 public class ResidenteService {
 	private final ResidenteRepository residenteRepository;
+	private final PiaRepository piaRepository;
 
-	public ResidenteService(ResidenteRepository residenteRepository){
+	public ResidenteService(ResidenteRepository residenteRepository, PiaRepository piaRepository){
 		this.residenteRepository = residenteRepository;
-	}
-
-	public List<Dependencias> buscarTodasDependencias(){
-		List<Dependencias> dependencias = new ArrayList<>();
-		dependencias.add(Dependencias.ALCOOL);
-		dependencias.add(Dependencias.COCAINA);
-		dependencias.add(Dependencias.CRACK);
-		dependencias.add(Dependencias.HEROINA);
-		dependencias.add(Dependencias.MACONHA);
-		dependencias.add(Dependencias.MERLA);
-		dependencias.add(Dependencias.OUTRO);
-		return dependencias;
-
+		this.piaRepository = piaRepository;
 	}
 	public List<EstadoCivil> buscarTodosEstadosCivis(){
 		List<EstadoCivil> estadosCivis = new ArrayList<>();
@@ -73,9 +64,8 @@ public class ResidenteService {
 		if(residente==null){
 			return null;
 		}
-		residente.setObservacoes(residente.getObservacoes()+"\n Data de entrada:"+residente.getDataEntrada()+" | Data de saída:"+residente.getDataSaida());
-		residente.setDataSaida(null);
-		residente.setDataEntrada(DateTime.now().toDate());
+		residente.setObservacoes(residente.getObservacoes()+"\n Data de entrada:"+DateTime.now().toDate());
+		residente.setAtivo(true);
 		return residenteRepository.save(residente);
 	}
 	public Residente buscar(Long id){
@@ -92,10 +82,16 @@ public class ResidenteService {
 		if(residente==null){
 			return null;
 		}
-		residente.setDataSaida(DateTime.now().toDate());
+		residente.setObservacoes(residente.getObservacoes()+"|Data de saída:"+DateTime.now().toDate());
+		residente.setAtivo(false);
+		residente.setPiaAtivo(false);
+		Pia pia = piaRepository.findByResidenteId(residente.getId());
+		pia.setDataSaida(DateTime.now().toDate());
+		piaRepository.save(pia);
 		return residenteRepository.save(residente);
 	}
-	public String calculaTempoNaCasa(Long id){
+	//TODO
+	/*public String calculaTempoNaCasa(Long id){
 		if(id==null){
 			return null;
 		}
@@ -103,7 +99,7 @@ public class ResidenteService {
 		if(residente==null){
 			return null;
 		}
-		long diferenca = residente.getDataSaida().getTime() - residente.getDataEntrada().getTime();
+		TODO long diferenca = residente.getDataSaida().getTime() - residente.getDataEntrada().getTime();
 		long dias = TimeUnit.DAYS.convert(diferenca,TimeUnit.MILLISECONDS);
 	    if(dias < 30){
 	    	return dias+" dias";
@@ -114,6 +110,6 @@ public class ResidenteService {
 	    	}
 	    	return meses+" meses";
 	    }
-	}
+	}*/
 
 }

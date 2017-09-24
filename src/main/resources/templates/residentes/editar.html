@@ -24,7 +24,7 @@
 						<label class="control-label col-md-3 col-sm-3 col-xs-3" th:text="#{ficha.dataNascimento}"></label>
 						<div class="col-md-3 col-sm-3 col-xs-3">
 							<div class="input-group">
-								<input type="hidden" th:fiel="*{dataNascdimento}"/>
+								<input type="hidden" th:field="*{dataNascdimento}"/>
 								<input type="text" class="form-control"	required="required" th:value="${#dates.format(residente.dataNascimento,'dd/MM/YYYY')}" readonly="readonly" />
 							</div>
 						</div>

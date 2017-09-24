@@ -70,7 +70,6 @@ public class ResidenteControllerTest {
 
 	@Test
 	public void teste_cadastrar_residente() throws Exception {
-		given(this.residenteService.buscarTodasDependencias()).willReturn(getDependencias());
 		given(this.residenteService.buscarTodosEstadosCivis()).willReturn(getEstadosCivis());
 		this.mvc.perform(get("/residente/cadastrar").with(user(userDetails)).accept(MediaType.TEXT_HTML))
 				.andExpect(status().isOk()).andExpect(content().contentType("text/html;charset=UTF-8"))
@@ -148,7 +147,7 @@ public class ResidenteControllerTest {
 	@Test (expected = NestedServletException.class)
 	public void teste_desligar() throws Exception {
 		given(this.residenteService.desligar(1L)).willReturn(getResidente(1L));
-		given(this.residenteService.calculaTempoNaCasa(1L)).willReturn("1 mes");
+		//given(this.residenteService.calculaTempoNaCasa(1L)).willReturn("1 mes");
 		this.mvc.perform(get("/residente/desligar/1")
 				.with(user(userDetails))
 				.accept(MediaType.TEXT_HTML))

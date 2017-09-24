@@ -84,16 +84,6 @@
 							<textarea id="message" class="form-control" name="message" th:field="*{observacoes}"></textarea>
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12" th:text="#{ficha.dependencias}"></label>
-						<div class="col-md-9 col-sm-9 col-xs-12">
-							<div class="checkbox" th:each="dependencia : ${dependencias1}" style="position:relative; left:20px;">
-								  <input type="checkbox" th:text="${dependencia.name()}" th:field="*{dependencias}" th:value="${dependencia}"/>
-							</div>
-						</div>
-					</div>
-
-
 					<div class="ln_solid"></div>
 					<div class="form-group">
 						<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
