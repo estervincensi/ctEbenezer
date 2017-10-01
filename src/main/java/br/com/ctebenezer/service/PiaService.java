@@ -36,4 +36,8 @@ public class PiaService {
 	public void salvar(Pia pia) {
 		piaRepository.save(pia);
 	}
+	
+	public Pia findByResidenteId(Long id) {
+		return piaRepository.findByResidenteId(id);
+	}
 }

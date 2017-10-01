@@ -90,6 +90,13 @@ public class ResidenteService {
 		piaRepository.save(pia);
 		return residenteRepository.save(residente);
 	}
+	
+	public List<Residente> buscarAtivosSemPia(){
+		return residenteRepository.findWithouthPIA();
+	}
+	public List<Residente> buscarAtivosComPia(){
+		return residenteRepository.findWithPIA();
+	}
 	//TODO
 	/*public String calculaTempoNaCasa(Long id){
 		if(id==null){

@@ -35,22 +35,26 @@
                   <li><a id="residente"><i class="fa fa-home"></i> <span th:text="#{menu.residentes}"></span> <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a id="cadastrar" th:href="@{/residente/cadastrar}" th:text="#{menu.cadastrar}"></a></li>
+                      <li><a id="cadastrarPIA" th:href="@{/pia/cadastrar}">Cadastrar PIA</a></li>
+                      <li><a id="cadastrarPIA" th:href="@{/pia/editar}">Editar PIA</a></li>
                       <li><a id="pesquisar" th:href="@{/residente/listar}" th:text="#{menu.pesquisar}"></a></li>
-
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-edit"></i> <span th:text="#{menu.atestados}"></span> <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="#" th:text="#{menu.permanencia}"></a></li>
-                      <li><a href="#" th:text="#{menu.desligamento}"></a></li>
-                    </ul>
-                  </li>
-                  <li><a><i class="fa fa-desktop"></i> <span th:text="#{menu.relatorios}"></span> <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="#" th:text="#{menu.comunidade}"></a></li>
-                      <li><a href="#" th:text="#{menu.dependencias}"></a></li>
-                    </ul>
-                  </li>
+                  
+	                  <li><a><i class="fa fa-edit"></i> <span th:text="#{menu.atestados}"></span> <span class="fa fa-chevron-down"></span></a>
+	                    <ul class="nav child_menu">
+	                      <li><a href="#" th:text="#{menu.permanencia}"></a></li>
+	                      <li><a href="#" th:text="#{menu.desligamento}"></a></li>
+	                    </ul>
+	                  </li>
+                  <div  sec:authorize="hasRole('ROLE_PRESIDENTE')">
+	                  <li><a><i class="fa fa-desktop"></i> <span th:text="#{menu.relatorios}"></span> <span class="fa fa-chevron-down"></span></a>
+	                    <ul class="nav child_menu">
+	                      <li><a href="#" th:text="#{menu.comunidade}"></a></li>
+	                      <li><a href="#" th:text="#{menu.dependencias}"></a></li>
+	                    </ul>
+	                  </li>
+                  </div>
                 </ul>
               </div>
 

@@ -30,7 +30,7 @@ public class PiaController {
 	
 	
 	@GetMapping("/cadastrar/{id}")
-	public String cadastrarPia(@PathVariable Long id, Model model) {
+	public String cadastrarPiaComID(@PathVariable Long id, Model model) {
 		Pia pia = new Pia();
 		Residente residente = residenteService.buscar(id);
 		if(residente.isPiaAtivo()) {
@@ -42,6 +42,12 @@ public class PiaController {
 		model.addAttribute("pia",pia);
 		model.addAttribute("dependencias1", piaService.buscarTodasDependencias());
 		return "/pias/cadastrar";
+	}
+	
+	@GetMapping("/cadastrar")
+	public String cadastarPIA(Model model) {
+		model.addAttribute("residentes", residenteService.buscarAtivosSemPia());
+		return "/pias/listarSemPia";
 	}
 	
 	@PostMapping("/salvarNovo")
@@ -57,6 +63,20 @@ public class PiaController {
 	public String confirma(@PathVariable Long id, Model model) {
 		model.addAttribute("id", id);
 		return "/pias/confirma";
+	}
+	
+	@GetMapping("/editar")
+	public String listarTodos(Model model){
+		model.addAttribute("residentes", residenteService.buscarAtivosComPia());
+		return "/pias/listarComPia";
+	}
+	
+	@GetMapping("/editar/{id}")
+	public String editarPiaComID(@PathVariable Long id, Model model) {
+		Pia pia = piaService.findByResidenteId(id);
+		model.addAttribute("pia",pia);
+		model.addAttribute("dependencias1", piaService.buscarTodasDependencias());
+		return "/pias/cadastrar";
 	}
 }
 
