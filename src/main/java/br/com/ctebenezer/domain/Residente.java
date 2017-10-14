@@ -25,7 +25,7 @@ public class Residente {
 	@GeneratedValue
 	private Long id;
 	@Required
-	private String nome, naturalidade,responsavel, telefone;
+	private String nome, naturalidade,responsavel, telefone, rg;
 
 	private String profissao, observacoes;
 	private boolean ativo, piaAtivo;
@@ -128,6 +128,14 @@ public class Residente {
 	}
 	public Residente() {
 	}
+	public String getRg() {
+		return rg;
+	}
+	public void setRg(String rg) {
+		this.rg = rg;
+	}
+	
+	
 	
 
 

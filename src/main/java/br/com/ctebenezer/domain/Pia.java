@@ -25,7 +25,7 @@ public class Pia {
 	@ManyToOne(cascade=CascadeType.ALL)
 	private Residente residente;
 	
-	private boolean viveuNaRua, protecaoJudicial;
+	private boolean viveuNaRua, protecaoJudicial, desistiu, ativo;
 	
 	@ElementCollection
 	@Enumerated(EnumType.STRING)
@@ -140,5 +140,22 @@ public class Pia {
 	public void setAvaliacaoFinal(String avaliacaoFinal) {
 		this.avaliacaoFinal = avaliacaoFinal;
 	}
+
+	public boolean isDesistiu() {
+		return desistiu;
+	}
+
+	public void setDesistiu(boolean desistiu) {
+		this.desistiu = desistiu;
+	}
+
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
+	}
+	
 		
 }

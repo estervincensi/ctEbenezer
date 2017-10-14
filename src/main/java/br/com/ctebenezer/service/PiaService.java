@@ -2,6 +2,7 @@ package br.com.ctebenezer.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.stereotype.Service;
 
@@ -37,7 +38,32 @@ public class PiaService {
 		piaRepository.save(pia);
 	}
 	
-	public Pia findByResidenteId(Long id) {
+	public Pia buscarPorResidenteId(Long id) {
+		Pia pia = piaRepository.findByResidenteId(id);
 		return piaRepository.findByResidenteId(id);
+	}
+	
+	public Pia buscarPorId(Long id) {
+		return piaRepository.findOne(id);
+	}
+	public String calculaTempoNaCasa(Long id){
+		if(id==null){
+			return null;
+		}
+		Pia pia = piaRepository.findOne(id);
+		if(pia==null){
+			return null;
+		}
+		long diferenca = pia.getDataSaida().getTime() - pia.getDataEntrada().getTime();
+		long dias = TimeUnit.DAYS.convert(diferenca,TimeUnit.MILLISECONDS);
+	    if(dias < 30){
+	    	return dias+" dias";
+	    }else{
+	    	int meses = (int)dias/30;
+	    	if(meses==1){
+	    		return meses+" mes";
+	    	}
+	    	return meses+" meses";
+	    }
 	}
 }

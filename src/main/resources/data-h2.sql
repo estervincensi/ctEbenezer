@@ -19,8 +19,8 @@ insert into ctebenezer.account_roles (accounts_id, roles_id) values
 INSERT INTO CTEBENEZER.ENDERECO(ID,BAIRRO,CIDADE,NUMERO,RUA) VALUES (1,'TESTE',	'TESTE',123,'TESTE');
 
 --RESIDENTES
-insert into ctebenezer.residente (id, data_nascimento,estado_civil, naturalidade, nome, observacoes, profissao, responsavel, endereco_id,ativo,pia_ativo) values (1,TIMESTAMP '1995-04-02 00:00:00.0', 'CASADO','canoas','joão','teste','autonomo','paulo',1,false,false);
-insert into ctebenezer.residente (id, data_nascimento,estado_civil, naturalidade, nome, observacoes, profissao, responsavel, endereco_id,ativo,pia_ativo) values (2,TIMESTAMP '1995-04-02 00:00:00.0', 'CASADO','porto alegre','aldair','teste','autonomo','pedro',1,true,false);
+insert into ctebenezer.residente (id, data_nascimento,estado_civil, naturalidade, nome, observacoes, profissao, responsavel, endereco_id,ativo,pia_ativo,rg) values (1,TIMESTAMP '1995-04-02 00:00:00.0', 'CASADO','canoas','joão','teste','autonomo','paulo',1,false,false,123456789);
+insert into ctebenezer.residente (id, data_nascimento,estado_civil, naturalidade, nome, observacoes, profissao, responsavel, endereco_id,ativo,pia_ativo,rg) values (2,TIMESTAMP '1995-04-02 00:00:00.0', 'CASADO','porto alegre','aldair','teste','autonomo','pedro',1,true,false,123456789);
 
 --DEPENDENCIAS
 --INSERT INTO CTEBENEZER.RESIDENTE_DEPENDENCIAS (RESIDENTE_ID,DEPENDENCIAS) VALUES (1,'CRACK');

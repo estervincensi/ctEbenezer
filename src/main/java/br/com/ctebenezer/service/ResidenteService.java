@@ -97,26 +97,5 @@ public class ResidenteService {
 	public List<Residente> buscarAtivosComPia(){
 		return residenteRepository.findWithPIA();
 	}
-	//TODO
-	/*public String calculaTempoNaCasa(Long id){
-		if(id==null){
-			return null;
-		}
-		Residente residente = residenteRepository.findOne(id);
-		if(residente==null){
-			return null;
-		}
-		TODO long diferenca = residente.getDataSaida().getTime() - residente.getDataEntrada().getTime();
-		long dias = TimeUnit.DAYS.convert(diferenca,TimeUnit.MILLISECONDS);
-	    if(dias < 30){
-	    	return dias+" dias";
-	    }else{
-	    	int meses = (int)dias/30;
-	    	if(meses==1){
-	    		return meses+" mes";
-	    	}
-	    	return meses+" meses";
-	    }
-	}*/
 
 }

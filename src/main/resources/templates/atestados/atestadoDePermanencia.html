@@ -15,11 +15,12 @@
 				<br/>
 				<p class="text-right"><span th:text="#{atestado.cidade}"></span><th:block th:text="${#dates.format(#dates.createNow(),'dd')}"></th:block> de <th:block th:text="${#dates.format(#dates.createNow(),'MMMM')}"></th:block> de <th:block th:text="${#dates.format(#dates.createNow(),'YYYY')}"></th:block>.</p>
 				<br/>
+				<p><span th:text="#{atestado.texto5.1}"></span><br/></p>
 				<p class="text-justify">
-					<span th:text="#{atestado.texto1}"></span> <th:block th:text="${residente.nome}"></th:block>
-					<span th:text="#{atestado.texto2}"></span>	<th:block th:text="${#dates.format(pia.dataEntrada,'dd/MM/YYYY')}"></th:block>
-					<span th:text="#{atestado.texto3}"></span> <th:block th:text="${tempo}"></th:block>
-					<span th:text="#{atestado.texto4}"></span> <th:block th:text="${#dates.format(pia.dataSaida,'dd/MM/YYYY')}">dataSaida</th:block>.
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span th:text="#{atestado.texto5}"></span><br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span th:text="#{atestado.texto5.2}"></span> <th:block th:text="${residente.nome}"></th:block>
+					<span th:text="#{atestado.texto6}"></span> <th:block th:text="${residente.rg}"></th:block>
+					<span th:text="#{atestado.texto7}"></span>	<th:block th:text="${#dates.format(pia.dataEntrada,'dd/MM/YYYY')}"></th:block>
 				<br/>
 				<br/>
 				<span th:text="#{atestado.atenciosamente}"> </span>
@@ -28,9 +29,8 @@
 				<span th:text="#{atestado.nome}"></span><br/>
 						<span th:text="#{atestado.presidente}"></span>
 				</p>
-				
-				<button onclick="window.print();">Imprimir</button>
 			</div>
+			<button onclick="window.print();">Imprimir</button>
 		</div>
 	</div>
 	<th:block layout:fragment="css-view">
@@ -50,6 +50,9 @@
 			  }
 			  .printable, .printable * {
 			    visibility: visible;
+			  }
+			  p{
+			  	font-size:12pt;
 			  }
 			  
 			}
