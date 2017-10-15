@@ -1,19 +1,41 @@
-insert into ctebenezer.file(id, content) values (10, FILE_READ('./src/main/resources/static/photos/Ester.jpg'));
+insert into ctebenezer.file(id, content) values (9, FILE_READ('./src/main/resources/static/photos/Ester.jpg'));
+insert into ctebenezer.file(id, content) values (10, FILE_READ('./src/main/resources/static/photos/secretaria.png'));
+insert into ctebenezer.file(id, content) values (11, FILE_READ('./src/main/resources/static/photos/medico.png'));
+insert into ctebenezer.file(id, content) values (12, FILE_READ('./src/main/resources/static/photos/presidente.png'));
 
-insert into ctebenezer.pessoa(id,nome,picture_id) values (1,'Ester Vincensi', 10);
+insert into ctebenezer.pessoa(id,nome,picture_id) values (1,'Ester', 9);
+insert into ctebenezer.pessoa(id,nome,picture_id) values (2,'Secretária', 10);
+insert into ctebenezer.pessoa(id,nome,picture_id) values (3,'Médico', 11);
+insert into ctebenezer.pessoa(id,nome,picture_id) values (4,'Presidente', 12);
 
 --AUTHENTICATION
 INSERT into ctebenezer.account(id, username, password, active,pessoa_id) VALUES
 (1, 'user',            '$2a$10$Qji2/icFWIGGQEAv8bbwNuKGrSZyiUUPqE/0SNO2M.BpU.NA6xPhW', TRUE,1);
+
+INSERT into ctebenezer.account(id, username, password, active,pessoa_id) VALUES 
+(2, 'secretaria',            '$2a$10$6ej4z.jP7tXrIqZnvPpxXusevq8RxRuTyow.WmQLPLBaje9h1QqF.', TRUE,2);
+
+INSERT into ctebenezer.account(id, username, password, active,pessoa_id) VALUES 
+(3, 'medico',            '$2a$10$vINsh1g.xvY/75PQC3t.AuIi4h/IKgAxS8OuM9bqKSwJlfw91RIta', TRUE,3);
+
+INSERT into ctebenezer.account(id, username, password, active,pessoa_id) VALUES 
+(4, 'presidente',            '$2a$10$S8VU0PNmYJ7xZWFjXQBqTO88C7Tuj4WIjot1JvNVf2Y7jg5/1t8SW', TRUE,4);
+
 --ROLES
 insert into ctebenezer.role(id, role) values
 (1, 'ROLE_USER'),
-(2, 'ROLE_ADMIN');
+(2, 'ROLE_PRESIDENTE'),
+(3, 'ROLE_MEDICO');
 
 -- USER_ROLES
 insert into ctebenezer.account_roles (accounts_id, roles_id) values
 (1, 1),
-(1, 2);
+(1, 2),
+(1, 3),
+(2, 1),
+(4, 1),
+(4, 2),
+(3, 3);
 
 --ENDERECO
 INSERT INTO CTEBENEZER.ENDERECO(ID,BAIRRO,CIDADE,NUMERO,RUA) VALUES (1,'TESTE',	'TESTE',123,'TESTE');

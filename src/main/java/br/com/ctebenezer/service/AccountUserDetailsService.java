@@ -11,9 +11,6 @@ import br.com.ctebenezer.domain.UserImpl;
 
 import java.util.stream.Collectors;
 
-/**
- * Created by rodrigo on 2/21/17.
- */
 @Service
 public class AccountUserDetailsService implements UserDetailsService {
 
@@ -29,7 +26,7 @@ public class AccountUserDetailsService implements UserDetailsService {
 		return this.accountRepository.findByUsername(username)
 				.map(account -> new UserImpl(account.getUsername(), account.getPassword(), account.isActive(),
 						account.isActive(), account.isActive(), account.isActive(),
-						// AuthorityUtils.createAuthorityList("ROLE_ADMIN", "ROLE_USER")
+						//AuthorityUtils.createAuthorityList("ROLE_ADMIN", "ROLE_USER")
 						account.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.getRole()))
 								.collect(Collectors.toList()),
 						account.getPessoa()))

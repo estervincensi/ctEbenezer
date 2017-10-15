@@ -30,13 +30,13 @@
 
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-              <div class="menu_section">
+              <div class="menu_section" style="margin-bottom:0px;" th:if="${ #authorization.expression('isAuthenticated()') and #strings.contains(#authentication.principal.authorities,'ROLE_USER')}">
                 <ul class="nav side-menu">
-                  <li><a id="residente"><i class="fa fa-home"></i> <span th:text="#{menu.residentes}"></span> <span class="fa fa-chevron-down"></span></a>
+                  <li><a id="residente"><i class="fa fa-users"></i> <span th:text="#{menu.residentes}"></span> <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a id="cadastrar" th:href="@{/residente/cadastrar}" th:text="#{menu.cadastrar}"></a></li>
-                      <li><a id="cadastrarPIA" th:href="@{/pia/cadastrar}">Cadastrar PIA</a></li>
-                      <li><a id="cadastrarPIA" th:href="@{/pia/editar}">Editar PIA</a></li>
+                      <li><a id="cadastrarPIA" th:href="@{/pia/cadastrar}" th:text="#{menu.cadPia}"></a></li>
+                      <li><a id="cadastrarPIA" th:href="@{/pia/editar}" th:text="#{menu.editPia}"></a></li>
                       <li><a id="pesquisar" th:href="@{/residente/listar}" th:text="#{menu.pesquisar}"></a></li>
                     </ul>
                   </li>
@@ -44,24 +44,31 @@
 	                  <li><a><i class="fa fa-edit"></i> <span th:text="#{menu.atestados}"></span> <span class="fa fa-chevron-down"></span></a>
 	                    <ul class="nav child_menu">
 	                      <li><a th:href="@{/residente/listarAtivos}" th:text="#{menu.permanencia}"></a></li>
-	                      <li><a href="#" th:text="#{menu.desligamento}"></a></li>
 	                    </ul>
 	                  </li>
-                  <div  sec:authorize="hasRole('ROLE_PRESIDENTE')">
-	                  <li><a><i class="fa fa-desktop"></i> <span th:text="#{menu.relatorios}"></span> <span class="fa fa-chevron-down"></span></a>
+	                  <li><a><i class="fa fa-medkit"></i> <span th:text="#{menu.servicosMedicos}"></span> <span class="fa fa-chevron-down"></span></a>
+	                    <ul class="nav child_menu">
+	                      <li><a href="#" th:text="#{menu.consultas}"></a></li>
+	                      <li><a href="#" th:text="#{menu.receitas}"></a></li>
+	                    </ul>
+	                  </li>
+                </ul>
+              </div>
+              	<div class="menu_section" th:if="${ #authorization.expression('isAuthenticated()') and #strings.contains(#authentication.principal.authorities,'ROLE_PRESIDENTE')}">
+                <ul class="nav side-menu">
+              
+	                  <li><a><i class="fa fa-area-chart"></i> <span th:text="#{menu.relatorios}"></span> <span class="fa fa-chevron-down"></span></a>
 	                    <ul class="nav child_menu">
 	                      <li><a href="#" th:text="#{menu.comunidade}"></a></li>
 	                      <li><a href="#" th:text="#{menu.dependencias}"></a></li>
 	                    </ul>
 	                  </li>
-                  </div>
-                </ul>
-              </div>
-
+	                  
+	                  </ul>
+	             </div>
             </div>
             <!-- /sidebar menu -->
           </div>
         </div>
-
 	</body>
 </html>
