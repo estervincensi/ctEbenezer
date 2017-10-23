@@ -5,6 +5,7 @@ import javax.persistence.*;
 @Entity
 public class Pessoa {
 	@Id
+	@GeneratedValue
 	private Long id;
 
 	private String nome;

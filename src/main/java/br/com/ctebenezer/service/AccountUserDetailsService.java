@@ -1,24 +1,42 @@
 package br.com.ctebenezer.service;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import br.com.ctebenezer.repository.AccountRepository;
+import br.com.ctebenezer.domain.Account;
+import br.com.ctebenezer.domain.File;
+import br.com.ctebenezer.domain.Role;
 import br.com.ctebenezer.domain.UserImpl;
-
-import java.util.stream.Collectors;
+import br.com.ctebenezer.repository.AccountRepository;
+import br.com.ctebenezer.repository.FileRepository;
+import br.com.ctebenezer.repository.PessoaRepository;
+import br.com.ctebenezer.repository.RoleRepository;
 
 @Service
 public class AccountUserDetailsService implements UserDetailsService {
 
 	private final AccountRepository accountRepository;
+	private final RoleRepository roleRepository;
+	private final PessoaRepository pessoaRepository;
+	private final FileRepository fileRepository;
 
 	@Autowired
-	public AccountUserDetailsService(AccountRepository accountRepository) {
+	public AccountUserDetailsService(AccountRepository accountRepository, RoleRepository roleRepository, PessoaRepository pessoaRepository,FileRepository fileRepository) {
 		this.accountRepository = accountRepository;
+		this.roleRepository = roleRepository;
+		this.pessoaRepository = pessoaRepository;
+		this.fileRepository = fileRepository;
 	}
 
 	@Override
@@ -31,5 +49,38 @@ public class AccountUserDetailsService implements UserDetailsService {
 								.collect(Collectors.toList()),
 						account.getPessoa()))
 				.orElseThrow(() -> new UsernameNotFoundException("couldn't find " + username + "!"));
+	}
+	
+	public List<Role> getAllRoles(){
+		return roleRepository.findAll();
+	}
+	
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+	
+	public void salvarUsuario(Account account) {
+		File file = account.getPessoa().getPicture();
+		/*try {
+			file.setContent(imageToByte(file.getDescription()));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}*/
+		file.setDescription(null);
+		fileRepository.save(file);
+		account.getPessoa().setPicture(file);
+		pessoaRepository.save(account.getPessoa());
+		account.setActive(true);
+		accountRepository.save(account);
+	}
+	
+	public byte[] imageToByte(String image) throws IOException {
+	    InputStream is = null;
+	    byte[] buffer = null;
+	    is = new FileInputStream(image);
+	    buffer = new byte[is.available()];
+	    is.read(buffer);
+	    is.close();
+	    return buffer;
 	}
 }

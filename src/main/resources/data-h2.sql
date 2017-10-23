@@ -25,15 +25,13 @@ INSERT into ctebenezer.account(id, username, password, active,pessoa_id) VALUES
 insert into ctebenezer.role(id, role) values
 (1, 'ROLE_USER'),
 (2, 'ROLE_PRESIDENTE'),
-(3, 'ROLE_MEDICO');
+(3, 'ROLE_MEDICO'),
+(4, 'ROLE_ADMIN');
 
 -- USER_ROLES
 insert into ctebenezer.account_roles (accounts_id, roles_id) values
-(1, 1),
-(1, 2),
-(1, 3),
+(1, 4),
 (2, 1),
-(4, 1),
 (4, 2),
 (3, 3);
 

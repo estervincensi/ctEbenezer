@@ -30,7 +30,7 @@
 
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-              <div class="menu_section" style="margin-bottom:0px;" th:if="${ #authorization.expression('isAuthenticated()') and #strings.contains(#authentication.principal.authorities,'ROLE_USER')}">
+              <div class="menu_section" style="margin-bottom:0px;" th:if="${ #authorization.expression('isAuthenticated()') and (#strings.contains(#authentication.principal.authorities,'ROLE_USER') or #strings.contains(#authentication.principal.authorities,'ROLE_ADMIN') or #strings.contains(#authentication.principal.authorities,'ROLE_PRESIDENTE'))}">
                 <ul class="nav side-menu">
                   <li><a id="residente"><i class="fa fa-users"></i> <span th:text="#{menu.residentes}"></span> <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
@@ -54,13 +54,23 @@
 	                  </li>
                 </ul>
               </div>
-              	<div class="menu_section" th:if="${ #authorization.expression('isAuthenticated()') and #strings.contains(#authentication.principal.authorities,'ROLE_PRESIDENTE')}">
+              	<div class="menu_section" style="margin-bottom:0px;" th:if="${ #authorization.expression('isAuthenticated()') and (#strings.contains(#authentication.principal.authorities,'ROLE_PRESIDENTE') or #strings.contains(#authentication.principal.authorities,'ROLE_ADMIN'))}">
                 <ul class="nav side-menu">
               
 	                  <li><a><i class="fa fa-area-chart"></i> <span th:text="#{menu.relatorios}"></span> <span class="fa fa-chevron-down"></span></a>
 	                    <ul class="nav child_menu">
 	                      <li><a href="#" th:text="#{menu.comunidade}"></a></li>
 	                      <li><a href="#" th:text="#{menu.dependencias}"></a></li>
+	                    </ul>
+	                  </li>
+	                  
+	                  </ul>
+	             </div>
+	             <div class="menu_section" th:if="${ #authorization.expression('isAuthenticated()') and #strings.contains(#authentication.principal.authorities,'ROLE_ADMIN')}">
+                <ul class="nav side-menu">
+	                  <li><a><i class="fa fa-user"></i> <span th:text="#{menu.usuarios}"></span> <span class="fa fa-chevron-down"></span></a>
+	                    <ul class="nav child_menu">
+	                      <li><a th:href="@{/usuario/cadastrar}" th:text="#{menu.adicionarUsuario}"></a></li>
 	                    </ul>
 	                  </li>
 	                  
