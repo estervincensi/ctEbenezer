@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.ctebenezer.domain.Account;
 import br.com.ctebenezer.service.AccountUserDetailsService;
@@ -26,19 +27,23 @@ public class UserController {
 
 	@Secured("ROLE_ADMIN")
 	@GetMapping("/cadastrar")
-	public String cadastrarUsuario(Model model){
+	public String cadastrarUsuario(Model model, @RequestParam(value="user",  required=false)String user){
 		model.addAttribute("account",new Account());
 		model.addAttribute("roles", accountUserDetailsService.getAllRoles());
+		model.addAttribute("usuarioExiste",user);
 		return "/usuario/cadastrar";
 	}
 	
 	@Secured("ROLE_ADMIN")
 	@PostMapping("/salvar")
 	public String salvar(@Valid Account account,BindingResult bindingResult, Model model) {
-		String newPassword = accountUserDetailsService.passwordEncoder().encode(account.getPassword());
-		account.setPassword(newPassword);
-		accountUserDetailsService.salvarUsuario(account);
-		return "redirect:/home";
+		if(accountUserDetailsService.salvarUsuario(account)==true) {
+			return "redirect:/home";
+		}else {
+			return "redirect:/usuario/cadastrar?user=invalido";
+		}
+		
+		
 	}
 
 }

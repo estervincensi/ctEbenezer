@@ -59,7 +59,12 @@ public class AccountUserDetailsService implements UserDetailsService {
 		return new BCryptPasswordEncoder();
 	}
 	
-	public void salvarUsuario(Account account) {
+	public boolean salvarUsuario(Account account) {
+		if(accountRepository.bucarPorUsername(account.getUsername())!=null) {
+			return false;
+		}
+		String newPassword = this.passwordEncoder().encode(account.getPassword());
+		account.setPassword(newPassword);
 		File file = account.getPessoa().getPicture();
 		/*try {
 			file.setContent(imageToByte(file.getDescription()));
@@ -72,6 +77,7 @@ public class AccountUserDetailsService implements UserDetailsService {
 		pessoaRepository.save(account.getPessoa());
 		account.setActive(true);
 		accountRepository.save(account);
+		return true;
 	}
 	
 	public byte[] imageToByte(String image) throws IOException {

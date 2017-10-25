@@ -17,6 +17,7 @@
 						<tr>
 							<th class="col-md-5" th:text="#{lista.nome}"></th>
 							<th class="col-md-1" th:text="#{lista.editar}"></th>
+							<th class="col-md-1" th:text="#{lista.PIA}"></th>
 							<th class="col-md-2" th:text="#{lista.desligarReingressar}"></th>
 						</tr>
 					</thead>
@@ -24,6 +25,10 @@
 						<tr th:each="residente : ${residentes}">
 							<td th:text="${residente.nome}"></td>
 							<td><a th:href="@{/residente/editar/}+${residente.id}" class="btn btn-primary" th:text="#{lista.editar}"></a></td>
+							<td>
+								<a th:if="${residente.ativo}==true and ${residente.piaAtivo}==true" th:href="@{/pia/editar/}+${residente.id}" class="btn btn-primary" th:text="#{lista.editarPIA}"></a>
+								<a th:if="${residente.ativo}==true and ${residente.piaAtivo}==false" th:href="@{/pia/cadastrar/}+${residente.id}" class="btn btn-primary" th:text="#{lista.cadastrarPIA}"></a>
+							</td>
 							<td>
 								<a th:if="${residente.ativo}==false" th:href="@{/residente/reingressar/}+${residente.id}"  class="btn btn-success" th:text="#{lista.reingressar}"></a>
 								<a th:if="${residente.ativo}==true" th:href="@{/residente/desligar/}+${residente.id}" class="btn btn-danger" th:text="#{lista.desligar}"></a>

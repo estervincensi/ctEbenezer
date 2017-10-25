@@ -40,6 +40,7 @@ public class ResidenteService {
 		}if(residente.getNome()==null||residente.getDataNascimento()==null||residente.getEndereco()==null||residente.getNaturalidade()==null||residente.getEstadoCivil()==null||residente.getResponsavel()==null){
 			return null;
 		}
+		residente.setAtivo(true);
 		return residenteRepository.save(residente);
 	}
 

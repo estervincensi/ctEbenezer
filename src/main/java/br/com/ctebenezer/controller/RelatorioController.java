@@ -35,16 +35,14 @@ public class RelatorioController {
 	
 	@Secured("ROLE_PRESIDENTE")
 	@RequestMapping(value = "/chart", method = RequestMethod.GET, produces = "application/json")
-    public @ResponseBody
-    String showChart(HttpServletRequest request) {
+    public @ResponseBody String showChart(HttpServletRequest request) {
 		
 		//TODO alterar Json para enviar somente informações importantes para o gráfico
 		//retornar p/grafico1 json: anoX{AltaVoltou:X, DesitenciaVoltou:X}
 		//retornar p/grafico2 json: anoX{NumeroDeAltas:X, NumeroDeDesistencias:X}
 		//retornar p/grafico3 json: anoX{NumeroDeAtendimentos:X}
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String json2 = gson.toJson(residenteService.listarTodos());
-
+        String json2 = gson.toJson(residenteService.listarTodos()); 
         return json2;
     }
 

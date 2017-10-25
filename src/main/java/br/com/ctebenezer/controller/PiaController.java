@@ -43,12 +43,6 @@ public class PiaController {
 		return "/pias/cadastrar";
 	}
 	
-	@GetMapping("/cadastrar")
-	public String cadastarPIA(Model model) {
-		model.addAttribute("residentes", residenteService.buscarAtivosSemPia());
-		return "/pias/listarSemPia";
-	}
-	
 	@PostMapping("/salvarNovo")
 	public String salvar(@Valid Pia pia, BindingResult bindingResult){
 		Residente residente = residenteService.buscar(pia.getResidente().getId());
@@ -89,12 +83,6 @@ public class PiaController {
 	public String confirma(@PathVariable Long id, Model model) {
 		model.addAttribute("id", id);
 		return "/pias/confirma";
-	}
-	
-	@GetMapping("/editar")
-	public String listarTodos(Model model){
-		model.addAttribute("residentes", residenteService.buscarAtivosComPia());
-		return "/pias/listarComPia";
 	}
 	
 	@GetMapping("/editar/{id}")
