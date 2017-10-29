@@ -44,14 +44,21 @@
 	                      <li><a th:href="@{/residente/listarAtivos}" th:text="#{menu.permanencia}"></a></li>
 	                    </ul>
 	                  </li>
-	                  <li><a><i class="fa fa-medkit"></i> <span th:text="#{menu.servicosMedicos}"></span> <span class="fa fa-chevron-down"></span></a>
+	                  
+                </ul>
+              </div>
+              <div class="menu_section" style="margin-bottom:0px;">
+                <ul class="nav side-menu">
+              
+	                 <li><a><i class="fa fa-medkit"></i> <span th:text="#{menu.servicosMedicos}"></span> <span class="fa fa-chevron-down"></span></a>
 	                    <ul class="nav child_menu">
-	                      <li><a href="#" th:text="#{menu.consultas}"></a></li>
+	                      <li><a th:href="@{/consulta/listar}" th:text="#{menu.consultas}"></a></li>
 	                      <li><a href="#" th:text="#{menu.receitas}"></a></li>
 	                    </ul>
 	                  </li>
-                </ul>
-              </div>
+	                  
+	                  </ul>
+	             </div>
               	<div class="menu_section" style="margin-bottom:0px;" th:if="${ #authorization.expression('isAuthenticated()') and (#strings.contains(#authentication.principal.authorities,'ROLE_PRESIDENTE') or #strings.contains(#authentication.principal.authorities,'ROLE_ADMIN'))}">
                 <ul class="nav side-menu">
               

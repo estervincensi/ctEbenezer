@@ -55,6 +55,10 @@ public class AccountUserDetailsService implements UserDetailsService {
 		return roleRepository.findAll();
 	}
 	
+	public List<Account> buscarTodosMedicos() {
+		return accountRepository.buscarTodosMedicos();
+	}
+	
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}

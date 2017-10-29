@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	lang="en" layout:decorator="/layouts/main">
+<body>
+	<div layout:fragment="content">
+		<div class="right_col" role="main">
+			<div class="x_content dashboard_graph">
+			<div class="row x_title">
+					<h3>Agendar Consulta</h3>
+				</div>
+			<form class="form-horizontal form-label-left col-md-10 col-sm-10 col-xs-10" th:action="@{/consulta/salvar}" th:object="${consulta}" method="post">
+				<div class="form-group">
+					<label class="col-md-3 col-sm-3 col-xs-12 control-label " th:text="#{consulta.medico}"></label>
+					<div class="col-md-9 col-sm-9 col-xs-12" style="padding-top:8px;">
+						<select th:field="*{medico}">
+							<option th:each="medico1 : ${medicos}" th:text="${medico1.pessoa.nome}" th:value="${medico1.id}"></option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 col-sm-3 col-xs-12 control-label " th:text="#{consulta.Residente}"></label>
+					<input type="text" th:field="*{residente.nome}" readonly="readonly"/>
+					<input type="hidden" th:field="*{residente.rg}"/>
+					<input type="hidden" th:field="*{id}"/>
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 col-sm-3 col-xs-12 control-label ">Data:</label>
+					<div class="col-md-3 ">
+					<input th:value="${#dates.format(consulta.data,'dd/MM/YYYY')}" th:id="data" th:name="data"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-3 col-sm-3 col-xs-12 control-label " >Hora:</label>
+					<div class="col-md-9 col-sm-9 col-xs-12" style="padding-top:8px;">
+						<select th:field="*{hora}">
+							<option th:each="hora1 : ${horas}" th:text="${hora1}" th:value="${hora1}"></option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+						<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+							<a class="btn btn-primary" th:href="@{/}" th:text="#{ficha.btnCancelar}"></a>
+							<button type="reset" class="btn btn-primary" th:text="#{ficha.btnLimpar}"></button>
+							<button id="salvar" type="submit" class="btn btn-success" th:text="#{ficha.btnSalvar}"></button>
+						</div>
+					</div>
+			</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

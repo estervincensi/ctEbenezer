@@ -108,6 +108,34 @@
 		</dependency>
 		<!-- fim copiadas sed -->
 		<dependency>
+		    <groupId>org.webjars</groupId>
+		    <artifactId>jquery-ui</artifactId>
+		    <version>1.12.1</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.webjars</groupId>
+		    <artifactId>jquery-ui-themes</artifactId>
+		    <version>1.12.1</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<version>2.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.jaxrs</groupId>
+			<artifactId>jackson-jaxrs-base</artifactId>
+			<version>2.4.2</version>
+		</dependency>
+			
+			
+		<dependency>
 			<groupId>org.webjars.bower</groupId>
 			<artifactId>datatables.net-bs</artifactId>
 			<version>1.10.13</version>

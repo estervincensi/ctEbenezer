@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	lang="en" layout:decorator="/layouts/main">
+
+
+<body>
+	<div layout:fragment="content">
+		<div class="right_col" role="main">
+			<div class="x_content dashboard_graph">
+				<div class="row x_title">
+					<h3>Consultas</h3>
+				</div>
+				<a th:href="@{/consulta/selecionarResidente}" class="btn btn-primary">Agendar Consulta</a>
+				<table id="datatable" class="table table-striped table-bordered printable">
+					<thead>
+						<tr>
+							<th class="col-md-3" th:text="#{lista.nome}"></th>
+							<th class="col-md-3">Médico</th>
+							<th class="col-md-2" >Data</th>
+							<th class="col-md-2" >Hora</th>
+							<th class="col-md-2" th:if="${ #authorization.expression('isAuthenticated()') and !(#strings.contains(#authentication.principal.authorities,'ROLE_MEDICO'))}">Visualizar</th>
+							<th class="col-md-1" th:if="${ #authorization.expression('isAuthenticated()') and !(#strings.contains(#authentication.principal.authorities,'ROLE_MEDICO'))}">Alterar dia/hora</th>
+							<th class="col-md-2" th:if="${ #authorization.expression('isAuthenticated()') and (#strings.contains(#authentication.principal.authorities,'ROLE_MEDICO'))}">Adicionar Informações da Consulta</th>
+							<th class="col-md-1">Cancelar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="consulta : ${consultas}">
+							<td th:text="${consulta.residente.nome}"></td>
+							<td th:text="${consulta.medico.pessoa.nome}"></td>
+							<td th:text="${#dates.format(consulta.data,'dd/MM/YYYY')}"></td>
+							<td th:text="${consulta.hora}"></td>
+							<td th:if="${ #authorization.expression('isAuthenticated()') and !(#strings.contains(#authentication.principal.authorities,'ROLE_MEDICO'))}"><a th:if="${consulta.observacoes}!=null" th:href="@{/consulta/visualizar/}+${consulta.id}" class="btn btn-primary">Visualizar</a></td>
+							<td th:if="${ #authorization.expression('isAuthenticated()') and !(#strings.contains(#authentication.principal.authorities,'ROLE_MEDICO'))}"><a th:href="@{/consulta/editar/}+${consulta.id}" class="btn btn-primary" th:text="#{lista.editar}"></a></td>
+							<td th:if="${ #authorization.expression('isAuthenticated()') and (#strings.contains(#authentication.principal.authorities,'ROLE_MEDICO'))}"><a th:href="@{/consulta/adicionarInfo/}+${consulta.id}" class="btn btn-primary">Adicionar Info</a></td>
+							<td><a th:href="@{/consulta/cancelar/}+${consulta.id}" class="btn btn-danger">Cancelar</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	 <th:block layout:fragment="css-view">
+		<link type="text/css" rel="stylesheet" href="/webjars/datatables/1.10.13/media/css/dataTables.bootstrap.css" />
+		<link href="/webjars/datatables.net-bs/1.10.13/css/dataTables.bootstrap.css" rel="stylesheet"/>
+   		<link href="/webjars/datatables.net-buttons-bs/1.2.4/css/buttons.bootstrap.css" rel="stylesheet"/>
+    	<link href="/webjars/datatables.net-fixedheader-bs/3.1.2/css/fixedHeader.bootstrap.min.css" rel="stylesheet"/>
+    	<link href="/webjars/datatables.net-responsive-bs/2.1.0/css/responsive.bootstrap.css" rel="stylesheet"/>
+    	<link href="/webjars/datatables.net-scroller-bs/1.4.2/css/scroller.bootstrap.min.css" rel="stylesheet"/>
+	</th:block>
+	<th:block layout:fragment="js-view">
+		<script src="/webjars/datatables.net/1.10.13/js/jquery.dataTables.js"></script>
+		<script src="/datatables.net-bs/1.10.13/js/dataTables.bootstrap.js"></script>
+		<script src="/webjars/datatables.net-buttons-bs/1.2.4/js/buttons.bootstrap.js"></script>
+		<script src="/webjars/datatables.net-bs/1.10.13/js/dataTables.bootstrap.js"></script>
+		<script src="/webjars/datatables.net-buttons/1.3.1/js/dataTables.buttons.min.js"></script>
+		<script src="/webjars/datatables.net-buttons/1.3.1/js/buttons.flash.min.js"></script>
+		<script src="/webjars/datatables.net-buttons/1.3.1/js/buttons.html5.min.js"></script>
+		<script src="/webjars/datatables.net-buttons/1.3.1/js/buttons.print.min.js"></script>
+		<script src="/webjars/datatables.net-fixedheader/3.1.2/js/dataTables.fixedHeader.min.js"></script>
+		<script src="/webjars/datatables.net-keytable/2.2.0/js/dataTables.keyTable.min.js"></script>
+		<script src="/webjars/datatables.net-responsive/2.1.0/js/dataTables.responsive.js"></script>
+		<script src="/webjars/datatables.net-responsive-bs/2.1.0/js/responsive.bootstrap.js"></script>
+		<script src="/webjars/datatables.net-scroller/1.4.2/js/dataTables.scroller.min.js"></script>
+		<script>
+		$('#datatable').DataTable({
+    		"language": {
+                "lengthMenu": "Mostrando _MENU_ registros",
+                "zeroRecords": "Nenhum residente encontrado com o termo pesquisado",
+                "info": "Mostrando página _PAGE_ de _PAGES_",
+                "infoEmpty": "Nenhum registro disponível",
+                "infoFiltered": "(filtrado de _MAX_ registros)",
+                "paginate": {
+                    "first":      "Primeira",
+                    "last":       "Última",
+                    "next":       "Próxima",
+                    "previous":   "Anterior"
+                },
+                "search":"Buscar:"
+            }
+    	});
+
+		</script>
+	</th:block>
+
+</body>
+</html>

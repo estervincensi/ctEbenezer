@@ -65,7 +65,6 @@ public class ResidenteController {
 	@GetMapping("/desligar/{id}")
 	public String desligar(@PathVariable Long id, Model model){
 		model.addAttribute("pia",piaService.buscarPorResidenteId(id));
-		Pia pia = piaService.buscarPorResidenteId(id);
 		return "/pias/finalizar";
 	}
 	@GetMapping("/gerarAtestadoAlta/{id}")

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	lang="en" layout:decorator="/layouts/main">
+<body>
+	<div layout:fragment="content">
+		<div class="right_col" role="main">
+			<div class="x_content dashboard_graph">
+				<h3 class="col-md-offset-1">Deseja adicionar uma receita para a consulta?</h3>
+				<div class="col-md-2 col-md-offset-5"><a th:href="@{/consulta/addReceita/}+${id}" class="btn btn-success">Sim</a><a th:href="@{/consulta/listar}" class="btn btn-danger">Não</a></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

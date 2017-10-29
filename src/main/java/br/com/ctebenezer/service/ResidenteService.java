@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.joda.time.DateTime;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.ctebenezer.domain.Pia;
@@ -19,6 +20,7 @@ public class ResidenteService {
 	private final ResidenteRepository residenteRepository;
 	private final PiaRepository piaRepository;
 
+	@Autowired
 	public ResidenteService(ResidenteRepository residenteRepository, PiaRepository piaRepository){
 		this.residenteRepository = residenteRepository;
 		this.piaRepository = piaRepository;
@@ -92,11 +94,15 @@ public class ResidenteService {
 		return residenteRepository.save(residente);
 	}
 	
-	public List<Residente> buscarAtivosSemPia(){
-		return residenteRepository.findWithouthPIA();
+	public List<Residente> buscarAtivos(){
+		return residenteRepository.findAtivos();
 	}
 	public List<Residente> buscarAtivosComPia(){
 		return residenteRepository.findWithPIA();
+	}
+	
+	public Residente buscarPorRg(String rg) {
+		return residenteRepository.findByRg(rg);
 	}
 
 }

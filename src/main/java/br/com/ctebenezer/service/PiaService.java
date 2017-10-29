@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.ctebenezer.domain.Pia;
@@ -15,7 +16,8 @@ import br.com.ctebenezer.repository.ResidenteRepository;
 public class PiaService {
 	private final ResidenteRepository residenteRepository;
 	private final PiaRepository piaRepository;
-
+	
+	@Autowired
 	public PiaService(ResidenteRepository residenteRepository, PiaRepository piaRepository){
 		this.residenteRepository = residenteRepository;
 		this.piaRepository = piaRepository;
