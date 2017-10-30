@@ -93,10 +93,12 @@ public class ConsultaController {
 		return "/consulta/addInfo";
 	}
 	
-	@GetMapping("/salvarInfo")
+	@PostMapping("/salvarInfo")
 	public String salvarInfo(@Valid Consulta consulta, Model model) {
-		consultaService.salvar(consulta);
-		model.addAttribute("consulta",consulta);
+		Consulta c = consultaService.buscarPorId(consulta.getId());
+		c.setObservacoes(consulta.getObservacoes());
+		consultaService.salvarInfo(c);
+		model.addAttribute("consulta",c);
 		return "/consulta/confirmaReceita";
 	}
 	
@@ -106,6 +108,12 @@ public class ConsultaController {
 		receita.setConsulta(consultaService.buscarPorId(id));
 		model.addAttribute("receita",receita);
 		return "/consulta/addReceita";
+	}
+	
+	@PostMapping("/salvarReceita")
+	public String salvarReceita(@Valid Receita receita){
+		consultaService.salvarReceita(receita);
+		return "/consulta/listar";
 	}
 
 }

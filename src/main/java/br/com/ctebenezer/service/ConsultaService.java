@@ -8,16 +8,20 @@ import org.joda.time.DateTime;
 import org.springframework.stereotype.Service;
 
 import br.com.ctebenezer.domain.Consulta;
+import br.com.ctebenezer.domain.Receita;
 import br.com.ctebenezer.repository.ConsultaRepository;
+import br.com.ctebenezer.repository.ReceitaRepository;
 
 @Service
 public class ConsultaService {
 	private final ConsultaRepository consultaRepository;
 	private final ResidenteService residenteService;
+	private final ReceitaRepository receitaRepository;
 
-	public ConsultaService(ConsultaRepository consultaRepository, ResidenteService residenteService) {
+	public ConsultaService(ConsultaRepository consultaRepository, ResidenteService residenteService, ReceitaRepository receitaRepository) {
 		this.consultaRepository = consultaRepository;
 		this.residenteService = residenteService;
+		this.receitaRepository = receitaRepository;
 	}
 	
 	public boolean salvar(Consulta consulta) {
@@ -72,6 +76,12 @@ public class ConsultaService {
 		horas.add("18:00");
 		return horas;
 		
+	}
+	public void salvarInfo(Consulta consulta){
+		consultaRepository.save(consulta);
+	}
+	public void salvarReceita(Receita receita){
+		receitaRepository.save(receita);
 	}
 	
 }
