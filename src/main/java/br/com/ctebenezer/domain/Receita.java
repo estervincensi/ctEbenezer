@@ -1,5 +1,7 @@
 package br.com.ctebenezer.domain;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -16,6 +18,18 @@ public class Receita {
 	private Consulta consulta;
 	
 	private String descricaoDaReceita;
+	
+	private Date vencimento;
+	
+	
+
+	public Date getVencimento() {
+		return vencimento;
+	}
+
+	public void setVencimento(Date vencimento) {
+		this.vencimento = vencimento;
+	}
 
 	public Long getId() {
 		return id;

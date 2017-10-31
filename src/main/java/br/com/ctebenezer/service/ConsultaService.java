@@ -16,12 +16,11 @@ import br.com.ctebenezer.repository.ReceitaRepository;
 public class ConsultaService {
 	private final ConsultaRepository consultaRepository;
 	private final ResidenteService residenteService;
-	private final ReceitaRepository receitaRepository;
+	
 
-	public ConsultaService(ConsultaRepository consultaRepository, ResidenteService residenteService, ReceitaRepository receitaRepository) {
+	public ConsultaService(ConsultaRepository consultaRepository, ResidenteService residenteService) {
 		this.consultaRepository = consultaRepository;
 		this.residenteService = residenteService;
-		this.receitaRepository = receitaRepository;
 	}
 	
 	public boolean salvar(Consulta consulta) {
@@ -80,8 +79,6 @@ public class ConsultaService {
 	public void salvarInfo(Consulta consulta){
 		consultaRepository.save(consulta);
 	}
-	public void salvarReceita(Receita receita){
-		receitaRepository.save(receita);
-	}
+	
 	
 }

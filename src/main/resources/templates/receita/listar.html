@@ -10,32 +10,25 @@
 		<div class="right_col" role="main">
 			<div class="x_content dashboard_graph">
 				<div class="row x_title">
-					<h3>Consultas</h3>
+					<h3>Receitas</h3>
 				</div>
-				<a th:href="@{/consulta/selecionarResidente}" class="btn btn-primary" th:if="${ #authorization.expression('isAuthenticated()') and !(#strings.contains(#authentication.principal.authorities,'ROLE_MEDICO'))}">Agendar Consulta</a>
 				<table id="datatable" class="table table-striped table-bordered printable">
 					<thead>
 						<tr>
-							<th class="col-md-3" th:text="#{lista.nome}"></th>
-							<th class="col-md-3">Médico</th>
-							<th class="col-md-2" >Data</th>
-							<th class="col-md-2" >Hora</th>
-							<th class="col-md-2" th:if="${ #authorization.expression('isAuthenticated()') and !(#strings.contains(#authentication.principal.authorities,'ROLE_MEDICO'))}">Visualizar</th>
-							<th class="col-md-1" th:if="${ #authorization.expression('isAuthenticated()') and !(#strings.contains(#authentication.principal.authorities,'ROLE_MEDICO'))}">Alterar dia/hora</th>
-							<th class="col-md-2" th:if="${ #authorization.expression('isAuthenticated()') and (#strings.contains(#authentication.principal.authorities,'ROLE_MEDICO'))}">Adicionar Informações da Consulta</th>
-							<th class="col-md-1">Cancelar</th>
+							<th class="col-md-3">Residente</th>
+							<th class="col-md-3">Descrição</th>
+							<th class="col-md-2" >Vencimento da receita</th>
+							<th class="col-md-2" th:if="${ #authorization.expression('isAuthenticated()') and (#strings.contains(#authentication.principal.authorities,'ROLE_MEDICO'))}">Editar</th>
+							<th class="col-md-1" th:if="${ #authorization.expression('isAuthenticated()') and (#strings.contains(#authentication.principal.authorities,'ROLE_MEDICO'))}">Excluir</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="consulta : ${consultas}" th:if="(${#strings.contains(#authentication.principal.authorities,'ROLE_MEDICO')}and ${#authentication.principal.pessoa.nome} == ${consulta.medico.pessoa.nome}) or ${!(#strings.contains(#authentication.principal.authorities,'ROLE_MEDICO'))}">
-							<td th:text="${consulta.residente.nome}"></td>
-							<td th:text="${consulta.medico.pessoa.nome}"></td>
-							<td th:text="${#dates.format(consulta.data,'dd/MM/YYYY')}"></td>
-							<td th:text="${consulta.hora}"></td>
-							<td th:if="${ #authorization.expression('isAuthenticated()') and !(#strings.contains(#authentication.principal.authorities,'ROLE_MEDICO'))}"><a th:if="${consulta.observacoes}!=null" th:href="@{/consulta/visualizar/}+${consulta.id}" class="btn btn-primary">Visualizar</a></td>
-							<td th:if="${ #authorization.expression('isAuthenticated()') and !(#strings.contains(#authentication.principal.authorities,'ROLE_MEDICO'))}"><a th:href="@{/consulta/editar/}+${consulta.id}" class="btn btn-primary" th:text="#{lista.editar}"></a></td>
-							<td th:if="${ #authorization.expression('isAuthenticated()') and (#strings.contains(#authentication.principal.authorities,'ROLE_MEDICO'))}"><a th:href="@{/consulta/adicionarInfo/}+${consulta.id}" class="btn btn-primary">Adicionar Info</a></td>
-							<td><a th:href="@{/consulta/cancelar/}+${consulta.id}" class="btn btn-danger">Cancelar</a></td>
+						<tr th:each="receita : ${receitas}" th:if="(${#strings.contains(#authentication.principal.authorities,'ROLE_MEDICO')}and ${#authentication.principal.pessoa.nome} == ${consulta.medico.pessoa.nome}) or ${!(#strings.contains(#authentication.principal.authorities,'ROLE_MEDICO'))}">
+							<td th:text="${receita.consulta.residente.nome}"></td>
+							<td th:text="${receita.descricaoDaReceita}"></td>
+							<td th:text="${#dates.format(receita.vencimento,'dd/MM/YYYY')}"></td>
+							<td th:if="${ #authorization.expression('isAuthenticated()') and (#strings.contains(#authentication.principal.authorities,'ROLE_MEDICO'))}"><a th:href="@{/receita/editar/}+${receita.id}" class="btn btn-primary">Editar</a></td>
+							<td th:if="${ #authorization.expression('isAuthenticated()') and (#strings.contains(#authentication.principal.authorities,'ROLE_MEDICO'))}"><a th:href="@{/receita/excluir/}+${receita.id}" class="btn btn-primary">Excluir</a></td>
 						</tr>
 					</tbody>
 				</table>

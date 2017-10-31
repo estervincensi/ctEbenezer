@@ -102,18 +102,12 @@ public class ConsultaController {
 		return "/consulta/confirmaReceita";
 	}
 	
-	@GetMapping("/addReceita/{id}")
-	public String addReceita(@PathVariable Long id, Model model) {
-		Receita receita = new Receita();
-		receita.setConsulta(consultaService.buscarPorId(id));
-		model.addAttribute("receita",receita);
-		return "/consulta/addReceita";
+	@GetMapping("/visualizar/{id}")
+	public String visualizarInfo(@PathVariable Long id, Model model) {
+		model.addAttribute("consulta", consultaService.buscarPorId(id));
+		return "/consulta/visualizar";
 	}
 	
-	@PostMapping("/salvarReceita")
-	public String salvarReceita(@Valid Receita receita){
-		consultaService.salvarReceita(receita);
-		return "/consulta/listar";
-	}
+	
 
 }

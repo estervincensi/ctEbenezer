@@ -44,7 +44,6 @@ public class AccountUserDetailsService implements UserDetailsService {
 		return this.accountRepository.findByUsername(username)
 				.map(account -> new UserImpl(account.getUsername(), account.getPassword(), account.isActive(),
 						account.isActive(), account.isActive(), account.isActive(),
-						//AuthorityUtils.createAuthorityList("ROLE_ADMIN", "ROLE_USER")
 						account.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.getRole()))
 								.collect(Collectors.toList()),
 						account.getPessoa()))

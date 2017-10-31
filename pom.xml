@@ -8,7 +8,7 @@
 	<packaging>jar</packaging>
 
 	<name>ctEbenezer</name>
-	<description>Demo project for Spring Boot</description>
+	<description>CT Ebenezer Application</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -106,7 +106,12 @@
 			<version>2.2.2</version>
 			<scope>compile</scope>
 		</dependency>
-		<!-- fim copiadas sed -->
+		<!-- fim copiadas sed -->	
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-lang3</artifactId>
+		    <version>3.1</version>
+		</dependency>
 		<dependency>
 		    <groupId>org.webjars</groupId>
 		    <artifactId>jquery-ui</artifactId>
@@ -362,6 +367,7 @@
             <version>2.23</version>
             <scope>test</scope>
         </dependency>
+        
 
 	</dependencies>
 
