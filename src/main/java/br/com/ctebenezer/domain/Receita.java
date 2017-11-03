@@ -21,7 +21,18 @@ public class Receita {
 	
 	private Date vencimento;
 	
+	private boolean ativo;
 	
+	
+	
+
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
+	}
 
 	public Date getVencimento() {
 		return vencimento;

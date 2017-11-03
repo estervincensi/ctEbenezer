@@ -1,5 +1,7 @@
 package br.com.ctebenezer.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.security.access.annotation.Secured;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import br.com.ctebenezer.domain.Relatorio;
 import br.com.ctebenezer.service.PiaService;
 import br.com.ctebenezer.service.ResidenteService;
 
@@ -42,7 +45,8 @@ public class RelatorioController {
 		//retornar p/grafico2 json: anoX{NumeroDeAltas:X, NumeroDeDesistencias:X}
 		//retornar p/grafico3 json: anoX{NumeroDeAtendimentos:X}
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String json2 = gson.toJson(residenteService.listarTodos()); 
+        //List<RelatorioProjection> relatorio = piaService.baixasPorAno();
+        String json2 = gson.toJson(piaService.baixasPorAno()); 
         return json2;
     }
 

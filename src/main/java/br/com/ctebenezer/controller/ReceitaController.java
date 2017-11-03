@@ -43,5 +43,22 @@ public class ReceitaController {
 		model.addAttribute("receitas",receitaService.buscarTodas());
 		return "/receita/listar";
 	}
+	
+	@GetMapping("/editar/{id}")
+	public String editarReceita(@PathVariable Long id, Model model) {
+		Receita receita = receitaService.buscarPorId(id);
+		model.addAttribute("receita",receita);
+		return "/receita/addReceita";
+	}
+	@GetMapping("/excluir/{id}")
+	public String cancelarReceita(@PathVariable Long id, Model model) {
+		model.addAttribute("id",id);
+		return "/receita/confirmaExclusao";
+	}
+	@GetMapping("/confirmaExcluir/{id}")
+	public String visualizarInfo(@PathVariable Long id) {
+		receitaService.excluir(id);
+		return "redirect:/receita/listar";
+	}
 
 }

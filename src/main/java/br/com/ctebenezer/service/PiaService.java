@@ -1,13 +1,17 @@
 package br.com.ctebenezer.service;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.ctebenezer.domain.Pia;
+import br.com.ctebenezer.domain.Relatorio;
+import br.com.ctebenezer.domain.Residente;
 import br.com.ctebenezer.domain.enumerables.Dependencias;
 import br.com.ctebenezer.repository.PiaRepository;
 import br.com.ctebenezer.repository.ResidenteRepository;
@@ -15,12 +19,14 @@ import br.com.ctebenezer.repository.ResidenteRepository;
 @Service
 public class PiaService {
 	private final ResidenteRepository residenteRepository;
+	private final ResidenteService residenteService;
 	private final PiaRepository piaRepository;
 	
 	@Autowired
-	public PiaService(ResidenteRepository residenteRepository, PiaRepository piaRepository){
+	public PiaService(ResidenteRepository residenteRepository, PiaRepository piaRepository,ResidenteService residenteService){
 		this.residenteRepository = residenteRepository;
 		this.piaRepository = piaRepository;
+		this.residenteService = residenteService;
 	}
 	
 	public List<Dependencias> buscarTodasDependencias(){
@@ -34,6 +40,22 @@ public class PiaService {
 		dependencias.add(Dependencias.OUTRO);
 		return dependencias;
 
+	}
+	
+	public void desligar(Pia pia) {
+		Pia piaSalvar = buscarPorId(pia.getId());
+		piaSalvar.setDesistiu(pia.isDesistiu());
+		piaSalvar.setAvaliacaoFinal(pia.getAvaliacaoFinal());
+		piaSalvar.setAtivo(false);
+		Residente residente = residenteService.buscar(piaSalvar.getResidente().getId());
+		residente.setPiaAtivo(false);
+		residente.setAtivo(false);
+		piaSalvar.setDataSaida(DateTime.now().toDate());
+		String obs = residente.getObservacoes();
+		obs+="\nData de entrada = "+piaSalvar.getDataEntrada()+"/Data de Saída:"+piaSalvar.getDataSaida();
+		residente.setObservacoes(obs);		
+		residenteRepository.save(residente);
+		piaRepository.save(piaSalvar);
 	}
 	
 	public void salvar(Pia pia) {
@@ -67,5 +89,19 @@ public class PiaService {
 	    	}
 	    	return meses+" meses";
 	    }
+	}
+	
+	public List<Object> baixasPorAno(){
+		List<Object> teste = piaRepository.baixasPorAno();
+		/*List<Relatorio> teste = new ArrayList<>();
+		for(Object[] obj : retorno) {
+			Relatorio r = new Relatorio();
+			r.setAno((Integer)obj[0]);
+			r.setDesistiu((boolean)obj[1]);
+			r.setNumero((BigInteger)obj[2]);
+			teste.add(r);
+		}
+		//return piaRepository.baixasPorAno();*/
+		return teste;
 	}
 }

@@ -11,11 +11,11 @@
 			<div class="x_content dashboard_graph">
 				
 				 <!--Div that will hold the dashboard-->
-    			<div id="dashboard_div">
-      				<!--Divs that will hold each control and chart-->
-      				<div id="filter_div"></div>
-      				<div id="chart_div"></div>
-    			</div>
+    			 <div id="dashboard_div">
+       				 <div id="filter_div"></div>
+       				 <div id="pie_chart"></div>
+        
+       			</div>
 
 			</div>
 		</div>
@@ -36,34 +36,62 @@
 		  function drawDashboard() {
 		    // Everything is loaded. Assemble your dashboard...
 			  var jsonString;
-		    $.get("/relatorio/chart", function(data, status){
-			        jsonString = data;
-			    });
-		       var jsonData = JSON.parse(jsonString);
-		      // Create our data table out of JSON data loaded from server.
-		      var data = new google.visualization.DataTable(jsonData);
-		      var dashboard = new google.visualization.Dashboard(document.getElementById('dashboard_div'));
-		   // Create a range slider, passing some options
-		      var donutRangeSlider = new google.visualization.ControlWrapper({
-		        'controlType': 'NumberRangeFilter',
-		        'containerId': 'filter_div',
-		        'options': {
-			          'filterColumnLabel': 'id'
-			    }
-		      });
+				  $.get("/relatorio/chart", function(data, status){
+			        //jsonString = data;
+			        //console.log(data);
+			    }).done(function(data){
+			    	jsonString = data;
+			    	 var jsonData = JSON.parse(JSON.stringify(jsonString));
+			    	 console.log(jsonData);
+				      // Create our data table out of JSON data loaded from server.
+				      var data1 = new google.visualization.DataTable();
+				      data1.addColumn('string','teste');
+				      data1.addColumn('number','ano');
+				      data1.addColumn('boolean','desistiu');
+				      data1.addColumn('number','numero');
+				     
+				      for(i in jsonData){
+				    	  jsonData[i][3]=jsonData[i][2];
+				    	  jsonData[i][2]=jsonData[i][1];
+				    	  jsonData[i][1]=jsonData[i][0];
+				    	  if(jsonData[i][2]==true){
+				    		  jsonData[i][0]='desistência';  
+				    	  }else{
+				    		  jsonData[i][0]='alta';
+				    	  }
+				    	  
+				    	  console.log(jsonData[i]);
+				    	  data1.addRow(jsonData[i]);
+				      }
+				      //data1.addRow(jsonData);
+				      var dashboard = new google.visualization.Dashboard(document.getElementById('dashboard_div'));
+				   // Create a range slider, passing some options
+				      var donutRangeSlider = new google.visualization.ControlWrapper({
+				        'controlType': 'NumberRangeFilter',
+				        'containerId': 'filter_div',
+				        'options': {
+					          'filterColumnLabel': 'ano'
+					    }
+				      });
 
-		      // Create a pie chart, passing some options
-		      var pieChart = new google.visualization.ChartWrapper({
-		        'chartType': 'PieChart',
-		        'containerId': 'chart_div',
-		        'options': {
-		          'width': 300,
-		          'height': 300,
-		          'pieSliceText': 'label'
-		        }
-		      });
-		      dashboard.bind(donutRangeSlider, pieChart);
-		      dashboard.draw(data);
+				      // Create a pie chart, passing some options
+				      var pieChart = new google.visualization.ChartWrapper({
+				        'chartType': 'PieChart',
+				        'containerId': 'pie_chart',
+				        'options': {
+				          'width': 600,
+				          'height': 600,
+				          'pieSliceText': 'label'
+				        }
+				      });
+				      dashboard.bind(donutRangeSlider, pieChart);
+				      dashboard.draw(data1);
+			    	
+			    	
+			    	
+			    });
+				
+		      
 
 		  }
 		  

@@ -39,10 +39,73 @@ insert into ctebenezer.account_roles (accounts_id, roles_id) values
 INSERT INTO CTEBENEZER.ENDERECO(ID,BAIRRO,CIDADE,NUMERO,RUA) VALUES (1,'TESTE',	'TESTE',123,'TESTE');
 
 --RESIDENTES
-insert into ctebenezer.residente (id, data_nascimento,estado_civil, naturalidade, nome, observacoes, profissao, responsavel, endereco_id,ativo,pia_ativo,rg) values (1,TIMESTAMP '1995-04-02 00:00:00.0', 'CASADO','canoas','joão','teste','autonomo','paulo',1,false,false,123456789);
-insert into ctebenezer.residente (id, data_nascimento,estado_civil, naturalidade, nome, observacoes, profissao, responsavel, endereco_id,ativo,pia_ativo,rg) values (2,TIMESTAMP '1995-04-02 00:00:00.0', 'CASADO','porto alegre','aldair','teste','autonomo','pedro',1,true,false,987654321);
+INSERT INTO CTEBENEZER.RESIDENTE(ID, ATIVO, DATA_NASCIMENTO, ESTADO_CIVIL, NATURALIDADE, NOME, OBSERVACOES, PIA_ATIVO, PROFISSAO, RESPONSAVEL, RG, TELEFONE, ENDERECO_ID) VALUES
+(1, TRUE, TIMESTAMP '1995-04-02 00:00:00.0', 'CASADO', 'canoas', STRINGDECODE('jo\u00e3o'), 'teste', TRUE, 'autonomo', 'paulo', '123456789', '123456789', 1),
+(2, TRUE, TIMESTAMP '1995-04-02 00:00:00.0', 'CASADO', 'porto alegre', 'aldair', STRINGDECODE('teste\nData de entrada = 2017-11-02 17:30:00.048/Data de Sa\u00edda:Thu Nov 02 17:34:47 BRST 2017\n Data de entrada:Thu Nov 02 17:56:31 BRST 2017'), TRUE, 'autonomo', 'pedro', '987654321', '987654321', 1),
+(3, TRUE, TIMESTAMP '2017-11-02 17:13:10.91', 'CASADO', 'cachoeirinha', 'jose', 'teste', TRUE, 'abc', 'pedro', '65498725', '258963147', 1),
+(4, TRUE, TIMESTAMP '2017-11-02 17:15:05.011', 'CASADO', 'cachoeirinha', 'pedro', 'teste', TRUE, 'abc', 'pedro', '65498725', '259632154', 1),
+(5, TRUE, TIMESTAMP '2017-11-02 17:15:08.411', 'CASADO', 'cachoeirinha', 'paulo', 'teste', TRUE, 'abc', 'pedro', '6543214', '859621475', 1),
+(6, TRUE, TIMESTAMP '2017-11-02 17:15:12.658', 'CASADO', 'cachoeirinha', 'pafuncio', 'teste', TRUE, 'abc', 'pedro', '84549843', '1236548256', 1),
+(7, FALSE, TIMESTAMP '2017-11-02 17:15:16.308', 'CASADO', 'cachoeirinha', 'irineu', STRINGDECODE('teste\r\nData de entrada = 2017-11-02 17:30:35.983/Data de Sa\u00edda:Thu Nov 02 17:53:31 BRST 2017'), FALSE, 'abc', 'pedro', '41464687897', '63125448618', 1);  
 
+--PIA
+INSERT INTO CTEBENEZER.PIA(ID, ATIVO, AVALIACAO_FINAL, AVALIACAO_INICIAL, DATA_ENTRADA, DATA_SAIDA, DESISTIU, PROTECAO_JUDICIAL, TEMPO_PREVISTO, VIVEU_NA_RUA, RESIDENTE_ID) VALUES
+(1, FALSE, 'desistiu', 'teste', TIMESTAMP '2017-11-02 17:30:00.048', TIMESTAMP '2017-11-02 17:34:47.699', TRUE, FALSE, '6', FALSE, 2),
+(2, FALSE, 'teste', 'teste', TIMESTAMP '2017-11-02 17:30:35.983', TIMESTAMP '2017-11-02 17:53:31.469', FALSE, FALSE, '9', FALSE, 7),
+(3, TRUE, NULL, 'teste teste', TIMESTAMP '2017-11-02 17:31:18.707', NULL, FALSE, FALSE, '12', FALSE, 3),
+(4, TRUE, NULL, 'teste teste', TIMESTAMP '2017-11-02 17:31:47.045', NULL, FALSE, FALSE, '123456', FALSE, 1),
+(5, TRUE, NULL, 'teste', TIMESTAMP '2017-11-02 17:32:20.554', NULL, FALSE, FALSE, '12', FALSE, 6),
+(6, TRUE, NULL, 'teste', TIMESTAMP '2017-11-02 17:33:09.112', NULL, FALSE, FALSE, '6', FALSE, 5),
+(7, TRUE, NULL, 'teste123', TIMESTAMP '2017-11-02 17:33:27.752', NULL, FALSE, FALSE, '5', FALSE, 4),
+(8, TRUE, NULL, 'teste', TIMESTAMP '2017-11-02 17:56:41.214', NULL, FALSE, FALSE, '12', FALSE, 2); 
 --DEPENDENCIAS
---INSERT INTO CTEBENEZER.RESIDENTE_DEPENDENCIAS (RESIDENTE_ID,DEPENDENCIAS) VALUES (1,'CRACK');
---INSERT INTO CTEBENEZER.RESIDENTE_DEPENDENCIAS (RESIDENTE_ID,DEPENDENCIAS) VALUES (2,'CRACK');
+INSERT INTO CTEBENEZER.PIA_DEPENDENCIAS(PIA_ID, DEPENDENCIAS) VALUES
+(1, 'ALCOOL'),
+(1, 'COCAINA'),
+(1, 'CRACK'),
+(1, 'HEROINA'),
+(2, 'ALCOOL'),
+(2, 'COCAINA'),
+(3, 'COCAINA'),
+(3, 'CRACK'),
+(3, 'HEROINA'),
+(4, 'ALCOOL'),
+(4, 'COCAINA'),
+(5, 'CRACK'),
+(5, 'HEROINA'),
+(5, 'MACONHA'),
+(6, 'ALCOOL'),
+(6, 'COCAINA'),
+(6, 'CRACK'),
+(6, 'HEROINA'),
+(6, 'MACONHA'),
+(7, 'ALCOOL'),
+(7, 'COCAINA'),
+(7, 'CRACK'),
+(7, 'HEROINA'),
+(7, 'MACONHA'),
+(7, 'MERLA'),
+(8, 'ALCOOL'),
+(8, 'COCAINA'),
+(8, 'CRACK');     
 
+--APTIDOES
+INSERT INTO CTEBENEZER.PIA_APTIDOES(PIA_ID, APTIDOES) VALUES
+(2, STRINGDECODE('m\u00fasico-cantor')),
+(2, STRINGDECODE('m\u00fasico-instrumentista')),
+(3, STRINGDECODE('m\u00fasico-instrumentista')),
+(3, 'artesanato'),
+(4, STRINGDECODE('m\u00fasico-instrumentista')),
+(4, 'artesanato'),
+(5, 'jardinagem'),
+(5, 'teatro'),
+(6, STRINGDECODE('m\u00fasico-instrumentista')),
+(6, 'artesanato'),
+(6, 'jardinagem'),
+(7, STRINGDECODE('m\u00fasico-instrumentista')),
+(7, 'artesanato'),
+(7, 'jardinagem'),
+(7, 'teatro'),
+(8, STRINGDECODE('m\u00fasico-instrumentista')),
+(8, 'artesanato'),
+(8, 'jardinagem'); 

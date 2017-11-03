@@ -33,9 +33,9 @@
 							<td th:text="${#dates.format(consulta.data,'dd/MM/YYYY')}"></td>
 							<td th:text="${consulta.hora}"></td>
 							<td th:if="${ #authorization.expression('isAuthenticated()') and !(#strings.contains(#authentication.principal.authorities,'ROLE_MEDICO'))}"><a th:if="${consulta.observacoes}!=null" th:href="@{/consulta/visualizar/}+${consulta.id}" class="btn btn-primary">Visualizar</a></td>
-							<td th:if="${ #authorization.expression('isAuthenticated()') and !(#strings.contains(#authentication.principal.authorities,'ROLE_MEDICO'))}"><a th:href="@{/consulta/editar/}+${consulta.id}" class="btn btn-primary" th:text="#{lista.editar}"></a></td>
-							<td th:if="${ #authorization.expression('isAuthenticated()') and (#strings.contains(#authentication.principal.authorities,'ROLE_MEDICO'))}"><a th:href="@{/consulta/adicionarInfo/}+${consulta.id}" class="btn btn-primary">Adicionar Info</a></td>
-							<td><a th:href="@{/consulta/cancelar/}+${consulta.id}" class="btn btn-danger">Cancelar</a></td>
+							<td th:if="${ #authorization.expression('isAuthenticated()') and !(#strings.contains(#authentication.principal.authorities,'ROLE_MEDICO'))}"><a th:if="${consulta.observacoes}==null" th:href="@{/consulta/editar/}+${consulta.id}" class="btn btn-primary" th:text="#{lista.editar}"></a></td>
+							<td th:if="${ #authorization.expression('isAuthenticated()') and (#strings.contains(#authentication.principal.authorities,'ROLE_MEDICO'))}"><a th:if="${consulta.observacoes}==null" th:href="@{/consulta/adicionarInfo/}+${consulta.id}" class="btn btn-primary">Adicionar Info</a></td>
+							<td><a th:if="${consulta.observacoes}==null" th:href="@{/consulta/cancelar/}+${consulta.id}" class="btn btn-danger">Cancelar</a></td>
 						</tr>
 					</tbody>
 				</table>
@@ -68,7 +68,7 @@
 		$('#datatable').DataTable({
     		"language": {
                 "lengthMenu": "Mostrando _MENU_ registros",
-                "zeroRecords": "Nenhum residente encontrado com o termo pesquisado",
+                "zeroRecords": "Nenhum registro encontrado",
                 "info": "Mostrando página _PAGE_ de _PAGES_",
                 "infoEmpty": "Nenhum registro disponível",
                 "infoFiltered": "(filtrado de _MAX_ registros)",

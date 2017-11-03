@@ -48,6 +48,12 @@
 						</div>
 					</div>
 					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12" th:text="#{ficha.telefone}"></label>
+						<div class="col-md-9 col-sm-9 col-xs-12">
+							<input type="text" class="form-control" id="telefone" th:field="*{telefone}" />
+						</div>
+					</div>
+					<div class="form-group">
 						<label class="col-md-3 col-sm-3 col-xs-12 control-label " th:text="#{ficha.estadoCivil}"></label>
 						<div class="col-md-9 col-sm-9 col-xs-12" style="padding-top:8px;">
 							<select th:field="*{estadoCivil}">

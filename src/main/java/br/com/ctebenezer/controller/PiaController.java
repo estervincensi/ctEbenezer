@@ -58,21 +58,9 @@ public class PiaController {
 	
 	@PostMapping("/finalizar")
 	public String finalizar(@Valid Pia pia, BindingResult bindingResult){
-		Pia piaSalvar = piaService.buscarPorId(pia.getId());
-		piaSalvar.setDesistiu(pia.isDesistiu());
-		piaSalvar.setAvaliacaoFinal(pia.getAvaliacaoFinal());
-		piaSalvar.setAtivo(false);
-		Residente residente = residenteService.buscar(piaSalvar.getResidente().getId());
-		residente.setPiaAtivo(false);
-		residente.setAtivo(false);
-		piaSalvar.setDataSaida(DateTime.now().toDate());
-		String obs = residente.getObservacoes();
-		obs+="\nData de entrada = "+piaSalvar.getDataEntrada()+"/Data de Saída:"+piaSalvar.getDataSaida();
-		residente.setObservacoes(obs);		
-		residenteService.salvar(residente);
-		piaService.salvar(piaSalvar);
+		piaService.desligar(pia);
 		if(pia.isDesistiu()) {
-			return "redirect: /home";
+			return "redirect:/home";
 		}else {
 			return "redirect:/residente/gerarAtestadoAlta/"+pia.getId();
 		}

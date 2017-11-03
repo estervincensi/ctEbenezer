@@ -23,12 +23,12 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="receita : ${receitas}" th:if="(${#strings.contains(#authentication.principal.authorities,'ROLE_MEDICO')}and ${#authentication.principal.pessoa.nome} == ${consulta.medico.pessoa.nome}) or ${!(#strings.contains(#authentication.principal.authorities,'ROLE_MEDICO'))}">
+						<tr th:each="receita : ${receitas}" th:if="(${#strings.contains(#authentication.principal.authorities,'ROLE_MEDICO')}and ${#authentication.principal.pessoa.nome} == ${receita.consulta.medico.pessoa.nome}) or ${!(#strings.contains(#authentication.principal.authorities,'ROLE_MEDICO'))}">
 							<td th:text="${receita.consulta.residente.nome}"></td>
 							<td th:text="${receita.descricaoDaReceita}"></td>
 							<td th:text="${#dates.format(receita.vencimento,'dd/MM/YYYY')}"></td>
 							<td th:if="${ #authorization.expression('isAuthenticated()') and (#strings.contains(#authentication.principal.authorities,'ROLE_MEDICO'))}"><a th:href="@{/receita/editar/}+${receita.id}" class="btn btn-primary">Editar</a></td>
-							<td th:if="${ #authorization.expression('isAuthenticated()') and (#strings.contains(#authentication.principal.authorities,'ROLE_MEDICO'))}"><a th:href="@{/receita/excluir/}+${receita.id}" class="btn btn-primary">Excluir</a></td>
+							<td th:if="${ #authorization.expression('isAuthenticated()') and (#strings.contains(#authentication.principal.authorities,'ROLE_MEDICO'))}"><a th:href="@{/receita/excluir/}+${receita.id}" class="btn btn-danger">Excluir</a></td>
 						</tr>
 					</tbody>
 				</table>
@@ -61,7 +61,7 @@
 		$('#datatable').DataTable({
     		"language": {
                 "lengthMenu": "Mostrando _MENU_ registros",
-                "zeroRecords": "Nenhum residente encontrado com o termo pesquisado",
+                "zeroRecords": "Nenhum registro encontrado",
                 "info": "Mostrando página _PAGE_ de _PAGES_",
                 "infoEmpty": "Nenhum registro disponível",
                 "infoFiltered": "(filtrado de _MAX_ registros)",
