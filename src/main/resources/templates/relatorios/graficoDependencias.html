@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	lang="en" layout:decorator="/layouts/main">
+
+
+<body>
+	<div layout:fragment="content">
+		<div class="right_col" role="main">
+			<div class="x_content dashboard_graph">
+				
+				 <div id="chart_div">
+				 </div>
+
+			</div>
+		</div>
+	</div>
+
+	<th:block layout:fragment="js-view">
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<script type="text/javascript">
+
+		  // Load the Visualization API and the controls package.
+		  // Packages for all the other charts you need will be loaded
+		  // automatically by the system.
+		  google.charts.load('current', {packages: ['corechart', 'bar']});
+		
+		  // Set a callback to run when the Google Visualization API is loaded.
+		  google.charts.setOnLoadCallback(drawDashboard);
+		
+		  function drawDashboard() {
+		    // Everything is loaded. Assemble your dashboard...
+			  var jsonString;
+				  $.get("/relatorio/chartDependencia", function(data, status){
+			        //jsonString = data;
+			        //console.log(data);
+			    }).done(function(data){
+			    	jsonString = data;
+			    	 var jsonData = JSON.parse(JSON.stringify(jsonString));
+			    	 console.log(jsonData);
+				      // Create our data table out of JSON data loaded from server.
+				      var data1 = new google.visualization.DataTable();
+				      data1.addColumn('string','Dependencia')
+				      data1.addColumn('number','Numero');
+				     
+				      for(i in jsonData){
+				    	  data1.addRow(jsonData[i]);
+				      }
+				      var formatter = new google.visualization.NumberFormat({pattern:'####'});
+				      formatter.format(data1, 0);
+				      var materialOptions = {
+				    	        chart: {
+				    	          'title': 'Tipos de dependências mais comuns'
+				    	        
+				    	        },
+				    	        'bars': 'vertical',
+				    	       
+				    	      };
+				   var materialChart = new google.charts.Bar(document.getElementById('chart_div'));
+				    	      materialChart.draw(data1, materialOptions);		    	
+			    	
+			    	
+			    });		      
+
+		  }
+		  
+		</script>
+	</th:block>
+</body>
+</html>

@@ -10,13 +10,8 @@
 		<div class="right_col" role="main">
 			<div class="x_content dashboard_graph">
 				
-				 <!--Div that will hold the dashboard-->
-<!--     			 <div id="dashboard_div"> -->
-<!--        				 <div id="filter_div"></div> -->
-<!--        				 <div id="pie_chart"></div> -->
-        
-<!--        			</div> -->
-				<div id="chart_div"></div>
+				 <div id="chart_div">
+				 </div>
 
 			</div>
 		</div>
@@ -29,7 +24,6 @@
 		  // Load the Visualization API and the controls package.
 		  // Packages for all the other charts you need will be loaded
 		  // automatically by the system.
-		  //google.charts.load('current', {'packages':['corechart', 'controls']});
 		  google.charts.load('current', {packages: ['corechart', 'bar']});
 		
 		  // Set a callback to run when the Google Visualization API is loaded.
@@ -38,7 +32,7 @@
 		  function drawDashboard() {
 		    // Everything is loaded. Assemble your dashboard...
 			  var jsonString;
-				  $.get("/relatorio/chart", function(data, status){
+				  $.get("/relatorio/chartAtendimento", function(data, status){
 			        //jsonString = data;
 			        //console.log(data);
 			    }).done(function(data){
@@ -47,22 +41,10 @@
 			    	 console.log(jsonData);
 				      // Create our data table out of JSON data loaded from server.
 				      var data1 = new google.visualization.DataTable();
-				      //data1.addColumn('string','teste');
-				      data1.addColumn('number','Ano');
-				      data1.addColumn('number','Desistência');
-				      data1.addColumn('number','Alta');
+				      data1.addColumn('number','Ano')
+				      data1.addColumn('number','Numero de Entradas');
 				     
 				      for(i in jsonData){
-// 				    	  jsonData[i][3]=jsonData[i][2];
-// 				    	  jsonData[i][2]=jsonData[i][1];
-// 				    	  jsonData[i][1]=jsonData[i][0];
-// 				    	  if(jsonData[i][2]==true){
-// 				    		  jsonData[i][0]='desistência';  
-// 				    	  }else{
-// 				    		  jsonData[i][0]='alta';
-// 				    	  }
-				    	  
-				    	  console.log(jsonData[i]);
 				    	  data1.addRow(jsonData[i]);
 				      }
 				      var formatter = new google.visualization.NumberFormat({pattern:'####'});
@@ -76,36 +58,10 @@
 				    	       
 				    	      };
 				   var materialChart = new google.charts.Bar(document.getElementById('chart_div'));
-				    	      materialChart.draw(data1, materialOptions);	
-				    	      
-// 				      var dashboard = new google.visualization.Dashboard(document.getElementById('dashboard_div'));
-// 				   // Create a range slider, passing some options
-// 				      var donutRangeSlider = new google.visualization.ControlWrapper({
-// 				        'controlType': 'NumberRangeFilter',
-// 				        'containerId': 'filter_div',
-// 				        'options': {
-// 					          'filterColumnLabel': 'ano'
-// 					    }
-// 				      });
-
-// 				      // Create a pie chart, passing some options
-// 				      var pieChart = new google.visualization.ChartWrapper({
-// 				        'chartType': 'PieChart',
-// 				        'containerId': 'pie_chart',
-// 				        'options': {
-// 				          'width': 600,
-// 				          'height': 600,
-// 				          'pieSliceText': 'label'
-// 				        }
-// 				      });
-// 				      dashboard.bind(donutRangeSlider, pieChart);
-// 				      dashboard.draw(data1);
+				    	      materialChart.draw(data1, materialOptions);		    	
 			    	
 			    	
-			    	
-			    });
-				
-		      
+			    });		      
 
 		  }
 		  

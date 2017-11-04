@@ -92,16 +92,14 @@ public class PiaService {
 	}
 	
 	public List<Object> baixasPorAno(){
-		List<Object> teste = piaRepository.baixasPorAno();
-		/*List<Relatorio> teste = new ArrayList<>();
-		for(Object[] obj : retorno) {
-			Relatorio r = new Relatorio();
-			r.setAno((Integer)obj[0]);
-			r.setDesistiu((boolean)obj[1]);
-			r.setNumero((BigInteger)obj[2]);
-			teste.add(r);
-		}
-		//return piaRepository.baixasPorAno();*/
-		return teste;
+		List<Object> retorno = piaRepository.baixasPorAno();
+		return retorno;
+	}
+	public List<Object> atendimentosPorAno(){
+		List<Object> retorno = piaRepository.atendimentosPorAno();
+		return retorno;
+	}
+	public List<Object> dependencias(){
+		return piaRepository.dependencias();
 	}
 }

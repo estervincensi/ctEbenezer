@@ -32,22 +32,6 @@ public class MVCConfig extends WebMvcConfigurerAdapter {
 	 *
 	 * @return the locale change interceptor
 	 */
-	@Bean
-	public LocaleChangeInterceptor localeChangeInterceptor() {
-		LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
-		lci.setParamName("lang");
-		return lci;
-	}
-
-    @Bean
-    public CookieLocaleResolver  localeResolver() {
-        CookieLocaleResolver localeResolver = new CookieLocaleResolver();
-        localeResolver.setDefaultLocale(Locale.US);
-        localeResolver.setCookieName("lang");
-        localeResolver.setCookieMaxAge(3600);
-        return localeResolver;
-
-    }
 
     @Bean
     public MessageSource messageSource() {
@@ -57,11 +41,6 @@ public class MVCConfig extends WebMvcConfigurerAdapter {
         messageSource.setDefaultEncoding("UTF-8");
         return messageSource;
     }
-
-	@Override
-	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(localeChangeInterceptor());
-	}
 
 
 }

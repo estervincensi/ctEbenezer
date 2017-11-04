@@ -30,23 +30,43 @@ public class RelatorioController {
 		this.piaService = piaService;
 	}
 	
-	@Secured("ROLE_PRESIDENTE")
-	@GetMapping("/grafico")
-	public String grafico() {
+	@Secured({"ROLE_PRESIDENTE","ROLE_ADMIN"})
+	@GetMapping("/graficoBaixas")
+	public String graficoBaixas() {
 		return "/relatorios/grafico";
 	}
 	
-	@Secured("ROLE_PRESIDENTE")
+	@Secured({"ROLE_PRESIDENTE","ROLE_ADMIN"})
+	@GetMapping("/graficoAtendimentos")
+	public String graficoAtendimentos() {
+		return "/relatorios/graficoAtendimento";
+	}
+	
+	@Secured({"ROLE_PRESIDENTE","ROLE_ADMIN"})
+	@GetMapping("/graficoDependencias")
+	public String graficoDependencias() {
+		return "/relatorios/graficoDependencias";
+	}
+	
+	@Secured({"ROLE_PRESIDENTE","ROLE_ADMIN"})
 	@RequestMapping(value = "/chart", method = RequestMethod.GET, produces = "application/json")
-    public @ResponseBody String showChart(HttpServletRequest request) {
-		
-		//TODO alterar Json para enviar somente informações importantes para o gráfico
-		//retornar p/grafico1 json: anoX{AltaVoltou:X, DesitenciaVoltou:X}
-		//retornar p/grafico2 json: anoX{NumeroDeAltas:X, NumeroDeDesistencias:X}
-		//retornar p/grafico3 json: anoX{NumeroDeAtendimentos:X}
+    public @ResponseBody String showChart(HttpServletRequest request) {		
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        //List<RelatorioProjection> relatorio = piaService.baixasPorAno();
         String json2 = gson.toJson(piaService.baixasPorAno()); 
+        return json2;
+    }
+	@Secured({"ROLE_PRESIDENTE","ROLE_ADMIN"})
+	@RequestMapping(value = "/chartAtendimento", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody String showChart1(HttpServletRequest request) {
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String json2 = gson.toJson(piaService.atendimentosPorAno()); 
+        return json2;
+    }
+	@Secured({"ROLE_PRESIDENTE","ROLE_ADMIN"})
+	@RequestMapping(value = "/chartDependencia", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody String showChart2(HttpServletRequest request) {
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String json2 = gson.toJson(piaService.dependencias()); 
         return json2;
     }
 
