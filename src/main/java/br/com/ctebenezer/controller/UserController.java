@@ -1,8 +1,11 @@
 package br.com.ctebenezer.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
-import org.springframework.security.access.annotation.Secured;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.ctebenezer.domain.Account;
+import br.com.ctebenezer.domain.Role;
 import br.com.ctebenezer.service.AccountUserDetailsService;
 
 
@@ -19,22 +23,25 @@ import br.com.ctebenezer.service.AccountUserDetailsService;
 @Controller
 @RequestMapping("/usuario")
 public class UserController {
+	@Autowired
 	private final AccountUserDetailsService accountUserDetailsService;
+	
 	
 	public UserController(AccountUserDetailsService accountUserDetailsService) {
 		this.accountUserDetailsService = accountUserDetailsService;
 	}
 
-	@Secured("ROLE_ADMIN")
+	//@Secured("ROLE_ADMIN")
 	@GetMapping("/cadastrar")
 	public String cadastrarUsuario(Model model, @RequestParam(value="user",  required=false)String user){
 		model.addAttribute("account",new Account());
+		List<Role> roles= accountUserDetailsService.getAllRoles();
 		model.addAttribute("roles", accountUserDetailsService.getAllRoles());
 		model.addAttribute("usuarioExiste",user);
 		return "/usuario/cadastrar";
 	}
 	
-	@Secured("ROLE_ADMIN")
+	//@Secured("ROLE_ADMIN")
 	@PostMapping("/salvar")
 	public String salvar(@Valid Account account,BindingResult bindingResult, Model model) {
 		if(accountUserDetailsService.salvarUsuario(account)==true) {

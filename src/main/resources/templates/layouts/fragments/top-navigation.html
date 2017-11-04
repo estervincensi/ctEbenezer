@@ -14,7 +14,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img th:src="${#authentication.principal.pessoa.picture?.pictureBase64}" alt="imagem do usuário"></img><span sec:authentication="principal.pessoa.nome"></span>
+                  <span sec:authentication="principal.pessoa.nome"></span>
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">

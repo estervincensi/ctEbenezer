@@ -22,7 +22,7 @@
 					<select th:field="*{roles}">
 						<option th:each="role : ${roles}" th:text="${role.role}" th:value="${role.id}"></option>
 					</select><br/>
-					<input type="file" th:field="*{pessoa.picture.filename}"/><br/>
+					<!-- input type="file" th:field="*{pessoa.picture.filename}"/><br/-->
 					<input type="submit"/><br/>
 					<label th:if="${usuarioExiste}==invalido" class="text-danger">Este usuário já existe, por favor, escolha outro username!</label>
 				</form>

@@ -2,6 +2,7 @@ package br.com.ctebenezer.controller;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +19,8 @@ import br.com.ctebenezer.service.ReceitaService;
 public class ReceitaController {
 	private final ConsultaService consultaService;
 	private final ReceitaService receitaService;
-
+	
+	@Autowired
 	public ReceitaController(ConsultaService consultaService, ReceitaService receitaService) {
 		this.consultaService = consultaService;
 		this.receitaService = receitaService;

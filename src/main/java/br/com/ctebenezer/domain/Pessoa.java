@@ -10,17 +10,6 @@ public class Pessoa {
 
 	private String nome;
 
-	@OneToOne
-	private File picture;
-
-	public File getPicture() {
-		return picture;
-	}
-
-	public void setPicture(File picture) {
-		this.picture = picture;
-	}
-
 	public String getNome() {
 		return nome;
 	}

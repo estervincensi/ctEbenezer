@@ -16,9 +16,7 @@
 
             <!-- menu profile quick info -->
             <div class="profile clearfix">
-              <div class="profile_pic">
-                <img class="img-circle profile_img" th:src="${#authentication.principal.pessoa.picture?.pictureBase64}" alt="imagem do usuário"></img>
-              </div>
+              
               <div class="profile_info">
                 <span th:text="#{menu.bemvindo}"></span>
                 <h2><span sec:authentication="principal.pessoa.nome"></span></h2>

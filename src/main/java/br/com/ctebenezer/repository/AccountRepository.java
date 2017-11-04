@@ -14,9 +14,9 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
 
     Optional<Account> findByUsername(String username);
     
-    @Query(value="select a.* from CTEBENEZER.ACCOUNT a where a.username = :username", nativeQuery=true)
+    @Query(value="select a.* from account a where a.username = :username", nativeQuery=true)
     Account bucarPorUsername(@Param("username") String username);
     
-    @Query(value="SELECT a.* FROM CTEBENEZER.ACCOUNT a join CTEBENEZER.ACCOUNT_ROLES  ar on a.id = ar.accounts_id join CTEBENEZER.ROLE  r on  ar.roles_id = r.id where r.role = 'ROLE_MEDICO'", nativeQuery=true)
+    @Query(value="SELECT a.* FROM account a join account_roles  ar on a.id = ar.accounts_id join role  r on  ar.roles_id = r.id where r.role = 'ROLE_MEDICO'", nativeQuery=true)
     List<Account> buscarTodosMedicos();
 }

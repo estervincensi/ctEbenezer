@@ -3,6 +3,7 @@ package br.com.ctebenezer.controller;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,7 +22,8 @@ import br.com.ctebenezer.service.ResidenteService;
 public class ResidenteController {
 	private final ResidenteService residenteService;
 	private final PiaService piaService;
-
+	
+	@Autowired
 	public ResidenteController(ResidenteService residenteService, PiaService piaService){
 		this.residenteService = residenteService;
 		this.piaService = piaService;

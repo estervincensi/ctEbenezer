@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +26,7 @@ public class RelatorioController {
 	private final ResidenteService residenteService;
 	private final PiaService piaService;
 
+	@Autowired
 	public RelatorioController(ResidenteService residenteService, PiaService piaService){
 		this.residenteService = residenteService;
 		this.piaService = piaService;

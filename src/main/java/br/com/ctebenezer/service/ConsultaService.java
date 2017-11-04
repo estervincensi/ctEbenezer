@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.joda.time.DateTime;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.ctebenezer.domain.Consulta;
@@ -17,7 +18,7 @@ public class ConsultaService {
 	private final ConsultaRepository consultaRepository;
 	private final ResidenteService residenteService;
 	
-
+	@Autowired
 	public ConsultaService(ConsultaRepository consultaRepository, ResidenteService residenteService) {
 		this.consultaRepository = consultaRepository;
 		this.residenteService = residenteService;

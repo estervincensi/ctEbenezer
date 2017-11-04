@@ -3,7 +3,6 @@ spring:
     prefix: classpath:/templates
   jackson:
     serialization.write-dates-as-timestamps: false
-  jpa.properties.hibernate.default_schema: CTEBENEZER
   mvc:
     favicon:
       enabled: true
@@ -22,10 +21,12 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-        ddl-auto: create-drop
+        ddl-auto: update
   datasource:
-    url: jdbc:h2:~/dev;DB_CLOSE_ON_EXIT=FALSE;INIT=CREATE SCHEMA IF NOT EXISTS CTEBENEZER 
-    platform: h2
+        url: jdbc:mysql://sql10.freemysqlhosting.net:3306/sql10203131
+        username: sql10203131
+        password: FvxVYxGLaB
+        driver-class-name: com.mysql.jdbc.Driver
 logging:
   file: ./ebenezer-console.log
   level.org:

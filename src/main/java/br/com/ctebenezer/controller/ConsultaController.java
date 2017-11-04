@@ -2,6 +2,7 @@ package br.com.ctebenezer.controller;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,7 +27,7 @@ public class ConsultaController {
 	private final ConsultaService consultaService;
 	
 	
-	
+	@Autowired
 	public ConsultaController(AccountUserDetailsService accountUserDetailsService, ResidenteService residenteService, ConsultaService consultaService) {
 		this.accountUserDetailsService = accountUserDetailsService;
 		this.consultaService = consultaService;

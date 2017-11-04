@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.time.DateUtils;
 import org.joda.time.DateTime;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.ctebenezer.domain.Receita;
@@ -14,6 +15,7 @@ import br.com.ctebenezer.repository.ReceitaRepository;
 public class ReceitaService {
 	private final ReceitaRepository receitaRepository;
 	
+	@Autowired
 	public ReceitaService(ReceitaRepository receitaRepository) {
 		super();
 		this.receitaRepository = receitaRepository;
