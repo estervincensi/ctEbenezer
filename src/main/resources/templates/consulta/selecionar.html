@@ -22,9 +22,10 @@
 						<tr th:each="residente1 : ${residentes}">
 							<td>
 							<form method="post" th:action="@{/consulta/agendar}" th:object="${consulta}">
-								<input th:value="${residente1.nome}" th:id="residente.nome" th:name="residente.nome" readonly="readonly"/>
+								
+								<input type="hidden" th:value="${residente1.nome}" th:id="residente.nome" th:name="residente.nome"/>
 								<input type="hidden" th:value="${residente1.rg}" th:id="residente.rg" th:name="residente.rg"/>
-								<input type="submit" value="selecionar"/>
+								<input type="submit" class="button" th:value="${residente1.nome}"/>
 							</form>
 							</td>
 						</tr>
@@ -41,6 +42,16 @@
     	<link href="/webjars/datatables.net-fixedheader-bs/3.1.2/css/fixedHeader.bootstrap.min.css" rel="stylesheet"/>
     	<link href="/webjars/datatables.net-responsive-bs/2.1.0/css/responsive.bootstrap.css" rel="stylesheet"/>
     	<link href="/webjars/datatables.net-scroller-bs/1.4.2/css/scroller.bootstrap.min.css" rel="stylesheet"/>
+    	<style>
+    		.button{
+    			background-color: Transparent;
+			    background-repeat:no-repeat;
+			    border: none;
+			    overflow: hidden;
+			    cursor:pointer;
+			    outline:none;
+    		}
+    	</style>
 	</th:block>
 	<th:block layout:fragment="js-view">
 		<script src="/webjars/datatables.net/1.10.13/js/jquery.dataTables.js"></script>
