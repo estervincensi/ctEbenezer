@@ -91,7 +91,7 @@ public class ConsultaController {
 		return "/consulta/listar";
 	}
 	
-	@Secured("ROLE_MEDICO")
+	@Secured({"ROLE_MEDICO","ROLE_ADMIN"})
 	@GetMapping("adicionarInfo/{id}")
 	public String addInfo(@PathVariable Long id, Model model) {
 		
@@ -99,7 +99,7 @@ public class ConsultaController {
 		return "/consulta/addInfo";
 	}
 	
-	@Secured("ROLE_MEDICO")
+	@Secured({"ROLE_MEDICO","ROLE_ADMIN"})
 	@PostMapping("/salvarInfo")
 	public String salvarInfo(@Valid Consulta consulta, Model model) {
 		Consulta c = consultaService.buscarPorId(consulta.getId());

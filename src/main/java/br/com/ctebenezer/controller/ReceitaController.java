@@ -3,6 +3,7 @@ package br.com.ctebenezer.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +26,8 @@ public class ReceitaController {
 		this.consultaService = consultaService;
 		this.receitaService = receitaService;
 	}
-
+	
+	@Secured({"ROLE_ADMIN","ROLE_MEDICO"})
 	@GetMapping("/addReceita/{id}")
 	public String addReceita(@PathVariable Long id, Model model) {
 		Receita receita = new Receita();
@@ -34,6 +36,7 @@ public class ReceitaController {
 		return "/receita/addReceita";
 	}
 	
+	@Secured({"ROLE_ADMIN","ROLE_MEDICO"})
 	@PostMapping("/salvarReceita")
 	public String salvarReceita(@Valid Receita receita){
 		receitaService.salvarReceita(receita);
@@ -46,17 +49,22 @@ public class ReceitaController {
 		return "/receita/listar";
 	}
 	
+	@Secured({"ROLE_ADMIN","ROLE_MEDICO"})
 	@GetMapping("/editar/{id}")
 	public String editarReceita(@PathVariable Long id, Model model) {
 		Receita receita = receitaService.buscarPorId(id);
 		model.addAttribute("receita",receita);
 		return "/receita/addReceita";
 	}
+	
+	@Secured({"ROLE_ADMIN","ROLE_MEDICO"})
 	@GetMapping("/excluir/{id}")
 	public String cancelarReceita(@PathVariable Long id, Model model) {
 		model.addAttribute("id",id);
 		return "/receita/confirmaExclusao";
 	}
+	
+	@Secured({"ROLE_ADMIN","ROLE_MEDICO"})
 	@GetMapping("/confirmaExcluir/{id}")
 	public String visualizarInfo(@PathVariable Long id) {
 		receitaService.excluir(id);

@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -31,7 +32,7 @@ public class PiaController {
 		this.piaService = piaService;
 	}
 	
-	
+	@Secured({"ROLE_ADMIN","ROLE_USER","ROLE_PRESIDENTE"})
 	@GetMapping("/cadastrar/{id}")
 	public String cadastrarPiaComID(@PathVariable Long id, Model model) {
 		Pia pia = new Pia();
@@ -45,6 +46,7 @@ public class PiaController {
 		return "/pias/cadastrar";
 	}
 	
+	@Secured({"ROLE_ADMIN","ROLE_USER","ROLE_PRESIDENTE"})
 	@PostMapping("/salvarNovo")
 	public String salvar(@Valid Pia pia, BindingResult bindingResult){
 		Residente residente = residenteService.buscar(pia.getResidente().getId());
@@ -58,6 +60,7 @@ public class PiaController {
 		return "redirect:/residente/listar";
 	}
 	
+	@Secured({"ROLE_ADMIN","ROLE_USER","ROLE_PRESIDENTE"})
 	@PostMapping("/finalizar")
 	public String finalizar(@Valid Pia pia, BindingResult bindingResult){
 		piaService.desligar(pia);
@@ -69,12 +72,14 @@ public class PiaController {
 		
 	}
 	
+	@Secured({"ROLE_ADMIN","ROLE_USER","ROLE_PRESIDENTE"})
 	@GetMapping("/confirma/{id}")
 	public String confirma(@PathVariable Long id, Model model) {
 		model.addAttribute("id", id);
 		return "/pias/confirma";
 	}
 	
+	@Secured({"ROLE_ADMIN","ROLE_USER","ROLE_PRESIDENTE"})
 	@GetMapping("/editar/{id}")
 	public String editarPiaComID(@PathVariable Long id, Model model) {
 		Pia pia = piaService.buscarPorResidenteId(id);
