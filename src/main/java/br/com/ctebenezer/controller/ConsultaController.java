@@ -3,6 +3,8 @@ package br.com.ctebenezer.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.ctebenezer.domain.Consulta;
-import br.com.ctebenezer.domain.Receita;
 import br.com.ctebenezer.domain.Residente;
 import br.com.ctebenezer.service.AccountUserDetailsService;
 import br.com.ctebenezer.service.ConsultaService;
@@ -35,6 +36,7 @@ public class ConsultaController {
 		
 	}
 	
+	@Secured({"ROLE_ADMIN","ROLE_USER","ROLE_PRESIDENTE"})
 	@GetMapping("/selecionarResidente")
 	public String selecionar(Model model,@RequestParam(value="horario",  required=false)String horario) {
 		model.addAttribute("residentes",residenteService.buscarAtivos());
@@ -43,7 +45,7 @@ public class ConsultaController {
 		model.addAttribute("horario", horario);
 		return "/consulta/selecionar";
 	}
-
+	@Secured({"ROLE_ADMIN","ROLE_USER","ROLE_PRESIDENTE"})
 	@PostMapping("/agendar")
 	public String agendar(@Valid Consulta consulta, BindingResult bindingResult, Model model) {
 		Residente residente = residenteService.buscarPorRg(consulta.getResidente().getRg());
@@ -53,6 +55,8 @@ public class ConsultaController {
 		model.addAttribute("medicos", accountUserDetailsService.buscarTodosMedicos());
 		return "/consulta/agendar";
 	}
+	
+	@Secured({"ROLE_ADMIN","ROLE_USER","ROLE_PRESIDENTE"})
 	@PostMapping("/salvar")
 	public String salvar(@Valid Consulta consulta, BindingResult bindingResult) {
 		if(consultaService.salvar(consulta)) {
@@ -60,7 +64,7 @@ public class ConsultaController {
 		}
 		return "redirect:/consulta/selecionarResidente?horario=horarioInvalido";
 	}
-	
+	@Secured({"ROLE_ADMIN","ROLE_USER","ROLE_PRESIDENTE"})
 	@GetMapping("/editar/{id}")
 	public String editarConsulta(@PathVariable Long id, Model model) {
 		model.addAttribute("consulta",consultaService.buscarPorId(id));
@@ -87,6 +91,7 @@ public class ConsultaController {
 		return "/consulta/listar";
 	}
 	
+	@Secured("ROLE_MEDICO")
 	@GetMapping("adicionarInfo/{id}")
 	public String addInfo(@PathVariable Long id, Model model) {
 		
@@ -94,6 +99,7 @@ public class ConsultaController {
 		return "/consulta/addInfo";
 	}
 	
+	@Secured("ROLE_MEDICO")
 	@PostMapping("/salvarInfo")
 	public String salvarInfo(@Valid Consulta consulta, Model model) {
 		Consulta c = consultaService.buscarPorId(consulta.getId());
@@ -103,6 +109,7 @@ public class ConsultaController {
 		return "/consulta/confirmaReceita";
 	}
 	
+	@Secured({"ROLE_ADMIN","ROLE_USER","ROLE_PRESIDENTE"})
 	@GetMapping("/visualizar/{id}")
 	public String visualizarInfo(@PathVariable Long id, Model model) {
 		model.addAttribute("consulta", consultaService.buscarPorId(id));

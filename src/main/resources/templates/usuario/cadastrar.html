@@ -12,18 +12,40 @@
 				<div class="row x_title">
 					<h3 th:text="#{ficha.cadastrar}"></h3>
 				</div>
-				<form enctype="multipart/form-data" class="form-horizontal form-label-left col-md-10 col-sm-10 col-xs-10"  th:object="${account}" method="post" th:action="@{/usuario/salvar}">
-					<label>Usuário</label>
-					<input type="text" th:field="*{username}"/><br/>
-					<label>Senha:</label>
-					<input type="password" th:field="*{password}"/><br/>
-					<label>Nome:</label>
-					<input type="text" th:field="*{pessoa.nome}"/><br/>
+				<form class="form-horizontal form-label-left col-md-10 col-sm-10 col-xs-10" th:object="${account}" method="post" th:action="@{/usuario/salvar}">
+					<div class="form-group">
+						<label class="col-md-1 col-sm-1 col-xs-12 col-md-offset-5">Nome:</label>
+						<div class="input-group">
+							<input type="text" th:field="*{pessoa.nome}"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-1 col-sm-1 col-xs-12 col-md-offset-5">Usuário:</label>
+						<div class="input-group">
+							<input type="text" th:field="*{username}"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-1 col-sm-1 col-xs-12 col-md-offset-5">Senha:</label>
+						<div class="input-group">
+							<input type="password" th:field="*{password}"/>
+						</div>
+					</div>
+					
+					<div class="form-group ">
+					<label class="col-md-1 col-sm-1 col-xs-12 col-md-offset-5">Role:</label>
 					<select th:field="*{roles}">
 						<option th:each="role : ${roles}" th:text="${role.role}" th:value="${role.id}"></option>
-					</select><br/>
-					<!-- input type="file" th:field="*{pessoa.picture.filename}"/><br/-->
-					<input type="submit"/><br/>
+					</select>
+					</div>
+					<div class="ln_solid"></div>
+					<div class="form-group">
+						<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-5">
+							<a class="btn btn-primary" th:href="@{/}" th:text="#{ficha.btnCancelar}"></a>
+							<button type="reset" class="btn btn-primary" th:text="#{ficha.btnLimpar}"></button>
+							<button id="salvar" type="submit" class="btn btn-success">Salvar</button>
+						</div>
+					</div>
 					<label th:if="${usuarioExiste}==invalido" class="text-danger">Este usuário já existe, por favor, escolha outro username!</label>
 				</form>
 			</div>

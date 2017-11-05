@@ -66,6 +66,19 @@ public class AccountUserDetailsService implements UserDetailsService {
 		accountRepository.save(account);
 		return true;
 	}
+	public List<Account> listarUsuarios(){
+		return accountRepository.findAll();
+	}
+	public void desativarUsuario(Long id) {
+		Account account = accountRepository.findOne(id);
+		account.setActive(false);
+		accountRepository.save(account);
+	}
+	public void ativarUsuario(Long id) {
+		Account account = accountRepository.findOne(id);
+		account.setActive(true);
+		accountRepository.save(account);
+	}
 	
 
 }

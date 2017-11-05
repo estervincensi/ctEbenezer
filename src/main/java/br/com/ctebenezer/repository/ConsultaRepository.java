@@ -13,6 +13,6 @@ import br.com.ctebenezer.domain.Consulta;
 public interface ConsultaRepository extends JpaRepository<Consulta,Long>{
 	public Consulta findByDataAndHoraAndAtivo(Date data, String hora, boolean ativo);
 	
-	@Query(value="select c.* from consulta  c where c.data > getDate() and c.ativo=true", nativeQuery=true)
+	@Query(value="select c.* from consulta c where c.data > getDate() and c.ativo=1", nativeQuery=true)
 	public List<Consulta> buscarRecentes();
 }
