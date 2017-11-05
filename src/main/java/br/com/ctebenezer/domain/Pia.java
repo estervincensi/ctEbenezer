@@ -39,8 +39,6 @@ public class Pia {
 	
 	private String tempoPrevisto;
 	
-	@ManyToMany
-	private List<Atividades> agendaSemanal;
 	
 	private String avaliacaoFinal;
 
@@ -124,13 +122,6 @@ public class Pia {
 		this.tempoPrevisto = tempoPrevisto;
 	}
 
-	public List<Atividades> getAgendaSemanal() {
-		return agendaSemanal;
-	}
-
-	public void setAgendaSemanal(List<Atividades> agendaSemanal) {
-		this.agendaSemanal = agendaSemanal;
-	}
 
 	public String getAvaliacaoFinal() {
 		return avaliacaoFinal;
