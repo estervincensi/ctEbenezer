@@ -1,6 +1,5 @@
 package br.com.ctebenezer.service;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -10,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.ctebenezer.domain.Pia;
-import br.com.ctebenezer.domain.Relatorio;
 import br.com.ctebenezer.domain.Residente;
 import br.com.ctebenezer.domain.enumerables.Dependencias;
 import br.com.ctebenezer.repository.PiaRepository;
@@ -42,8 +40,14 @@ public class PiaService {
 
 	}
 	
-	public void desligar(Pia pia) {
+	public Pia desligar(Pia pia) {
+		if(pia==null){
+			return null;
+		}
 		Pia piaSalvar = buscarPorId(pia.getId());
+		if(piaSalvar==null){
+			return null;
+		}
 		piaSalvar.setDesistiu(pia.isDesistiu());
 		piaSalvar.setAvaliacaoFinal(pia.getAvaliacaoFinal());
 		piaSalvar.setAtivo(false);
@@ -55,19 +59,27 @@ public class PiaService {
 		obs+="\nData de entrada = "+piaSalvar.getDataEntrada()+"/Data de Saída:"+piaSalvar.getDataSaida();
 		residente.setObservacoes(obs);		
 		residenteRepository.save(residente);
-		piaRepository.save(piaSalvar);
+		return piaRepository.save(piaSalvar);
 	}
 	
-	public void salvar(Pia pia) {
-		piaRepository.save(pia);
+	public Pia salvar(Pia pia) {
+		if(pia==null||pia.getResidente()==null){
+			return null;
+		}
+		return piaRepository.save(pia);
 	}
 	
 	public Pia buscarPorResidenteId(Long id) {
-		Pia pia = piaRepository.findByResidenteId(id);
+		if(id==null){
+			return null;
+		}
 		return piaRepository.findByResidenteId(id);
 	}
 	
 	public Pia buscarPorId(Long id) {
+		if(id==null){
+			return null;
+		}
 		return piaRepository.findOne(id);
 	}
 	public String calculaTempoNaCasa(Long id){

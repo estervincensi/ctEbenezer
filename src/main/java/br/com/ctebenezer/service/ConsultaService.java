@@ -27,10 +27,11 @@ public class ConsultaService {
 	public boolean salvar(Consulta consulta) {
 		if(estaDisponivel(consulta)) {
 			if(consulta.getResidente().getId()==null) {
+				if(consulta.getResidente().getRg()==null){
+					return false;
+				}
 				consulta.setResidente(residenteService.buscarPorRg(consulta.getResidente().getRg()));
 			}
-			Date data = consulta.getData();
-			Date agora = DateTime.now().toDate();
 			if(consulta.getData().after(DateTime.now().toDate())) {
 				consulta.setAtivo(true);
 				consultaRepository.save(consulta);
@@ -43,7 +44,7 @@ public class ConsultaService {
 			return false;
 		}
 	}
-	public boolean estaDisponivel(Consulta consulta) {
+	private boolean estaDisponivel(Consulta consulta) {
 		if(consultaRepository.findByDataAndHoraAndAtivo(consulta.getData(), consulta.getHora(),true)!=null) {
 			return false;
 		}
@@ -55,12 +56,22 @@ public class ConsultaService {
 	}
 	
 	public Consulta buscarPorId(Long id) {
+		if(id==null){
+			return null;
+		}
 		return consultaRepository.findOne(id);
 	}
-	public void cancelar(Long id) {
+	public boolean cancelar(Long id) {
+		if(id==null){
+			return false;
+		}
 		Consulta consulta = consultaRepository.findOne(id);
+		if(consulta==null){
+			return false;
+		}
 		consulta.setAtivo(false);
 		consultaRepository.save(consulta);
+		return true;
 	}
 	public List<String> buscarHoras(){
 		List<String> horas = new ArrayList<>();
@@ -77,8 +88,11 @@ public class ConsultaService {
 		return horas;
 		
 	}
-	public void salvarInfo(Consulta consulta){
-		consultaRepository.save(consulta);
+	public Consulta salvarInfo(Consulta consulta){
+		if(consulta.getObservacoes()==null || consulta.getObservacoes().isEmpty()){
+			return null;
+		}
+		return consultaRepository.save(consulta);
 	}
 	
 	

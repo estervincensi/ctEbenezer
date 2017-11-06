@@ -68,12 +68,6 @@ public class Consulta {
 	public void setObservacoes(String observacoes) {
 		this.observacoes = observacoes;
 	}
-	public Date getDataEHora() {
-		return data;
-	}
-	public void setDataEHora(Date data) {
-		this.data = data;
-	}
 	public Date getData() {
 		return data;
 	}
