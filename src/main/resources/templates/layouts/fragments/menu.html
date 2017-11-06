@@ -37,9 +37,9 @@
                     </ul>
                   </li>
                   
-	                  <li><a><i class="fa fa-edit"></i> <span th:text="#{menu.atestados}"></span> <span class="fa fa-chevron-down"></span></a>
+	                  <li><a id="atestado"><i class="fa fa-edit"></i> <span th:text="#{menu.atestados}"></span> <span class="fa fa-chevron-down"></span></a>
 	                    <ul class="nav child_menu">
-	                      <li><a th:href="@{/residente/listarAtivos}" th:text="#{menu.permanencia}"></a></li>
+	                      <li><a id="permanencia" th:href="@{/residente/listarAtivos}" th:text="#{menu.permanencia}"></a></li>
 	                    </ul>
 	                  </li>
 	                  
@@ -48,10 +48,10 @@
               <div class="menu_section" style="margin-bottom:0px;">
                 <ul class="nav side-menu">
               
-	                 <li><a><i class="fa fa-medkit"></i> <span th:text="#{menu.servicosMedicos}"></span> <span class="fa fa-chevron-down"></span></a>
+	                 <li><a id="servicosMedicos"><i class="fa fa-medkit"></i> <span th:text="#{menu.servicosMedicos}"></span> <span class="fa fa-chevron-down"></span></a>
 	                    <ul class="nav child_menu">
-	                      <li><a th:href="@{/consulta/listar}" th:text="#{menu.consultas}"></a></li>
-	                      <li><a th:href="@{/receita/listar}" th:text="#{menu.receitas}"></a></li>
+	                      <li><a id="consultas" th:href="@{/consulta/listar}" th:text="#{menu.consultas}"></a></li>
+	                      <li><a id="receitas" th:href="@{/receita/listar}" th:text="#{menu.receitas}"></a></li>
 	                    </ul>
 	                  </li>
 	                  
@@ -60,11 +60,11 @@
               	<div class="menu_section" style="margin-bottom:0px;" th:if="${ #authorization.expression('isAuthenticated()') and (#strings.contains(#authentication.principal.authorities,'ROLE_PRESIDENTE') or #strings.contains(#authentication.principal.authorities,'ROLE_ADMIN'))}">
                 <ul class="nav side-menu">
               
-	                  <li><a><i class="fa fa-area-chart"></i> <span th:text="#{menu.relatorios}"></span> <span class="fa fa-chevron-down"></span></a>
+	                  <li><a id="relatorios"><i class="fa fa-area-chart"></i> <span th:text="#{menu.relatorios}"></span> <span class="fa fa-chevron-down"></span></a>
 	                    <ul class="nav child_menu">
-	                      <li><a th:href="@{/relatorio/graficoDependencias}">Dependências mais comuns</a></li>
-	                      <li><a th:href="@{/relatorio/graficoAtendimentos}">Entradas por ano</a></li>
-	                      <li><a th:href="@{/relatorio/graficoBaixas}">Saídas por ano</a></li>
+	                      <li><a id="dependencias" th:href="@{/relatorio/graficoDependencias}">Dependências mais comuns</a></li>
+	                      <li><a id="entradas" th:href="@{/relatorio/graficoAtendimentos}">Entradas por ano</a></li>
+	                      <li><a id="saidas" th:href="@{/relatorio/graficoBaixas}">Saídas por ano</a></li>
 	                    </ul>
 	                  </li>
 	                  
@@ -72,10 +72,10 @@
 	             </div>
 	             <div class="menu_section" th:if="${ #authorization.expression('isAuthenticated()') and #strings.contains(#authentication.principal.authorities,'ROLE_ADMIN')}">
                 <ul class="nav side-menu">
-	                  <li><a><i class="fa fa-user"></i> <span th:text="#{menu.usuarios}"></span> <span class="fa fa-chevron-down"></span></a>
+	                  <li><a id="usuario"><i class="fa fa-user"></i> <span th:text="#{menu.usuarios}"></span> <span class="fa fa-chevron-down"></span></a>
 	                    <ul class="nav child_menu">
-	                      <li><a th:href="@{/usuario/cadastrar}" th:text="#{menu.adicionarUsuario}"></a></li>
-	                      <li><a th:href="@{/usuario/listar}">Ativar/Desativar Usuário</a></li>
+	                      <li><a id="cadastrarUsuario" th:href="@{/usuario/cadastrar}" th:text="#{menu.adicionarUsuario}"></a></li>
+	                      <li><a id="ativarUsuario" th:href="@{/usuario/listar}">Ativar/Desativar Usuário</a></li>
 	                    </ul>
 	                  </li>
 	                  
