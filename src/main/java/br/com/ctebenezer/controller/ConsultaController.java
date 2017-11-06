@@ -60,7 +60,7 @@ public class ConsultaController {
 	@PostMapping("/salvar")
 	public String salvar(@Valid Consulta consulta, BindingResult bindingResult) {
 		if(consultaService.salvar(consulta)) {
-			return "redirect:/home";
+			return "redirect:/consulta/listar";
 		}
 		return "redirect:/consulta/selecionarResidente?horario=horarioInvalido";
 	}

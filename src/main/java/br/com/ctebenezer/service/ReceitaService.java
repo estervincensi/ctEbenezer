@@ -21,11 +21,15 @@ public class ReceitaService {
 		this.receitaRepository = receitaRepository;
 	}
 
-	public void salvarReceita(Receita receita){
+	public boolean salvarReceita(Receita receita){
+		if(receita.getDescricaoDaReceita().isEmpty()||receita.getConsulta()==null) {
+			return false;
+		}
 		Date vencimento = receita.getConsulta().getData();
 		receita.setAtivo(true);
 		receita.setVencimento(DateUtils.addMonths(vencimento, 3));
 		receitaRepository.save(receita);
+		return true;
 	}
 	
 	public List<Receita> buscarTodas(){
@@ -37,10 +41,17 @@ public class ReceitaService {
 		return receitaRepository.findOne(id);
 	}
 	
-	public void excluir(Long id) {
+	public boolean excluir(Long id) {
+		if(id==null) {
+			return false;
+		}
 		Receita receita = receitaRepository.findOne(id);
-		receita.setAtivo(false);
-		receitaRepository.save(receita);
+		if(receita!=null) {
+			receita.setAtivo(false);
+			receitaRepository.save(receita);
+			return true;
+		}
+		return false;
 	}
 	private void verificarVencidas(){
 		List<Receita> receitas = receitaRepository.buscarTodos();

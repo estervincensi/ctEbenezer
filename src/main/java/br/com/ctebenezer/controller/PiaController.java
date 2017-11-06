@@ -65,7 +65,7 @@ public class PiaController {
 	public String finalizar(@Valid Pia pia, BindingResult bindingResult){
 		piaService.desligar(pia);
 		if(pia.isDesistiu()) {
-			return "redirect:/home";
+			return "redirect:/";
 		}else {
 			return "redirect:/residente/gerarAtestadoAlta/"+pia.getId();
 		}

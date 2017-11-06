@@ -46,7 +46,7 @@ public class UserController {
 	@PostMapping("/salvar")
 	public String salvar(@Valid Account account,BindingResult bindingResult, Model model) {
 		if(accountUserDetailsService.salvarUsuario(account)==true) {
-			return "redirect:/home";
+			return "redirect:/usuario/listar";
 		}else {
 			return "redirect:/usuario/cadastrar?user=invalido";
 		}

@@ -46,16 +46,6 @@ public class ResidenteService {
 		return residenteRepository.save(residente);
 	}
 
-	public int[] calculaVagas(){
-		int[] vagas = new int [2];
-		List<Residente> residentes = residenteRepository.findAll();
-		int totalCadastrados = residentes.size();
-		int totalVagas = 40-totalCadastrados;
-		vagas[0] = totalCadastrados;
-		vagas[1] = totalVagas;
-		return vagas;
-	}
-
 	public List<Residente> listarTodos(){
 		return residenteRepository.findAll();
 	}

@@ -51,7 +51,7 @@ public class AccountUserDetailsService implements UserDetailsService {
 		return accountRepository.buscarTodosMedicos();
 	}
 	
-	public PasswordEncoder passwordEncoder() {
+	private PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 	
@@ -69,15 +69,25 @@ public class AccountUserDetailsService implements UserDetailsService {
 	public List<Account> listarUsuarios(){
 		return accountRepository.findAll();
 	}
-	public void desativarUsuario(Long id) {
+	public boolean desativarUsuario(Long id) {
 		Account account = accountRepository.findOne(id);
-		account.setActive(false);
-		accountRepository.save(account);
+		if(account!=null) {
+			account.setActive(false);
+			accountRepository.save(account);
+			return true;
+		}
+		return false;
+		
 	}
-	public void ativarUsuario(Long id) {
+	public boolean ativarUsuario(Long id) {
 		Account account = accountRepository.findOne(id);
-		account.setActive(true);
-		accountRepository.save(account);
+		if(account!=null) {
+			account.setActive(true);
+			accountRepository.save(account);
+			return true;
+		}
+		return false;
+		
 	}
 	
 
