@@ -22,7 +22,7 @@ public class ReceitaService {
 	}
 
 	public boolean salvarReceita(Receita receita){
-		if(receita.getDescricaoDaReceita().isEmpty()||receita.getConsulta()==null) {
+		if(receita.getDescricaoDaReceita()==null||receita.getConsulta()==null||receita.getConsulta().getData()==null) {
 			return false;
 		}
 		Date vencimento = receita.getConsulta().getData();
@@ -38,6 +38,9 @@ public class ReceitaService {
 	}
 	
 	public Receita buscarPorId(Long id) {
+		if(id==null) {
+			return null;
+		}
 		return receitaRepository.findOne(id);
 	}
 	

@@ -3,6 +3,7 @@ package br.com.ctebenezer.service;
 import javax.transaction.Transactional;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.joda.time.DateTime;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,7 @@ public class ReceitaServiceTest {
 		Consulta c = new Consulta();
 		Receita r = new Receita(); 
 		r.setDescricaoDaReceita("teste");
+		c.setData(DateTime.now().toDate());
 		r.setConsulta(c);
 		assertThat(receitaService.salvarReceita(r)).isTrue();
 	}
@@ -39,6 +41,14 @@ public class ReceitaServiceTest {
 	public void teste_salvar_receita_sem_consulta() {
 		Consulta c = new Consulta();
 		Receita r = new Receita(); 
+		r.setDescricaoDaReceita("teste");
+		assertThat(receitaService.salvarReceita(r)).isFalse();
+	}
+	@Test
+	public void teste_salvar_receita_consulta_data_null() {
+		Consulta c = new Consulta();
+		Receita r = new Receita();
+		r.setConsulta(c);
 		r.setDescricaoDaReceita("teste");
 		assertThat(receitaService.salvarReceita(r)).isFalse();
 	}
