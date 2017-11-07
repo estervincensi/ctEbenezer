@@ -23,7 +23,7 @@ public class PiaServiceTest {
 	
 	@Test
 	public void testa_se_retorna_dependencias(){
-		assertThat(piaService.buscarTodasDependencias()).size().isEqualTo(4);
+		assertThat(piaService.buscarTodasDependencias()).size().isEqualTo(7);
 	}
 	
 	@Test
@@ -38,17 +38,17 @@ public class PiaServiceTest {
 	
 	@Test
 	public void testa_calcula_tempo_na_casa_tempo_menor_30(){
-		//assertThat(piaService.calculaTempoNaCasa(-1L)).isNull();
+		assertThat(piaService.calculaTempoNaCasa(1L)).isEqualTo("26 dias");
 	}
 	
 	@Test
 	public void testa_calcula_tempo_na_casa_tempo_igual_30(){
-		//assertThat(piaService.calculaTempoNaCasa(-1L)).isNull();
+		assertThat(piaService.calculaTempoNaCasa(2L)).isEqualTo("1 mes");
 	}
 	
 	@Test
 	public void testa_calcula_tempo_na_casa_tempo_maior_2_meses(){
-		//assertThat(piaService.calculaTempoNaCasa(-1L)).isNull();
+		assertThat(piaService.calculaTempoNaCasa(3L)).isEqualTo("2 meses");
 	}
 	
 	@Test
@@ -93,7 +93,7 @@ public class PiaServiceTest {
 	
 	@Test
 	public void testa_buscar_pia_por_residente_id_valido(){
-		assertThat(piaService.buscarPorResidenteId(1L)).isNotNull();
+		assertThat(piaService.buscarPorResidenteId(2L)).isNotNull();
 	}
 	
 	@Test

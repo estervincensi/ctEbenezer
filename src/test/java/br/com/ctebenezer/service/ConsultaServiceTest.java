@@ -2,6 +2,8 @@ package br.com.ctebenezer.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Calendar;
+
 import javax.transaction.Transactional;
 
 import org.joda.time.DateTime;
@@ -126,8 +128,16 @@ public class ConsultaServiceTest {
 		Residente r = new Residente();
 		r.setRg("123456789");
 		c.setResidente(r);
-		//c.setData(DateTime.now().plusDays(20).toDate());
-		//c.setHora("10:00");
+		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.DAY_OF_MONTH, 6);
+		cal.set(Calendar.MONTH, Calendar.DECEMBER);
+		cal.set(Calendar.YEAR, 2017);
+		cal.set(Calendar.HOUR_OF_DAY, 0);  
+        cal.set(Calendar.MINUTE, 0);  
+        cal.set(Calendar.SECOND, 0);  
+        cal.set(Calendar.MILLISECOND, 0);
+		c.setData(cal.getTime());
+		c.setHora("09:00");
 		assertThat(consultaService.salvar(c)).isFalse();
 	}
 

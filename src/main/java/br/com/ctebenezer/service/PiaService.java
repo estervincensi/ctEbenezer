@@ -17,14 +17,12 @@ import br.com.ctebenezer.repository.ResidenteRepository;
 @Service
 public class PiaService {
 	private final ResidenteRepository residenteRepository;
-	private final ResidenteService residenteService;
 	private final PiaRepository piaRepository;
 	
 	@Autowired
-	public PiaService(ResidenteRepository residenteRepository, PiaRepository piaRepository,ResidenteService residenteService){
+	public PiaService(ResidenteRepository residenteRepository, PiaRepository piaRepository){
 		this.residenteRepository = residenteRepository;
 		this.piaRepository = piaRepository;
-		this.residenteService = residenteService;
 	}
 	
 	public List<Dependencias> buscarTodasDependencias(){
@@ -51,7 +49,7 @@ public class PiaService {
 		piaSalvar.setDesistiu(pia.isDesistiu());
 		piaSalvar.setAvaliacaoFinal(pia.getAvaliacaoFinal());
 		piaSalvar.setAtivo(false);
-		Residente residente = residenteService.buscar(piaSalvar.getResidente().getId());
+		Residente residente = residenteRepository.findOne(piaSalvar.getResidente().getId());
 		residente.setPiaAtivo(false);
 		residente.setAtivo(false);
 		piaSalvar.setDataSaida(DateTime.now().toDate());

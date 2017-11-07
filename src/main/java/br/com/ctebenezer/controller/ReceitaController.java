@@ -40,7 +40,7 @@ public class ReceitaController {
 	@PostMapping("/salvarReceita")
 	public String salvarReceita(@Valid Receita receita){
 		receitaService.salvarReceita(receita);
-		return "/consulta/listar";
+		return "redirect:/consulta/listar";
 	}
 	
 	@GetMapping("/listar")
