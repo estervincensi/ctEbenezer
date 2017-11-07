@@ -23,7 +23,7 @@
 							<th class="col-md-2" th:if="${ #authorization.expression('isAuthenticated()') and !(#strings.contains(#authentication.principal.authorities,'ROLE_MEDICO'))}">Visualizar</th>
 							<th class="col-md-1" th:if="${ #authorization.expression('isAuthenticated()') and !(#strings.contains(#authentication.principal.authorities,'ROLE_MEDICO'))}">Alterar dia/hora</th>
 							<th class="col-md-2" th:if="${ #authorization.expression('isAuthenticated()') and (#strings.contains(#authentication.principal.authorities,'ROLE_MEDICO'))}">Adicionar Informações da Consulta</th>
-							<th class="col-md-1">Cancelar</th>
+							<th class="col-md-1" th:if="${ #authorization.expression('isAuthenticated()') and !(#strings.contains(#authentication.principal.authorities,'ROLE_MEDICO'))}">Cancelar</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -35,7 +35,7 @@
 							<td th:if="${ #authorization.expression('isAuthenticated()') and !(#strings.contains(#authentication.principal.authorities,'ROLE_MEDICO'))}"><a th:if="${consulta.observacoes}!=null" th:href="@{/consulta/visualizar/}+${consulta.id}" class="btn btn-primary">Visualizar</a></td>
 							<td th:if="${ #authorization.expression('isAuthenticated()') and !(#strings.contains(#authentication.principal.authorities,'ROLE_MEDICO'))}"><a th:if="${consulta.observacoes}==null" th:href="@{/consulta/editar/}+${consulta.id}" class="btn btn-primary" th:text="#{lista.editar}"></a></td>
 							<td th:if="${ #authorization.expression('isAuthenticated()') and (#strings.contains(#authentication.principal.authorities,'ROLE_MEDICO'))}"><a th:if="${consulta.observacoes}==null" th:href="@{/consulta/adicionarInfo/}+${consulta.id}" class="btn btn-primary">Adicionar Info</a></td>
-							<td><a th:if="${consulta.observacoes}==null" th:href="@{/consulta/cancelar/}+${consulta.id}" class="btn btn-danger">Cancelar</a></td>
+							<td><a th:if="${consulta.observacoes}==null and ${ #authorization.expression('isAuthenticated()') and !(#strings.contains(#authentication.principal.authorities,'ROLE_MEDICO'))}" th:href="@{/consulta/cancelar/}+${consulta.id}" class="btn btn-danger">Cancelar</a></td>
 						</tr>
 					</tbody>
 				</table>
