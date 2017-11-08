@@ -72,12 +72,16 @@ public class ConsultaController {
 		model.addAttribute("medicos", accountUserDetailsService.buscarTodosMedicos());
 		return "/consulta/editar";
 	}
+	
+	@Secured({"ROLE_ADMIN","ROLE_USER","ROLE_PRESIDENTE"})
 	@GetMapping("/cancelar/{id}")
 	public String cancelarConsulta(@PathVariable Long id, Model model) {
 		model.addAttribute("id", id);
 		return "/consulta/confirma";
 		
 	}
+	
+	@Secured({"ROLE_ADMIN","ROLE_USER","ROLE_PRESIDENTE"})
 	@GetMapping("/confirmar/{id}")
 	public String confirmarCancelamento(@PathVariable Long id, Model model) {
 		consultaService.cancelar(id);
