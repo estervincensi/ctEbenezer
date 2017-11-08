@@ -10,25 +10,25 @@
 		<div class="right_col" role="main">
 			<div class="x_content dashboard_graph">
 				<div class="row x_title">
-					<h3 th:text="#{ficha.cadastrar}"></h3>
+					<h3>Cadastrar Usuário</h3>
 				</div>
 				<form class="form-horizontal form-label-left col-md-10 col-sm-10 col-xs-10" th:object="${account}" method="post" th:action="@{/usuario/salvar}">
 					<div class="form-group">
 						<label class="col-md-1 col-sm-1 col-xs-12 col-md-offset-5">Nome:</label>
 						<div class="input-group">
-							<input type="text" th:field="*{pessoa.nome}"/>
+							<input type="text" th:field="*{pessoa.nome}" required="required"/>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-md-1 col-sm-1 col-xs-12 col-md-offset-5">Usuário:</label>
 						<div class="input-group">
-							<input type="text" th:field="*{username}"/>
+							<input type="text" th:field="*{username}" required="required"/>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-md-1 col-sm-1 col-xs-12 col-md-offset-5">Senha:</label>
 						<div class="input-group">
-							<input type="password" th:field="*{password}"/>
+							<input type="password" th:field="*{password}" required="required"/>
 						</div>
 					</div>
 					

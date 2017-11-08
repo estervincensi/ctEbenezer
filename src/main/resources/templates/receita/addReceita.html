@@ -13,8 +13,8 @@
 				<form class="form-horizontal form-label-left col-md-10 col-sm-10 col-xs-10" th:action="@{/receita/salvarReceita}" th:object="${receita}" method="post">
 					<input type="hidden" th:field="*{id}"/>
 					<input type="hidden" th:field="*{consulta}"/>
-					<label>Digite informações da receita (ex.: medicação, duração do tratamento, etc)</label>
-					<textarea th:field="*{descricaoDaReceita}"></textarea>
+					<label>Digite informações da receita (ex.: medicação, duração do tratamento, etc)</label><br/>
+					<textarea style="width:470px; height:150px;" th:field="*{descricaoDaReceita}"></textarea>
 					<div class="ln_solid"></div>
 					<div class="form-group">
 						<div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
