@@ -14,11 +14,9 @@ import br.com.ctebenezer.service.ResidenteService;
 
 @Controller
 public class HomeController {
-	private final ResidenteService residenteService;
 	
 	@Autowired
-	public HomeController(ResidenteService residenteService){
-		this.residenteService = residenteService;
+	public HomeController(){
 	}
 	@GetMapping("/")
 	public String home(@AuthenticationPrincipal UserImpl activeUser, Model model) {
