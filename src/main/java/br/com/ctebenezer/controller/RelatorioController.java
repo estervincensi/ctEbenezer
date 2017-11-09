@@ -23,12 +23,10 @@ import br.com.ctebenezer.service.ResidenteService;
 @RequestMapping("/relatorio")
 public class RelatorioController {
 	
-	private final ResidenteService residenteService;
 	private final PiaService piaService;
 
 	@Autowired
-	public RelatorioController(ResidenteService residenteService, PiaService piaService){
-		this.residenteService = residenteService;
+	public RelatorioController(PiaService piaService){
 		this.piaService = piaService;
 	}
 	
