@@ -66,7 +66,7 @@ public class ReceitaController {
 	
 	@Secured({"ROLE_ADMIN","ROLE_MEDICO"})
 	@GetMapping("/confirmaExcluir/{id}")
-	public String visualizarInfo(@PathVariable Long id) {
+	public String excluir(@PathVariable Long id) {
 		receitaService.excluir(id);
 		return "redirect:/receita/listar";
 	}
