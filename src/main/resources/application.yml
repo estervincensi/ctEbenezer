@@ -23,9 +23,9 @@ spring:
     hibernate:
         ddl-auto: update
   datasource:
-        url: jdbc:mysql://sql10.freemysqlhosting.net:3306/sql10203131
-        username: sql10203131
-        password: FvxVYxGLaB
+        url: jdbc:mysql://localhost:3306/ebenezer
+        username: root
+        password: 
         driver-class-name: com.mysql.jdbc.Driver
 logging:
   file: ./ebenezer-console.log
